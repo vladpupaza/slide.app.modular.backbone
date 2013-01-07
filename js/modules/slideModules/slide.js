@@ -1,4 +1,4 @@
-define(['backbone', 'underscore'], function(_, Backbone) {
+define(['underscore', 'backbone'], function(_, Backbone) {
 	var Slide = Backbone.Model.extend({
 		// defaults attributes for slide 
 		defaults: {
