@@ -16,5 +16,6 @@ require(['js/modules/slideModules/slide'], function(slide){
 require(['js/modules/slideModules/slide','js/modules/appViews/contentView'], function(slide,contentView){
  
   a = new slide;
+  console.log(a);
   z=new contentView({model:a});
 });

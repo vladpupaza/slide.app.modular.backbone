@@ -1,10 +1,10 @@
 
-define(['underscore', 'backbone','js/modules/slideModules/slideTemplate'], function(_, Backbone,Template) {
+define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], function(_, Backbone,Template) {
 console.log(Template.textSlide);
 var contentView = Backbone.View.extend({
 	el:$('#content'),
     tagName: "div", 
-    template: _.template(Template.textSlide),
+    template: _.template(Template.content_template),
 	
     events: {
          //this event will be attached to the model elements in
