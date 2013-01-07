@@ -2,7 +2,7 @@ define([], function() {
 var appViewTemplate = {
 
 	// Toolbar Template 
-	var toolbar_buttons : ''  
+	toolbar_buttons : ''  
   	+'<button type="button" id="addSlideBtn">ADD SLIDE</button>'
 	+'<button type="button" id="removeSlideBtn">Remove SLIDE</button>'
 	+'<button type="button" id="addImageToSlideBtn">ADD IMAGE</button>'
@@ -19,7 +19,7 @@ var appViewTemplate = {
 
 
 	// Typebar Template
-	var typebar_template : '' 
+	typebar_template : '' 
 	+'<div class="slideType currentSlideType" id="typeText">'
 		+'<p>type text</p>'
 	+'</div>'
@@ -32,7 +32,7 @@ var appViewTemplate = {
 
 
 	// Content Template
-	var content_template : '<div id="slideWorkArea"><div id="<%= _type %>"><img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> <%= _text %></div></div>'
+	content_template : '<div id="slideWorkArea"><div id="<%= _type %>"><img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> <%= _text %></div></div>'
 };
 return appViewTemplate;	
 });	
