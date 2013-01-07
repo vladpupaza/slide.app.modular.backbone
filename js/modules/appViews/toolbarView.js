@@ -1,10 +1,15 @@
+
+define(['jquery', 'underscore', 'backbone'/*,'/js/modules/appViews/appViewTemplate'*/],
+function($,_,Backbone,toolbarTemplate){
+//console.log(toolbarTemplate);
 ToolbarView = Backbone.View.extend({
+
 initialize: function(){
             this.render();
           },
 render: function(){
 //...........NUMLELE TEMPLETAULUI TREBUIE SCHIMBAT.........
-            var template = _.template( $("#toolbar_buttons").html(), {} );
+            var template = _.template( $(toolbarTemplate /*#toolbar_buttons"*/).html(), {} );
             this.$el.html( template );
           },
 events: {
@@ -26,4 +31,5 @@ removeVideo : function(){alert("remove Video");},
 save: function(){alert("save");},
 selectLanguage: function(e){alert("Select:"+$(e.currentTarget).val()); }
 });
- 
+
+});

@@ -7,9 +7,11 @@ require.config({
 	}
 });
 
-alert('merge?');
-
 require(['js/modules/slideModules/slide'], function(slide){
   alert('merge acum?');
   a = new slide;
+});
+require(['js/modules/appViews/toolbarView.js'], function(ToolbarView){
+  alert('merge ?');
+  a = new ToolbarView;
 });
