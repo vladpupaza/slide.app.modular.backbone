@@ -24,6 +24,7 @@ var slideTemplate = {
   '<div class="slideImg">'
    +'<img src="" alt="image" />'
   +'</div>',
+
 };
 return slideTemplate;
 });

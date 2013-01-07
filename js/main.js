@@ -7,9 +7,14 @@ require.config({
 	}
 });
 
-alert('merge?');
+ 
 
 require(['js/modules/slideModules/slide'], function(slide){
-  alert('merge acum?');
+ 
+ var a = new slide;
+});
+require(['js/modules/slideModules/slide','js/modules/appViews/contentView'], function(slide,contentView){
+ 
   a = new slide;
+  z=new contentView({model:a});
 });
