@@ -6,3 +6,5 @@ require.config({
 		underscore: 'libs/underscore/underscore'
 	}
 });
+
+alert('merge?');

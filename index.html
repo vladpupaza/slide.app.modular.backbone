@@ -1,9 +1,13 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
+	<!-- Load the css "css/style.css" , the style for the entire page -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- Load the script "js/main.js" as our entry point -->
+	<script data-main="js/main" src="js/libs/require/require.js"></script>
 </head>
+
 
 <body>
 	<!-- ###########################Page container################## -->
@@ -15,36 +19,20 @@
 		</div>
 		<!-- ###########################Page sidebar################## -->
 		<div id="sidebar">
-			<div class="slideLittle currentSlide">
 			
-			</div>
-			<div class="slideLittle">
-			
-			</div>
-			<div class="slideLittle">
-			
-			</div>
 		</div>
 		<!-- ###########################Page typebar################## -->
 		<!-- contains 3 types of slide object(text, img, video) -->
 		<!-- will be used to select/change the type of the current selected slide -->
 		<div id="typebar">
-			<div class="slideType currentSlideType">
-				<p>type text</p>
-			</div>
-			<div class="slideType">
-				<p>type image</p>
-			</div>
-			<div class="slideType">
-				<p>type video</p>
-			</div>
+			
 		</div>
 		<!-- ###########################Page content################## -->
 		<!-- contains the current selected slide in bigview -->
 		<div id="content">
 			<div id="slideWorkArea">
 				<div id="slideImg">
-					<img src="img/1.jpg" alt="1" style="width:200px; height:200px;" id="slide" />
+					<img src="" alt="1" style="width:200px; height:200px;" id="slide" />
 				</div>
 			</div>
 		</div>	
