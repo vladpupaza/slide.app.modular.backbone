@@ -1,16 +1,18 @@
-
-define(['jquery', 'underscore', 'backbone'/*,'/js/modules/appViews/appViewTemplate'*/],
+define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate'],
 function($,_,Backbone,toolbarTemplate){
-//console.log(toolbarTemplate);
+console.log(toolbarTemplate);
 ToolbarView = Backbone.View.extend({
 
 initialize: function(){
             this.render();
           },
+template:_.template(toolbarTemplate.toolbar_buttons) ,         
 render: function(){
-//...........NUMLELE TEMPLETAULUI TREBUIE SCHIMBAT.........
-            var template = _.template( $(toolbarTemplate /*#toolbar_buttons"*/).html(), {} );
-            this.$el.html( template );
+           console.log(this.template());
+           console.log(this.model.toJSON());
+           console.log(this.template(this.model.toJSON()));            
+           this.$el.html( this.template(this.model.toJSON()));
+           
           },
 events: {
     "click #addSlideBtn" : "addSlide",
@@ -31,5 +33,5 @@ removeVideo : function(){alert("remove Video");},
 save: function(){alert("save");},
 selectLanguage: function(e){alert("Select:"+$(e.currentTarget).val()); }
 });
-
+return ToolbarView;
 });

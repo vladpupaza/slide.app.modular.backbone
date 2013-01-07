@@ -1,5 +1,7 @@
-define([], function() {
-var appViewTemplate = {
+define([], function(){
+
+var appViewTemplate ={
+
 
 	// Toolbar Template 
 	var toolbar_buttons : ''  
@@ -15,7 +17,7 @@ var appViewTemplate = {
 			+'<option value="english" selected="selected">English</option>'
 			+'<option value="romanian">Romanian</option>'
 		+'</select>'
-	+'</div>',
+	+'</div>' ,
 
 
 	// Typebar Template
@@ -32,7 +34,9 @@ var appViewTemplate = {
 
 
 	// Content Template
+
 	var content_template : '<div id="slideWorkArea"><div id="<%= _type %>"><img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> <%= _text %></div></div>'
 };
 return appViewTemplate;	
 });	
+

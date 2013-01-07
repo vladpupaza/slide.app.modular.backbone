@@ -12,6 +12,6 @@ require(['js/modules/slideModules/slide'], function(slide){
   a = new slide;
 });
 require(['js/modules/appViews/toolbarView.js'], function(ToolbarView){
-  alert('merge ?');
+  
   a = new ToolbarView;
 });
