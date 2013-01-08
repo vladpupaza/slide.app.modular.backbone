@@ -1,6 +1,7 @@
 
-define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], function(_, Backbone,Template) {
+define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/appViews/appViewTemplate'], function(_, Backbone,defaultS,Template) {
 console.log(Template.content_template);
+ 
 
 var contentView = Backbone.View.extend({
 	el:$('#content'),
@@ -22,6 +23,7 @@ var contentView = Backbone.View.extend({
 		
         _.bindAll(this, "render"); 
 		this.model.bind('change',this.render);
+		
         this.render();
     },
     render: function () {

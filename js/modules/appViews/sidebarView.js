@@ -41,7 +41,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				//set current slide on sidebar
 				$(".currentSlide").removeClass("currentSlide");
 				$("#"+id).addClass("currentSlide");
-
+				
 				//render current slide content
 				var cv=new contentView({model:currentSlide});
 
