@@ -7,7 +7,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide'], function(_, B
 			require(['js/modules/slideModules/slide','js/modules/appViews/contentView'], function(slide,contentView){
 			var sl = new slide;
 			sl.setType(t.getCurrentType());
-			slide.add(sl);
+            slides.add(sl);
 			});
 			
 			
