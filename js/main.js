@@ -24,3 +24,14 @@ require(['js/modules/appViews/toolbarView'], function(toolbar){
  
  var t = new toolbar({ el: $("#toolbar")});
 });
+
+require(['js/modules/slideModules/slides'], function(slides){
+ 
+  z=new slides();
+});
+
+require(['js/modules/slideModules/slides','js/modules/appViews/sidebarView'], function(slides,sidebarView){
+
+ var arr=new slides([a]);
+ var s = new sidebarView({collection:arr});
+});
