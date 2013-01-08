@@ -31,7 +31,8 @@ require(['js/modules/appViews/toolbarView'], function(toolbar){
 require(['js/modules/slideModules/slides','js/modules/appViews/sidebarView'], function(slides,sidebarView){
 
 
- var arr=new slides([a,b]);
+ arr=new slides([a]);
+ //arr.add(b);
  var s = new sidebarView({collection:arr});
 
 

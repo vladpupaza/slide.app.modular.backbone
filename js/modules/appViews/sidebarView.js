@@ -10,11 +10,17 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
     	},
 		initialize:function()
 		{
-			this.render();
+			this.undelegateEvents();
+			 _.bindAll(this, "render");
+			 this.render();
+			this.collection.bind("add", this.render);//colectia se va reranda la add,remove si reset
+			this.collection.bind("remove", this.render);
+			this.collection.bind("reset", this.render);
 		},
 
 		render:function()
 		{
+			$("#sidebar").html("");
 			var i;
 			var nr=this.collection.length;
 			console.log("Rendering "+nr+" slides...")
