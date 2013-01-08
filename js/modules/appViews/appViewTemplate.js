@@ -4,7 +4,7 @@ var appViewTemplate ={
 
 
 	// Toolbar Template 
-	toolbar_buttons : ''  
+	toolbar_buttons : '<div id="toolbarB">'  
   	+'<button type="button" id="addSlideBtn">ADD SLIDE</button>'
 	+'<button type="button" id="removeSlideBtn">Remove SLIDE</button>'
 	+'<button type="button" id="addImageToSlideBtn">ADD IMAGE</button>'
@@ -12,6 +12,7 @@ var appViewTemplate ={
 	+'<button type="button" id="addVideoBtn">Add Video</button>'
 	+'<button type="button" id="removeVideoBtn">Remove Video</button>'
 	+'<button type="button" id="saveBtn">SAVE</button>'
+	+'</div>'
 	+'<div id="languageDtopdown">'
 		+'<select id = "languageOption">'
 			+'<option value="english" selected="selected">English</option>'
