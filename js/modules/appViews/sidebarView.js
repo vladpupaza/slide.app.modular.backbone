@@ -1,7 +1,13 @@
 define(['jquery','underscore','backbone','js/modules/slideModules/slideView'],function ($,_,Backbone,slideView)
 {
 	var sidebarView=Backbone.View.extend({
-
+		el:$('#sidebar'),
+		tagName:"div",
+		events: {
+         //this event will be attached to the model elements in
+         //the el of every view inserted by AppView below
+        	"click": "selectSlide"
+    	},
 		initialize:function()
 		{
 			this.render();
@@ -16,6 +22,10 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView'],fu
 			{
 				var sv=new slideView({model:this.collection.at(i)});
 			}
+		},
+		selectSlide:function()
+		{
+				console.log("clicked");
 		}
 
 	});
