@@ -15,7 +15,7 @@ var contentView = Backbone.View.extend({
 	
 	
     initialize: function () { 
-		if(this.model.toJSON()._type=='Image')this.template=_.template(Template.content_template_image);
+    	if(this.model.toJSON()._type=='Image')this.template=_.template(Template.content_template_image);
 		else if(this.model.toJSON()._type=='Text')this.template=_.template(Template.content_template_text);
 		else if(this.model.toJSON()._type=='Video')this.template=_.template(Template.content_template_video);
 		else console.log('I don;t have a type');
@@ -30,7 +30,9 @@ var contentView = Backbone.View.extend({
         return this;
     },
 	alertMe:function(){console.log('I"m here');},
-	updateText:function(){this.model.setText($('.text')[0].value);}
+	updateText:function(){this.model.setText($('.text')[0].value);},
+    setModel:function(model){this.model=model}
+   
 });
 return contentView;
 });

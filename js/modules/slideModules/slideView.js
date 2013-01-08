@@ -19,7 +19,7 @@ define([
   	template: _.template(slideTemplate.slide_img), //..... where is my template ???
 
   	events: {
-  					"click [class=slideLittle] ":"select"
+  					
   	},
 
   	initialize: function() {
@@ -33,12 +33,8 @@ define([
       $(this.el).append(this.template)
       console.log("should append")
       
-    },
-    select:function(){
-      alert("selected")
     }
-
-   
+       
 })
   return slideView;
 });

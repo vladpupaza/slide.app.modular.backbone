@@ -3,6 +3,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 	var sidebarView=Backbone.View.extend({
 		el:$('#sidebar'),
 		tagName:"div",
+		cv:new contentView({model:a}),
 		events: {
          //this event will be attached to the model elements in
          //the el of every view inserted by AppView below
@@ -10,12 +11,12 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
     	},
 		initialize:function()
 		{
-			this.undelegateEvents();
-			 _.bindAll(this, "render");
-			 this.render();
+			
+			_.bindAll(this, "render");
 			this.collection.bind("add", this.render);//colectia se va reranda la add,remove si reset
 			this.collection.bind("remove", this.render);
 			this.collection.bind("reset", this.render);
+			this.render();
 		},
 
 		render:function()
@@ -43,7 +44,10 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				$("#"+id).addClass("currentSlide");
 
 				//render current slide content
-				var cv=new contentView({model:currentSlide});
+				this.cv.model=currentSlide;
+				this.cv.initialize();
+
+
 
 		}
 

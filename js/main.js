@@ -15,9 +15,9 @@ require(['js/modules/slideModules/slide','js/modules/appViews/contentView'],
 
  
 		a = new slide;
+		b = new slide;
 		a.setType('Image');
 		
-		z=new contentView({model:a});
 
 });
 
@@ -28,15 +28,7 @@ require(['js/modules/appViews/toolbarView'], function(toolbar){
 
 
 
-require(['js/modules/slideModules/slides','js/modules/appViews/sidebarView'], function(slides,sidebarView){
 
-
- arr=new slides([a]);
- //arr.add(b);
- var s = new sidebarView({collection:arr});
-
-
-});
 
 require(['js/modules/appViews/typeView'], function(TypeView){
   //alert('hhh');
@@ -47,6 +39,16 @@ require(['js/modules/appViews/typeView'], function(TypeView){
 require(['js/modules/slideModules/slides'], function(Slides){
   //alert('hhh');
   slides=new Slides();
+
+
+});
+
+require(['js/modules/appViews/sidebarView'], function(sidebarView){
+
+
+ slides.addSlide();
+ slides.addSlide();
+ var s = new sidebarView({collection:slides});
 
 
 });
