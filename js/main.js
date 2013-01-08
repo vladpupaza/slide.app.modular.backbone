@@ -12,10 +12,12 @@ require.config({
 
 require(['js/modules/slideModules/slide','js/modules/appViews/contentView'], 
 	function(slide,contentView){
-  b = new slide;
-  a = new slide;
-  console.log(a);
-  z=new contentView({model:a});
+
+ 
+		a = new slide;
+		a.setType('Image');
+		z=new contentView({model:a});
+
 });
 
 require(['js/modules/appViews/toolbarView'], function(toolbar){
