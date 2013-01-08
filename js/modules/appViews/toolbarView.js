@@ -1,6 +1,5 @@
 define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate'],
 function($,_,Backbone,toolbarTemplate){
-console.log(toolbarTemplate);
 ToolbarView = Backbone.View.extend({
 
 initialize: function(){
@@ -8,10 +7,9 @@ initialize: function(){
           },
 template:_.template(toolbarTemplate.toolbar_buttons) ,         
 render: function(){
-           console.log(this.template());
-           console.log(this.model.toJSON());
-           console.log(this.template(this.model.toJSON()));            
-           this.$el.html( this.template(this.model.toJSON()));
+          
+                  
+           this.el.html( this.template().toString());
            
           },
 events: {

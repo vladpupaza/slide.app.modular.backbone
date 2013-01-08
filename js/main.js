@@ -19,3 +19,8 @@ require(['js/modules/slideModules/slide','js/modules/appViews/contentView'], fun
   console.log(a);
   z=new contentView({model:a});
 });
+
+require(['js/modules/appViews/toolbarView'], function(toolbar){
+ 
+ var t = new toolbar({ el: $("#toolbar")});
+});
