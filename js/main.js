@@ -1,23 +1,23 @@
 require.config({
-	baseUrl:'',
-	paths: {
-		jquery: 'js/libs/jquery/jquery-1.8.3',
-		underscore: 'js/libs/underscore/underscore-min',
-		backbone: 'js/libs/backbone/backbone-optamd3-min'
-	}
+ baseUrl:'',
+ paths: {
+  jquery: 'js/libs/jquery/jquery-1.8.3',
+  underscore: 'js/libs/underscore/underscore-min',
+  backbone: 'js/libs/backbone/backbone-optamd3-min'
+ }
 });
 
 
  
 
 require(['js/modules/slideModules/slide','js/modules/appViews/contentView'], 
-	function(slide,contentView){
+ function(slide,contentView){
 
  
-		a = new slide;
-		a.setType('Image');
-		
-		z=new contentView({model:a});
+  a = new slide;
+  a.setType('Image');
+
+  z=new contentView({model:a});
 
 });
 
@@ -32,7 +32,7 @@ require(['js/modules/slideModules/slides','js/modules/appViews/sidebarView'], fu
 
 
  arr=new slides([a]);
- //arr.add(b);
+ //arr.add(beer);
  var s = new sidebarView({collection:arr});
 
 

@@ -2,43 +2,53 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'js/modules/slideModules/slideTemplate'
+  'js/modules/slideModules/slideTemplate',
+  'js/modules/slideModules/slide'
   ],
 
-  function($, _, Backbone, slideTemplate){
+  function($, _, Backbone, slideTemplate,slide){
 
 
   var slideView = Backbone.View.extend({
 
   	//....a silde is a div
     el: $("#sidebar"),
-  	tagName: 'div',
-
-  	//....cache the template for a single item
-
-  	template: _.template(slideTemplate.slide_img), //..... where is my template ???
+  	tagName: 'div',  
 
   	events: {
-  					"click [class=slideLittle] ":"select"
+  					
   	},
 
   	initialize: function() {
-      //this.model.on('change', this.render, this);
-      //this.model.view = this;
-      this.render
-      console.log("should render")
-
-    },
-    render: function() {
-      $(this.el).append(this.template)
-      console.log("should append")
+      this.model.bind('change', this.render, this);
+      this.model.view = this;
+      this.render()
       
     },
-    select:function(){
-      alert("selected")
-    }
+    render: function() {
+      switch(this.model.getType())
+      {
+      case "Text" :                  
+                  var template= _.template(slideTemplate.slide_text)
+                  $(this.el).append(template(this.model.toJSON()));
 
-   
+      break;
+      case "Image":
+                  var template= _.template(slideTemplate.slide_img)
+                  $(this.el).append(template(this.model.toJSON()));
+
+      break;
+      case "Video":
+                  var template= _.template(slideTemplate.slide_video)
+                  $(this.el).append(template(this.model.toJSON()));
+
+      break;
+      default: alert("no slide type")
+      }     
+     
+      
+    }   
+      
 })
   return slideView;
 });
