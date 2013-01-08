@@ -1,4 +1,4 @@
-define(['jquery','underscore','backbone','js/modules/slideModules/slideView'],function ($,_,Backbone,slideView)
+define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js/modules/appViews/contentView'],function ($,_,Backbone,slideView,contentView)
 {
 	var sidebarView=Backbone.View.extend({
 		el:$('#sidebar'),
@@ -6,7 +6,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView'],fu
 		events: {
          //this event will be attached to the model elements in
          //the el of every view inserted by AppView below
-        	"click": "selectSlide"
+        	"click .slideLittle": "selectSlide"
     	},
 		initialize:function()
 		{
@@ -20,12 +20,25 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView'],fu
 			console.log("Rendering "+nr+" slides...")
 			for (i=0;i<nr;i++)
 			{
-				var sv=new slideView({model:this.collection.at(i)});
+				var sv=new slideView({model:this.collection.at(i)});//trimit view'uliu un model de tip slide
+				sv.render();
+				$('div .slideLittle').last().attr("id",i);
 			}
 		},
-		selectSlide:function()
+		selectSlide:function(e)
 		{
-				console.log("clicked");
+				//get current slide
+				e.preventDefault();
+				var id =$(e.currentTarget).context.id;
+				var currentSlide=this.collection.at(id);
+				
+				//set current slide on sidebar
+				$(".currentSlide").removeClass("currentSlide");
+				$("#"+id).addClass("currentSlide");
+
+				//render current slide content
+				var cv=new contentView({model:currentSlide});
+
 		}
 
 	});

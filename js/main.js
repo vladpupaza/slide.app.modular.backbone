@@ -9,20 +9,9 @@ require.config({
 
  
 
-require(['js/modules/slideModules/slide','js/modules/slideModules/slideView'], function(slide,slideView){
- 
- var a = new slide;
- var b = new slideView({model:a})
- b.render();
- var c = new slideView({model:a})
- c.render();
- var d = new slideView({model:a})
- d.render();
-
-});
 require(['js/modules/slideModules/slide','js/modules/appViews/contentView'], 
 	function(slide,contentView){
- 
+  b = new slide;
   a = new slide;
   console.log(a);
   z=new contentView({model:a});
@@ -40,6 +29,7 @@ require(['js/modules/slideModules/slides'], function(slides){
 
 require(['js/modules/slideModules/slides','js/modules/appViews/sidebarView'], function(slides,sidebarView){
 
- var arr=new slides([a]);
+
+ var arr=new slides([a,b]);
  var s = new sidebarView({collection:arr});
 });

@@ -31,7 +31,7 @@ define([
     },
     render: function() {
       $(this.el).append(this.template)
-      console.log("should append")
+      console.log("should append"+this.model.cid)
       
     },
     select:function(){
