@@ -9,11 +9,19 @@ require.config({
 
  
 
-require(['js/modules/slideModules/slide'], function(slide){
+require(['js/modules/slideModules/slide','js/modules/slideModules/slideView'], function(slide,slideView){
  
  var a = new slide;
+ var b = new slideView({model:a})
+ b.render();
+ var c = new slideView({model:a})
+ c.render();
+ var d = new slideView({model:a})
+ d.render();
+
 });
-require(['js/modules/slideModules/slide','js/modules/appViews/contentView'], function(slide,contentView){
+require(['js/modules/slideModules/slide','js/modules/appViews/contentView'], 
+	function(slide,contentView){
  
   a = new slide;
   console.log(a);
