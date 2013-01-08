@@ -43,11 +43,35 @@ var appViewTemplate ={
 
 
 	// Content Template
-	content_template : '<div id="slideWorkArea"><div id="<%= _type %>"><img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> <%= _text %></div></div>',
+	content_template :
+	'<div id="slideWorkArea">\
+		<div id="<%= _type %>">\
+			<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/>\
+			<%= _text %>\
+		</div>\
+	</div>',
 
-	content_template_video: '<div id="slideWorkArea"><div id="<%= _type %>">Video template<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> <%= _text %></div></div>',
-	content_template_image: '<div id="slideWorkArea"><div id="<%= _type %>">Image<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> <%= _text %></div></div>',
-	content_template_text: '<div id="slideWorkArea"><div id="<%= _type %>">Text<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> <%= _text %></div></div>'
+	content_template_video:
+	'<div id="slideWorkArea">\
+		<div id="<%= _type %>">Video template\
+			<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
+			<%= _text %>\
+		</div>\
+	</div>',
+	content_template_image: 
+	'<div id="slideWorkArea">\
+		<div id="<%= _type %>">\
+			Image<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
+			<%= _text %>\
+		</div>\
+	</div>',
+	content_template_text:
+	'<div id="slideWorkArea">\
+		<div id="<%= _type %>">\
+			Text<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/>\
+			<%= _text %>\
+		</div>\
+	</div>'
 	
 };
 return appViewTemplate;	

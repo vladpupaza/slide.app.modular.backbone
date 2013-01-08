@@ -16,6 +16,7 @@ require(['js/modules/slideModules/slide','js/modules/appViews/contentView'],
  
 		a = new slide;
 		a.setType('Image');
+		
 		z=new contentView({model:a});
 
 });

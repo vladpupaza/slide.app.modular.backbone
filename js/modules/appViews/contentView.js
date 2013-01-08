@@ -20,6 +20,7 @@ var contentView = Backbone.View.extend({
 		else console.log('I don;t have a type');
 		
         _.bindAll(this, "render"); 
+		this.model.bind('change',this.render);
         this.render();
     },
     render: function () {
