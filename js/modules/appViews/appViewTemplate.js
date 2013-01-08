@@ -19,10 +19,7 @@ var appViewTemplate ={
 			+'<option value="romanian">Romanian</option>'
 		+'</select>'
 	+'</div>'
-	+'<div id="insertText">'
-            +'<textarea name="myTextAreaText"cols="20" rows="10" id="myTextAreaSlideText">Please limit your response to 100 characters.</textarea>'
-            +'<button type="button" id="saveTextSlideBtn">Save</button>'
-	+'</div> '
+	
 	+'<div id="insertImageUrl">'
             +'<textarea name="myTextAreaImageUrl"cols="20" rows="2" id="myTextAreaUrl">Insert image url here</textarea>'
             +'<button type="button" id="addImageUrlBtn">Save</button>'
