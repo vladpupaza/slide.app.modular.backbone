@@ -1,15 +1,16 @@
 
 define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], function(_, Backbone,Template) {
 console.log(Template.content_template);
+
 var contentView = Backbone.View.extend({
 	el:$('#content'),
     tagName: "div", 
     template: _.template(Template.content_template),
-	
     events: {
          //this event will be attached to the model elements in
          //the el of every view inserted by AppView below
-        "click": "alertMe"
+        "click": "alertMe",
+		"updateReady":'updateText'
     },
 	
 	
@@ -28,7 +29,10 @@ var contentView = Backbone.View.extend({
         this.el.html(this.template(this.model.toJSON()));
         return this;
     },
-	alertMe:function(){alert('I"m here');}
+	alertMe:function(){console.log('I"m here');},
+	updateText:function(){this.model.setText($('.text')[0].value);}
 });
 return contentView;
 });
+
+

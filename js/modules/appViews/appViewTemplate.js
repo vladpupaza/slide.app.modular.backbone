@@ -55,24 +55,30 @@ var appViewTemplate ={
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">Video template\
 			<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
-			<%= _text %>\
+			<textarea class="text"  onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50">\
+				<%= _text %>\
+			</textarea>\
 		</div>\
 	</div>',
 	content_template_image: 
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">\
 			Image<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
-			<%= _text %>\
+			<textarea class="text" onblur="$(\'#content\').trigger(\'updateReady\')"   rows="4" cols="50">\
+				<%= _text %>\
+			</textarea>\
 		</div>\
 	</div>',
 	content_template_text:
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">\
 			Text<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/>\
-			<%= _text %>\
+			<textarea class="text"  onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50">\
+				<%= _text %>\
+			</textarea>\
 		</div>\
 	</div>'
-	
+
 };
 return appViewTemplate;	
 });	
