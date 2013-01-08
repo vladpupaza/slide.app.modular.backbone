@@ -6,6 +6,7 @@ define(['underscore', 'backbone'], function(_, Backbone) {
 			"_text" : null,
 			"_url" :null
 		},
+		initialize:function(){},
 		// setType method by param type
 		setType  : function(type) {
 			this.set({ _type : type });
