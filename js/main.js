@@ -18,7 +18,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/app
 
  
 		a = new slide({id:'10'});
-		a.setText('Dany');
+		a.set({id:null});
 		a.setType('Image');
 		
 		b =  new slide({id:'11'});
@@ -51,8 +51,10 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/app
 	divMove=	
 	function (e){ 
 		var div = document.getElementById('draggebel'); 
-		div.style.top =( e.clientY -100)+ 'px';
-		div.style.left =( e.clientX -200)+ 'px';
+		div.style.top =( e.clientY -250)+ 'px';
+		div.style.left =( e.clientX -550)+ 'px';
+		
+	
 	};
  
 

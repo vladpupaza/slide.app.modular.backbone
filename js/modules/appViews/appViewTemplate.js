@@ -50,8 +50,8 @@ var appViewTemplate ={
 
 	content_template_video:
 	'<div id="slideWorkArea">\
-		<div id="<%= _type %>">Video template\
-		<div id="draggebel">\
+		<div id="<%= _type %>"> \
+	<div id="draggebel" style="top:<%= _y %>;left:<%= _x %>;">\
 			<video width="200" height="140" controls>\
 				<source src="<%=_url%>" type="video/ogg">\
 			</video>\
@@ -64,7 +64,7 @@ var appViewTemplate ={
 	content_template_image: 
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">\
-		<div id="draggebel">\
+		<div id="draggebel" style="top:<%= _y %>;left:<%= _x %>;">\
 			<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
 		</div>\
 			<textarea class="text" onblur="$(\'#content\').trigger(\'updateReady\')"   rows="4" cols="50">\
@@ -77,7 +77,7 @@ var appViewTemplate ={
 	content_template_text:
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">\
-		<div id="draggebel">\
+		<div id="draggebel" style="top:<%= _y %>;left:<%= _x %>;">\
 		</div>\
 			<textarea class="text"  onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50">\
 				<%= _text %>\
