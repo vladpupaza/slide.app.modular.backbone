@@ -49,7 +49,7 @@ var appViewTemplate ={
 	</div>',
 
 	content_template_video:
-	'<div id="slideWorkArea">\
+	'<div id="slideWorkArea" class=".clearfix">\
 		<div id="<%= _type %>"> \
 	<div id="draggebel" style="top:<%= _y %>;left:<%= _x %>;">\
 			<video width="200" height="140" controls>\
@@ -62,10 +62,10 @@ var appViewTemplate ={
 		</div>\
 	</div>',
 	content_template_image: 
-	'<div id="slideWorkArea">\
+	'<div id="slideWorkArea" class=".clearfix">\
 		<div id="<%= _type %>">\
-		<div id="draggebel" style="top:<%= _y %>;left:<%= _x %>;">\
-			<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
+		<div id="draggebel" onclick="event.stopPropagation();" style="top:<%= _y %>;left:<%= _x %>;">\
+			<img src="<%= _url %>" alt="1"  style="width:200px; height:200px;" id="slide"/> \
 		</div>\
 			<textarea class="text" onblur="$(\'#content\').trigger(\'updateReady\')"   rows="4" cols="50">\
 				<%= _text %>\
@@ -75,7 +75,7 @@ var appViewTemplate ={
 	
  
 	content_template_text:
-	'<div id="slideWorkArea">\
+	'<div id="slideWorkArea" class=".clearfix">\
 		<div id="<%= _type %>">\
 		<div id="draggebel" style="top:<%= _y %>;left:<%= _x %>;">\
 		</div>\

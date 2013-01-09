@@ -55,6 +55,7 @@ var contentView = Backbone.View.extend({
 	mouseDown:function (e){
 		console.log('action started');
 		document.getElementById('slideWorkArea').addEventListener('mousemove', divMove, true);
+		e.preventDefault();
 	},
 	updateText:function(){this.model.setText($('.text')[0].value)},
     setModel:function(model){
