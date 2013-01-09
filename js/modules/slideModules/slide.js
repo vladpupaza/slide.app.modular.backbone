@@ -6,8 +6,8 @@ define(['underscore', 'backbone','js/libs/pubsub'], function(_, Backbone, pubSub
 			"_type" : null,
 			"_text" : null,
 			"_url" :null,
-			'_x':'150px',
-			'_y':'50px'
+			'_x':'20px',
+			'_y':'20px'
 			
 		},
 		initialize:function(){

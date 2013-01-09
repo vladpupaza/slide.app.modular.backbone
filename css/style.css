@@ -122,6 +122,14 @@ html
 	margin-top: 25px;
 	margin-bottom: 25px;
 }
+#slideWorkArea .text
+{
+	position:absolute;
+	bottom:20px;
+	max-width:500px;	
+	max-height:200px;
+	width:500px;
+}
 
 #slideImg 
 {

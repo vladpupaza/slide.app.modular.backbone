@@ -18,7 +18,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/app
 
  
 		a = new slide({id:'10'});
-		a.setText('Dany');
+		a.set({id:null});
 		a.setType('Image');
 		
 		b =  new slide({id:'11'});
