@@ -18,8 +18,6 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/app
     a.setType('Image');
     b =  new slide({id:'11'});
     b.setText('Cosmin');
-    z=new contentView({model:a});
-
     /* var slideRouter = Backbone.Router.extend({
       routes: {
         "":"",
@@ -52,10 +50,10 @@ require(['js/modules/appViews/toolbarView'], function(toolbar){
 require(['js/modules/slideModules/slides','js/modules/appViews/sidebarView'], function(slides,sidebarView){
 
 
- arr=new slides([a,b]);
+ //arr=new slides([a,b]);
  //arr.add(b);
 
- var s = new sidebarView({collection:arr});
+ var s = new sidebarView({collection:window.slides});
 
 
 });

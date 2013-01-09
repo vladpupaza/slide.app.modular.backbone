@@ -4,7 +4,7 @@ var TypeView=Backbone.View.extend({
 		el:$("#typebar"),
 		tagName:'div',
 		curr:"typeText",
-		currentType:"none",
+		currentType:"Text",
 		template:_.template(typeTemplate.typebar_template),
 		initialize: function(){
 				this.render();

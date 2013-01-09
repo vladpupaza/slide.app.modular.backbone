@@ -28,7 +28,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 			for (i=0;i<nr;i++)
 			{
 				var sv=new slideView({model:this.collection.at(i)});//trimit view'uliu un model de tip slide
-				sv.render();
+				//sv.render();
 				$('div .slideLittle').last().attr("id",i);
 			}
 		},
