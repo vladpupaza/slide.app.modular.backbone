@@ -25,29 +25,36 @@ events: {
 },
 //......Adding a slide....................................................
 addSlide : function(){ 
-var t=new slideCollection;
-console.log(t.addSlide());
+    window.slides.addSlide();
 
 },
 //.......Remove a slide...................................................
-removeSlide : function() { alert("remove slide");},
+removeSlide : function() { 
+    var currentSlideId = $(".currentSlide").attr("id");
+    var currentSlide=slides.at(currentSlideId);
+    slides.remove(currentSlide);
+
+},
 //........Add image.......................................................
 addImage : function() { 
-    $("#insertImageUrl").show();
+    $("#wrapper").show();
  
 },
 //.........Remove image...................................................
 removeImage : function(){ 
-alert("remove Image");},
+
+alert("remove Image");
+
+},
 //.........Add video......................................................
 addVideo : function(){ 
-    $("#insertImageUrl").show();
+    $("#wrapper").show();
 },
 //.........getUrl.........................................................
 getUrl : function(){
     var someText = $('#myTextAreaUrl').val();
     alert(someText);
-    $("#insertImageUrl").hide();
+    $("#wrapper").hide();
 },
 //.........removeVideo....................................................
 removeVideo : function(){alert("remove Video");},
