@@ -13,6 +13,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 		{
 			
 			_.bindAll(this, "render");
+			this.collection.bind('change', this.render, this);
 			this.collection.bind("add", this.render);//colectia se va reranda la add,remove si reset
 			this.collection.bind("remove", this.render);
 			this.collection.bind("reset", this.render);
