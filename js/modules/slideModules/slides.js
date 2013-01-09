@@ -14,7 +14,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
 			var that=this;
 			require(['js/modules/slideModules/slide','js/modules/appViews/contentView'], function(slide,contentView){
 			var sl = new slide;
-			sl.setType(t.getCurrentType());
+			sl.setType(typeViewObj.getCurrentType());
  
 
 			slides.add(sl);

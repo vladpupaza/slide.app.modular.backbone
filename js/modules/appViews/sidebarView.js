@@ -3,7 +3,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 	var sidebarView=Backbone.View.extend({
 		el:$('#sidebar'),
 		tagName:"div",
-		cv:new contentView({model:a}),
+		//cv:new contentView({model:a}),
 		events: {
          //this event will be attached to the model elements in
          //the el of every view inserted by AppView below
@@ -47,8 +47,8 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				$("#"+id).addClass("currentSlide");
 				
 				//render current slide content
-				this.cv.model=currentSlide;
-				this.cv.initialize();
+				contentViewObj.model=currentSlide;
+				contentViewObj.initialize();
 
 
 

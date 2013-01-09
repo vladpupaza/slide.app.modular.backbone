@@ -1,4 +1,4 @@
-define(['js/modules/slideModules/slides'], function(s) {
+define(['js/modules/slideModules/slides', 'js/modules/slideModules/slide'], function(s,slide) {
 	var slideModule =function(){
 		
 		slides= new s();
@@ -15,8 +15,8 @@ define(['js/modules/slideModules/slides'], function(s) {
 
 		 	}
 		
-
-          
+		a = new slide({id:'10'});
+		a.set({id:null});
         }
 	
 	return slideModule;

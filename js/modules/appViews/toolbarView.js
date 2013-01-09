@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/modules/slideModules/slides', 'js/libs/pubsub'],
 function($,_,Backbone,toolbarTemplate,slideCollection,pubSub){
 ToolbarView = Backbone.View.extend({
-
+el: $("#toolbar"),
 initialize: function(){
             this.render();
           },
