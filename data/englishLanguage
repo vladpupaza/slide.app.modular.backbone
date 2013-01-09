@@ -1,0 +1,12 @@
+{
+	"englishLanguage" : {
+		"addSlideBtn" : "Add Slide",
+		"removeSlideBtn" : "Remove Slide",
+		"addImageToSlideBtn" : "Add Image",
+		"removeImageFromSlideBtn" : "Remove Image",
+		"addVideoBtn" : "Add Video",
+		"removeVideoBtn" : "Remove Video",
+		"saveBtn" : "Save",
+		"addImageUrlBtn" : "Save"
+	}
+}

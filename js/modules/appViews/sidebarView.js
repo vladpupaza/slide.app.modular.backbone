@@ -1,4 +1,4 @@
-define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js/modules/appViews/contentView'],function ($,_,Backbone,slideView,contentView)
+define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js/modules/appViews/contentView','js/modules/slideModules/slides'],function ($,_,Backbone,slideView,contentView)
 {
 	var sidebarView=Backbone.View.extend({
 		el:$('#sidebar'),

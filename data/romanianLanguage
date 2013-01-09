@@ -1,0 +1,12 @@
+{
+	"romanianLanguage" : {
+		"addSlideBtn" : "Adauga Slide",
+		"removeSlideBtn" : "Sterge Slide",
+		"addImageToSlideBtn" : "Adauga Imagine",
+		"removeImageFromSlideBtn" : "Sterge Imagine",
+		"addVideoBtn" : "Adauga Video",
+		"removeVideoBtn" : "Sterge Video",
+		"saveBtn" : "Salveaza",
+		"addImageUrlBtn" : "Salveaza"
+	}
+}
