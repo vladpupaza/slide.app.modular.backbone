@@ -20,41 +20,42 @@ events: {
     "click #addVideoBtn" : "addVideo",
     "click #removeVideoBtn" : "removeVideo",
     "click #saveBtn" : "save",
-    "change #languageOption ": "selectLanguage"        
+    "change #languageOption ": "selectLanguage",
+    "click #addImageUrlBtn" : "getUrl"     
 },
+//......Adding a slide....................................................
 addSlide : function(){ 
 var t=new slideCollection;
 console.log(t.addSlide());
 
 },
+//.......Remove a slide...................................................
 removeSlide : function() { alert("remove slide");},
+//........Add image.......................................................
 addImage : function() { 
-try{
-    //$("#insertImageUrl").show();
-    var someText = $('#myTextAreaUrl').val();
-    alert(someText);
-    //$("#insertImageUrl").hide();
-}catch(e)
-{
- alert(e);
-}
+    $("#insertImageUrl").show();
+ 
 },
+//.........Remove image...................................................
 removeImage : function(){ 
 alert("remove Image");},
+//.........Add video......................................................
 addVideo : function(){ 
-try{
-    //$("#insertImageUrl").show();
+    $("#insertImageUrl").show();
+},
+//.........getUrl.........................................................
+getUrl : function(){
     var someText = $('#myTextAreaUrl').val();
     alert(someText);
-    console.log( $('#insertImageUrl'));
-    //$("#insertImageUrl").hide();
-}catch(e){
-    alert(e);
-}
+    $("#insertImageUrl").hide();
 },
+//.........removeVideo....................................................
 removeVideo : function(){alert("remove Video");},
+//..........save..........................................................
 save: function(){alert("save");},
+//...........selectLanguage...............................................
 selectLanguage: function(e){alert("Select:"+$(e.currentTarget).val()); }
 });
+
 return ToolbarView;
 });
