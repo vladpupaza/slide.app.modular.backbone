@@ -83,9 +83,11 @@ require(['js/modules/appViews/typeView'], function(TypeView){
 
 });
 
-require(['js/modules/slideModules/slides'], function(Slides){
+require(['js/modules/slideModules/slides','js/modules/slideModules/slideModules'], function(Slides,slideModules){
   //alert('hhh');
-  slides=new Slides();
+
+
+  m=new slideModules();
 
 
 });
