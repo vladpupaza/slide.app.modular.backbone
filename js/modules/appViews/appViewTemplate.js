@@ -20,10 +20,10 @@ var appViewTemplate ={
 		+'</select>'
 	+'</div>'
 	
-	+'<div id="insertImageUrl">'
+	+'<div id="wrapper"><div id="insertImageUrl">'
             +'<textarea name="myTextAreaImageUrl"cols="20" rows="2" id="myTextAreaUrl">Insert image url here</textarea>'
             +'<button type="button" id="addImageUrlBtn">Save</button>'
-	+'</div>',
+	+'</div></div>',
 
 
 	// Typebar Template
