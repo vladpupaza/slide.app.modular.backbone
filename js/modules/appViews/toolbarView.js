@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/modules/slideModules/slides'],
-function($,_,Backbone,toolbarTemplate,slideCollection){
+define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/modules/slideModules/slides', 'js/libs/pubsub'],
+function($,_,Backbone,toolbarTemplate,slideCollection,pubSub){
 ToolbarView = Backbone.View.extend({
 
 initialize: function(){
@@ -20,41 +20,65 @@ events: {
     "click #addVideoBtn" : "addVideo",
     "click #removeVideoBtn" : "removeVideo",
     "click #saveBtn" : "save",
-    "change #languageOption ": "selectLanguage"        
+    "change #languageOption ": "selectLanguage",
+    "click #addImageUrlBtn" : "getUrl"     
 },
+//......Adding a slide....................................................
 addSlide : function(){ 
-var t=new slideCollection;
-console.log(t.addSlide());
+    window.slides.addSlide();
 
 },
-removeSlide : function() { alert("remove slide");},
+//.......Remove a slide...................................................
+removeSlide : function() { 
+     
+  //  var currentSlideId = $(".currentSlide").attr("id");
+  //  var currentSlide=slides.at(currentSlideId);
+    slides.remove(currentSlide);
+
+},
+//........Add image.......................................................
 addImage : function() { 
-try{
-    //$("#insertImageUrl").show();
-    var someText = $('#myTextAreaUrl').val();
-    alert(someText);
-    //$("#insertImageUrl").hide();
-}catch(e)
-{
- alert(e);
-}
+    $("#wrapper").show();
+   // var currentSlideId = $(".currentSlide").attr("id");
+   // var currentSlide=slides.at(currentSlideId);
+    var tip=currentSlide.getType();
+    if(tip === "Video"||tip === "Text")
+     $("#wrapper").hide();
+      
 },
+//.........Remove image...................................................
 removeImage : function(){ 
-alert("remove Image");},
-addVideo : function(){ 
-try{
-    //$("#insertImageUrl").show();
-    var someText = $('#myTextAreaUrl').val();
-    alert(someText);
-    console.log( $('#insertImageUrl'));
-    //$("#insertImageUrl").hide();
-}catch(e){
-    alert(e);
-}
+    currentSlide.setUrl("");
+    alert("remove Image");
+
 },
-removeVideo : function(){alert("remove Video");},
+//.........Add video......................................................
+addVideo : function(){ 
+    $("#wrapper").show(); 
+    
+   // var currentSlideId = $(".currentSlide").attr("id");
+   // var currentSlide=slides.at(currentSlideId);
+    
+    var tip=currentSlide.getType();
+    if(tip === "Image"||tip === "Text")
+     $("#wrapper").hide();
+},
+//.........getUrl.........................................................
+getUrl : function(){
+    var urlNou = $('#myTextAreaUrl').val();
+    pubSub.publish("getUrl",urlNou);
+    $("#wrapper").hide();
+},
+//.........removeVideo....................................................
+removeVideo : function(){
+    currentSlide.setUrl("");
+    alert("remove Video");
+},
+//..........save..........................................................
 save: function(){alert("save");},
+//...........selectLanguage...............................................
 selectLanguage: function(e){alert("Select:"+$(e.currentTarget).val()); }
 });
+
 return ToolbarView;
 });
