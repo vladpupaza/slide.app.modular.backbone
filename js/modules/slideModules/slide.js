@@ -6,14 +6,14 @@ define(['underscore', 'backbone','js/libs/pubsub'], function(_, Backbone, pubSub
 			"_type" : null,
 			"_text" : null,
 			"_url" :null,
-			'_x':'20px',
-			'_y':'20px'
-			
-		},
-		initialize:function(){
-			this.set({id:Math.random().toString(36).substr(2,9)});
-			console.log(this.id);
-		},
+			'_x':'150',
+   			'_y':'50'
+  		},
+  		initialize:function(){
+   		this.set({id:Math.random().toString(36).substr(2,9)});
+   		console.log(this.id);
+  		},
+
 		// setType method by param type
 		setType  : function(type) {
 			this.set({ _type : type });
@@ -42,8 +42,6 @@ define(['underscore', 'backbone','js/libs/pubsub'], function(_, Backbone, pubSub
         {
           console.log(topic+":"+data);
           currentSlide.setUrl(data);
-          
-          
         }
 	});
 	return Slide;

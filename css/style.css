@@ -109,6 +109,7 @@ html
 	height: 600px;
 	background-color: #e4e4e4;
 	margin-left: 5px;
+	z-index: 996;
 }
 
 #slideWorkArea
@@ -188,6 +189,8 @@ html
 	display: none;
 	top: 0px;
 	opacity: 0.9;
+	z-index: 9998;
+	left: 0px;
 }
 
 #insertImageUrl
@@ -196,6 +199,16 @@ html
 	height: 400px;
 	display: block;
 	opacity: 1;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 350px;
+	z-index: 9999;
+
+}
+
+#fix
+{
+	clear: both;
 }
 
 #notifBar
@@ -203,9 +216,7 @@ html
 height:60px;
 width:1100px;
 z-index:1000;
-position:fixed;
-top:60px;
-left:0px;
+position: relative;
 visibility:hidden;
 font-size:22px;
 background-color:#C5C4C4;
