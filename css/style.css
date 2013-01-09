@@ -183,3 +183,18 @@ html
 	display: block;
 	opacity: 1;
 }
+
+#notifBar
+{
+height:60px;
+width:300px;
+z-index:1000;
+position:fixed;
+top:60px;
+left:0px;
+visibility:hidden;
+font-size:22px;
+background-color:#C5C4C4;
+color:#64696B;
+border-color:#B8B8B8;
+}
