@@ -14,30 +14,43 @@ require.config({
 
  
 define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/appViews/contentView'], function(_, Backbone,slide,contentView) {
-    a = new slide({id:'10'});
-    a.setType('Image');
-    b =  new slide({id:'11'});
-    b.setText('Cosmin');
-    /* var slideRouter = Backbone.Router.extend({
-      routes: {
-        "":"",
-        "slide/:id": "viewSlide",
-        "slide/:id/edit": "editSlide"
-        // ... other routes
-      },
-      
-      viewSlide: function(id){
-        console.log("View slide requested.");
-        this.navigate("slide/" + id + '/edit'); // updates the fragment for us, but doesn't trigger the route
-      },
-      editSlide: function(id) {
-        console.log("Edit slide openned.");
-      }
-    });
-    
-     myRouter = new slideRouter();
-    
-    Backbone.history.start(); */
+
+
+ 
+
+		a = new slide({id:'10'});
+		a.setText('Dany');
+		a.setType('Image');
+		
+		b =  new slide({id:'11'});
+		b.setText('Cosmin');
+		
+		c =  new slide({id:'12'});
+		c.setText('Radu');
+	 
+		
+		 var slideRouter = Backbone.Router.extend({
+			routes: {
+				"":"",
+				"slide/:id": "viewSlide",
+				"slide/:id/edit": "editSlide"
+				// ... other routes
+			},
+			
+			viewSlide: function(id){
+				console.log("View slide requested.");
+				this.navigate("slide/" + id + '/edit'); // updates the fragment for us, but doesn't trigger the route
+			},
+			editSlide: function(id) {
+				console.log("Edit slide openned.");
+			}
+		});
+		
+		 myRouter = new slideRouter();
+		
+		 Backbone.history.start(); 
+
+
 });
 
 require(['js/modules/appViews/toolbarView'], function(toolbar){
