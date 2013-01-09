@@ -30,17 +30,17 @@ define([
       {
       case "Text" :                  
                   var template= _.template(slideTemplate.slide_text)
-                  this.el).html(template(this.model.toJSON()));
+                  $(this.el).append(template(this.model.toJSON()));
 
       break;
       case "Image":
                   var template= _.template(slideTemplate.slide_img)
-                  (this.el).html(template(this.model.toJSON()));
+                  $(this.el).append(template(this.model.toJSON()));
 
       break;
       case "Video":
                   var template= _.template(slideTemplate.slide_video)
-                  this.el).append(template(this.model.toJSON()));
+                  $(this.el).append(template(this.model.toJSON()));
 
       break;
       default: alert("no slide type")

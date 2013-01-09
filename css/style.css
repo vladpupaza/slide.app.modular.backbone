@@ -52,6 +52,7 @@ html
 	height: 600px;
 	overflow: auto;
 	background-color: #e4e4e4;
+	text-overflow: ellipsis;
 }
 
 .slideLittle
@@ -62,19 +63,20 @@ html
 	background-color: #FFFFFF;
 	margin-top: 5px;
 	opacity: 0.5;
+	text-align: left;
 }
 
 .slideLittle .slideImg img
 {
-	width: 50px;
-	height: 50px;
+	width: 100px;
+	height: 100px;
 	margin-top: 5px;
 }
 
 .slideLittle .slideVideo video
 {
-	width: 50px;
-	height: 50px;
+	width: 100px;
+	height: 100px;
 	margin-top: 5px;
 }
 
