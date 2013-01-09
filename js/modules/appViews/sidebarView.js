@@ -40,7 +40,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				//get current slide
 				e.preventDefault();
 				var id =$(e.currentTarget).context.id;
-				var currentSlide=this.collection.at(id);
+				currentSlide=this.collection.at(id);
 				
 				//set current slide on sidebar
 				$(".currentSlide").removeClass("currentSlide");

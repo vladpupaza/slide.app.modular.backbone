@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/modules/slideModules/slides'],
-function($,_,Backbone,toolbarTemplate,slideCollection){
+define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/modules/slideModules/slides', 'js/libs/pubsub'],
+function($,_,Backbone,toolbarTemplate,slideCollection,pubSub){
 ToolbarView = Backbone.View.extend({
 
 initialize: function(){
@@ -30,34 +30,50 @@ addSlide : function(){
 },
 //.......Remove a slide...................................................
 removeSlide : function() { 
-    var currentSlideId = $(".currentSlide").attr("id");
-    var currentSlide=slides.at(currentSlideId);
+     
+  //  var currentSlideId = $(".currentSlide").attr("id");
+  //  var currentSlide=slides.at(currentSlideId);
     slides.remove(currentSlide);
 
 },
 //........Add image.......................................................
 addImage : function() { 
     $("#wrapper").show();
- 
+   // var currentSlideId = $(".currentSlide").attr("id");
+   // var currentSlide=slides.at(currentSlideId);
+    var tip=currentSlide.getType();
+    if(tip === "Video"||tip === "Text")
+     $("#wrapper").hide();
+      
 },
 //.........Remove image...................................................
 removeImage : function(){ 
-
-alert("remove Image");
+    currentSlide.setUrl("");
+    alert("remove Image");
 
 },
 //.........Add video......................................................
 addVideo : function(){ 
-    $("#wrapper").show();
+    $("#wrapper").show(); 
+    
+   // var currentSlideId = $(".currentSlide").attr("id");
+   // var currentSlide=slides.at(currentSlideId);
+    
+    var tip=currentSlide.getType();
+    if(tip === "Image"||tip === "Text")
+     $("#wrapper").hide();
 },
 //.........getUrl.........................................................
 getUrl : function(){
-    var someText = $('#myTextAreaUrl').val();
-    alert(someText);
+    var urlNou = $('#myTextAreaUrl').val();
+    pubSub.publish("getUrl",urlNou);
     $("#wrapper").hide();
 },
 //.........removeVideo....................................................
-removeVideo : function(){alert("remove Video");},
+removeVideo : function(){
+    currentSlide.setUrl("");
+    alert("remove Video");
+},
 //..........save..........................................................
 save: function(){alert("save");},
 //...........selectLanguage...............................................

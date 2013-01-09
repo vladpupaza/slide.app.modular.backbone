@@ -1,6 +1,10 @@
-define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage'], function(_, Backbone,slide,_localStorage) {
+define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage','js/libs/pubsub'], function(_, Backbone,slide,_localStorage,pubSub) {
 	var z=_localStorage;
 	var Slides = Backbone.Collection.extend({
+        initialize : function(){
+         var t = new slide;
+         var token= pubSub.subscribe('getUrl', t.subscriber); 
+        },
 		model:slide,/* 
 		url:'slide', */
 		localStorage:new Store('cosmin_Slides'),
