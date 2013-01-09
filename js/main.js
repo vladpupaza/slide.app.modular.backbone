@@ -1,14 +1,14 @@
 require.config({
 
 
-	baseUrl:'',
-	paths: {
-		jquery: 'js/libs/jquery/jquery-1.8.3',
-		underscore: 'js/libs/underscore/underscore-min',
-		backbone: 'js/libs/backbone/backbone-optamd3-min',
-		localStorage: 'js/libs/backbone/localstorage',
+  baseUrl:'',
+  paths: {
+    jquery: 'js/libs/jquery/jquery-1.8.3',
+    underscore: 'js/libs/underscore/underscore-min',
+    backbone: 'js/libs/backbone/backbone-optamd3-min',
+    localStorage: 'js/libs/backbone/localstorage',
     order: 'js/libs/require/order'
-	}
+  }
 });
 
 
@@ -17,7 +17,6 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/app
 
 
  
-
 		a = new slide({id:'10'});
 		a.setText('Dany');
 		a.setType('Image');
@@ -56,6 +55,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/app
 		div.style.top =( e.clientY -100)+ 'px';
 		div.style.left =( e.clientX -200)+ 'px';
 	};
+ 
 
 
 });
@@ -90,3 +90,4 @@ require(['js/modules/slideModules/slides'], function(Slides){
 
 
 });
+

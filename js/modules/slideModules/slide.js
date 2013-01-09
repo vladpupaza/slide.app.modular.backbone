@@ -1,4 +1,4 @@
-define(['underscore', 'backbone'], function(_, Backbone) {
+define(['underscore', 'backbone','js/libs/pubsub'], function(_, Backbone, pubSub) {
 	var Slide = Backbone.Model.extend({
 		// defaults attributes for slide 
 		defaults: {
@@ -34,7 +34,14 @@ define(['underscore', 'backbone'], function(_, Backbone) {
 		// getUrl method -> returns the _url attribute
 		getUrl : function() {
 			return this.get('_url');
-		}
+		},
+        subscriber : function(topic,data)
+        {
+          console.log(topic+":"+data);
+          currentSlide.setUrl(data);
+          
+          
+        }
 	});
 	return Slide;
 });
