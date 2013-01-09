@@ -138,7 +138,39 @@ save: function(){
     n.sendSaveNotification(saveString);
 },
 //...........selectLanguage...............................................
-selectLanguage: function(e){alert("Select:"+$(e.currentTarget).val()); }
+selectLanguage: function(){ 
+    var selOption = $("#languageOption").val(); 
+    function setEnglishLanguage(){
+        $.getJSON('data/englishLanguage', function(data){   
+            var englishLanguageObject = data.englishLanguage;
+            console.log(englishLanguageObject);
+            $("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
+            $("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
+            $("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
+            $("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
+            $("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
+            $("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
+            $("#saveBtn").text(englishLanguageObject.saveBtn);
+            $('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
+            });
+    }
+    function setRomanianLanguage(){
+         $.getJSON('data/romanianLanguage', function(data){
+            var englishLanguageObject = data.romanianLanguage;
+            console.log(englishLanguageObject);
+            $("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
+            $("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
+            $("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
+            $("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
+            $("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
+            $("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
+            $("#saveBtn").text(englishLanguageObject.saveBtn);
+            $('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
+        });
+    };
+    if(selOption === "english"){ setEnglishLanguage();  $('#languageOption').change(setEnglishLanguage); } 
+        else { setRomanianLanguage(); $('#languageOption').change(setRomanianLanguage);}
+}
 });
 
 return ToolbarView;
