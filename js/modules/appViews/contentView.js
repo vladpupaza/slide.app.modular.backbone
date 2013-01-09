@@ -20,10 +20,9 @@ var contentView = Backbone.View.extend({
 		else if(this.model.toJSON()._type=='Text')this.template=_.template(Template.content_template_text);
 		else if(this.model.toJSON()._type=='Video')this.template=_.template(Template.content_template_video);
 		else console.log('I don;t have a type');
-		
+		window.curent_slide=this.model;
         _.bindAll(this, "render"); 
-		this.model.bind('change',this.render);
-		this.model.bind('change',this.addListeners);
+		this.model.bind('change',this.superCall); 
         this.render();
 		this.addListeners();
     },
@@ -41,11 +40,19 @@ var contentView = Backbone.View.extend({
 	},
 	
 	mouseUp:function ()
-	{
+	{	 
 		document.getElementById('slideWorkArea').removeEventListener('mousemove', divMove, true);
+		setTimeout(function(){
+			curent_slide.set({_y:$('#draggebel').css('top')});
+			curent_slide.set({_x:$('#draggebel').css('left')}); },200);
+ 
+	},
+	superCall:function(){
+		this.initialize(); 
 	},
 	
 	mouseDown:function (e){
+		console.log('action started');
 		document.getElementById('slideWorkArea').addEventListener('mousemove', divMove, true);
 	},
 	updateText:function(){this.model.setText($('.text')[0].value)},

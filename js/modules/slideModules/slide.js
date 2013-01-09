@@ -5,7 +5,10 @@ define(['underscore', 'backbone','js/libs/pubsub'], function(_, Backbone, pubSub
 			'id':null,
 			"_type" : null,
 			"_text" : null,
-			"_url" :null
+			"_url" :null,
+			'_x':'150px',
+			'_y':'50px'
+			
 		},
 		initialize:function(){
 			this.set({id:Math.random().toString(36).substr(2,9)});

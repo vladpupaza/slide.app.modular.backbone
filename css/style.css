@@ -24,8 +24,7 @@ html
 #draggebel
 {
 	position:absolute;
-	top:150px;
-	left:50px;
+ 
 }
 #toolbar 
 {
@@ -114,10 +113,11 @@ html
 
 #slideWorkArea
 {
+	padding:20px;
 	position: relative;
 	display: block;
 	width: 550px;
-	height: 550px;
+	height: 510px;
 	background-color: #FFFFFF;
 	margin-top: 25px;
 	margin-bottom: 25px;
