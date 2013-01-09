@@ -64,6 +64,7 @@ html
 	margin-top: 5px;
 	opacity: 0.5;
 	text-align: left;
+	overflow:hidden;
 }
 
 .slideLittle .slideImg img
