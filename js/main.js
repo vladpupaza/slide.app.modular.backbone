@@ -79,7 +79,7 @@ require(['js/modules/appViews/typeView'], function(TypeView){
 
 require(['js/modules/slideModules/slides'], function(Slides){
   //alert('hhh');
-  slides=new Slides();
+  slides=new Slides([a,b,c]);
 
 
 });

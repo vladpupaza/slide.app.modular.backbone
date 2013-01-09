@@ -52,7 +52,7 @@ var appViewTemplate ={
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">Video template\
 			<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
-			<textarea class="text"  onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50">\
+			<textarea class="text" maxlength="250"  onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50">\
 				<%= _text %>\
 			</textarea>\
 		</div>\
@@ -61,7 +61,7 @@ var appViewTemplate ={
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">\
 			Image<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
-			<textarea class="text" onblur="$(\'#content\').trigger(\'updateReady\')"   rows="4" cols="50">\
+			<textarea class="text" maxlength="250" onblur="$(\'#content\').trigger(\'updateReady\')"   rows="4" cols="50">\
 				<%= _text %>\
 			</textarea>\
 		</div>\
@@ -70,7 +70,7 @@ var appViewTemplate ={
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">\
 			Text<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/>\
-			<textarea class="text"  onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50">\
+			<textarea class="text" maxlength="250"  onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50">\
 				<%= _text %>\
 			</textarea>\
 		</div>\
