@@ -19,6 +19,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
 
 			slides.add(sl);
 			sl.save();
+			console.log("POST ../slides");
 
  
 			});

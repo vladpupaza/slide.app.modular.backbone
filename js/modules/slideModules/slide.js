@@ -2,11 +2,19 @@ define(['underscore', 'backbone','js/libs/pubsub'], function(_, Backbone, pubSub
 	var Slide = Backbone.Model.extend({
 		// defaults attributes for slide 
 		defaults: {
+			'id':null,
 			"_type" : null,
 			"_text" : null,
-			"_url" :null
-		},
-		initialize:function(){},
+			"_url" :null,
+			'_x':'150',
+   			'_y':'50'
+   
+  		},
+  		initialize:function(){
+   		this.set({id:Math.random().toString(36).substr(2,9)});
+   		console.log(this.id);
+  		},
+
 		// setType method by param type
 		setType  : function(type) {
 			this.set({ _type : type });
@@ -35,8 +43,6 @@ define(['underscore', 'backbone','js/libs/pubsub'], function(_, Backbone, pubSub
         {
           console.log(topic+":"+data);
           currentSlide.setUrl(data);
-          
-          
         }
 	});
 	return Slide;
