@@ -51,7 +51,11 @@ var appViewTemplate ={
 	content_template_video:
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">Video template\
-			<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
+		<div id="draggebel">\
+			<video width="200" height="140" controls>\
+				<source src="<%=_url%>" type="video/ogg">\
+			</video>\
+		</div>\
 			<textarea class="text"  onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50">\
 				<%= _text %>\
 			</textarea>\
@@ -60,16 +64,21 @@ var appViewTemplate ={
 	content_template_image: 
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">\
-			Image<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
+		<div id="draggebel">\
+			<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
+		</div>\
 			<textarea class="text" onblur="$(\'#content\').trigger(\'updateReady\')"   rows="4" cols="50">\
 				<%= _text %>\
 			</textarea>\
 		</div>\
 	</div>',
+	
+ 
 	content_template_text:
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">\
-			Text<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/>\
+		<div id="draggebel">\
+		</div>\
 			<textarea class="text"  onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50">\
 				<%= _text %>\
 			</textarea>\
