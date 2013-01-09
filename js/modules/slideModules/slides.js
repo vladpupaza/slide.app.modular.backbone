@@ -9,8 +9,6 @@ define(['underscore', 'backbone','js/modules/slideModules/slide'], function(_, B
 			sl.setType(t.getCurrentType());
             slides.add(sl);
 			});
-			
-			
 		}
 	});
 	return Slides;

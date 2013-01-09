@@ -44,11 +44,8 @@ define([
 
       break;
       default: alert("no slide type")
-      }     
-     
-      
+      }        
     }   
-      
 })
   return slideView;
 });
