@@ -49,6 +49,13 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/app
 		 myRouter = new slideRouter();
 		
 		 Backbone.history.start(); 
+	divMove=	
+	function (e){
+		console.log(e);
+		var div = document.getElementsByClassName('draggebel')[0]; 
+		div.style.top =( e.clientY -100)+ 'px';
+		div.style.left =( e.clientX -200)+ 'px';
+	};
 
 
 });
