@@ -1,7 +1,9 @@
-define(['underscore', 'backbone','js/modules/slideModules/slide'], function(_, Backbone,slide) {
+define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage'], function(_, Backbone,slide,_localStorage) {
+	var z=_localStorage;
 	var Slides = Backbone.Collection.extend({
-		model:slide,
-		
+		model:slide,/* 
+		url:'slide', */
+		localStorage:new Store('cosmin_Slides'),
 		addSlide: function(){
 			var that=this;
 			require(['js/modules/slideModules/slide','js/modules/appViews/contentView'], function(slide,contentView){

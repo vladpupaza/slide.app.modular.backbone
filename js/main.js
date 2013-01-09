@@ -1,22 +1,19 @@
 require.config({
 
-  baseUrl:'',
-  paths: {
-    jquery: 'js/libs/jquery/jquery-1.8.3',
-    underscore: 'js/libs/underscore/underscore-min',
-    backbone: 'js/libs/backbone/backbone-optamd3-min',
-    localStorage: 'js/libs/backbone/localstorage'
 
-  }
-
+	baseUrl:'',
+	paths: {
+		jquery: 'js/libs/jquery/jquery-1.8.3',
+		underscore: 'js/libs/underscore/underscore-min',
+		backbone: 'js/libs/backbone/backbone-optamd3-min',
+		localStorage: 'js/libs/backbone/localstorage'
+		
+	}
 });
 
 
  
 define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/appViews/contentView'], function(_, Backbone,slide,contentView) {
-
-
- 
     a = new slide({id:'10'});
     a.setType('Image');
     b =  new slide({id:'11'});
@@ -43,8 +40,6 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/app
      myRouter = new slideRouter();
     
     Backbone.history.start(); */
-
-
 });
 
 require(['js/modules/appViews/toolbarView'], function(toolbar){
