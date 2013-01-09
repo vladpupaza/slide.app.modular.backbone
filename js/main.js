@@ -51,7 +51,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/app
 	divMove=	
 	function (e){
 		console.log(e);
-		var div = document.getElementsByClassName('draggebel')[0]; 
+		var div = document.getElementById('draggebel'); 
 		div.style.top =( e.clientY -100)+ 'px';
 		div.style.left =( e.clientX -200)+ 'px';
 	};

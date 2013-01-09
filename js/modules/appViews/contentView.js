@@ -25,6 +25,7 @@ var contentView = Backbone.View.extend({
 		this.model.bind('change',this.render);
 		
         this.render();
+		this.addListeners();
     },
     render: function () {
 		
@@ -33,6 +34,20 @@ var contentView = Backbone.View.extend({
     },
 	alertMe:function(){console.log('I"m here');},
  
+	addListeners:function (){
+		document.getElementById('draggebel').addEventListener('mousedown', this.mouseDown, false);
+		document.getElementById('slideWorkArea').addEventListener('mouseup', this.mouseUp, false);
+		
+	},
+	
+	mouseUp:function ()
+	{
+		document.getElementById('slideWorkArea').removeEventListener('mousemove', divMove, true);
+	},
+	
+	mouseDown:function (e){
+		document.getElementById('slideWorkArea').addEventListener('mousemove', divMove, true);
+	},
 	updateText:function(){this.model.setText($('.text')[0].value)},
     setModel:function(model){
 		 

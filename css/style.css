@@ -21,7 +21,10 @@ html
 	margin-left: auto;
 	margin-right: auto;
 }
-
+#draggebel
+{
+	position:absolute;
+}
 #toolbar 
 {
 	width: 1100px;

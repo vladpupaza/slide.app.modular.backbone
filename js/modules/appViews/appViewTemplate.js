@@ -62,7 +62,9 @@ var appViewTemplate ={
 	content_template_image: 
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">\
+		<div id="draggebel">\
 			Image<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/> \
+		</div>\
 			<textarea class="text" onblur="$(\'#content\').trigger(\'updateReady\')"   rows="4" cols="50">\
 				<%= _text %>\
 			</textarea>\
