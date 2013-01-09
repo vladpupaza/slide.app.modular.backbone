@@ -49,7 +49,7 @@ addImage : function() {
 //.........Remove image...................................................
 removeImage : function(){ 
     currentSlide.setUrl("");
-    alert("remove Image");
+   
 
 },
 //.........Add video......................................................
@@ -72,7 +72,7 @@ getUrl : function(){
 //.........removeVideo....................................................
 removeVideo : function(){
     currentSlide.setUrl("");
-    alert("remove Video");
+   
 },
 //..........save..........................................................
 save: function(){
