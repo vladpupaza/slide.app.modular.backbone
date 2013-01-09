@@ -2,11 +2,15 @@ define(['underscore', 'backbone'], function(_, Backbone) {
 	var Slide = Backbone.Model.extend({
 		// defaults attributes for slide 
 		defaults: {
+			'id':null,
 			"_type" : null,
 			"_text" : null,
 			"_url" :null
 		},
-		initialize:function(){},
+		initialize:function(){
+			this.set({id:Math.random().toString(36).substr(2,9)});
+			console.log(this.id);
+		},
 		// setType method by param type
 		setType  : function(type) {
 			this.set({ _type : type });
