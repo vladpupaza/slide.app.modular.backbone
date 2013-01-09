@@ -24,6 +24,8 @@ html
 #draggebel
 {
 	position:absolute;
+	top:150px;
+	left:50px;
 }
 #toolbar 
 {

@@ -23,7 +23,7 @@ var contentView = Backbone.View.extend({
 		
         _.bindAll(this, "render"); 
 		this.model.bind('change',this.render);
-		
+		this.model.bind('change',this.addListeners);
         this.render();
 		this.addListeners();
     },

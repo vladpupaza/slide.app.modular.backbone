@@ -49,8 +49,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/app
 		
 		 Backbone.history.start(); 
 	divMove=	
-	function (e){
-		console.log(e);
+	function (e){ 
 		var div = document.getElementById('draggebel'); 
 		div.style.top =( e.clientY -100)+ 'px';
 		div.style.left =( e.clientX -200)+ 'px';
