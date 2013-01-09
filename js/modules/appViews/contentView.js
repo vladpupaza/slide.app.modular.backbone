@@ -32,8 +32,14 @@ var contentView = Backbone.View.extend({
         return this;
     },
 	alertMe:function(){console.log('I"m here');},
-	updateText:function(){this.model.setText($('.text')[0].value);},
-    setModel:function(model){this.model=model}
+ 
+	updateText:function(){this.model.setText($('.text')[0].value)},
+    setModel:function(model){
+		 
+		this.model=model;
+		this.initialize();
+	}
+ 
    
 });
 return contentView;
