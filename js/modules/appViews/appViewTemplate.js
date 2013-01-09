@@ -50,7 +50,7 @@ var appViewTemplate ={
 
 	content_template_video:
 	'<div id="slideWorkArea">\
-		<div id="<%= _type %>">Video template\
+		<div id="<%= _type %>"> \
 	<div id="draggebel" style="top:<%= _y %>;left:<%= _x %>;">\
 			<video width="200" height="140" controls>\
 				<source src="<%=_url%>" type="video/ogg">\

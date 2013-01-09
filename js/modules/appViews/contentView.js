@@ -23,8 +23,10 @@ var contentView = Backbone.View.extend({
 		window.curent_slide=this.model;
         _.bindAll(this, "render"); 
 		this.model.bind('change',this.superCall); 
-        this.render();
-		this.addListeners();
+ 
+			if(this.model.get('id')!=null){ this.render();
+		    this.addListeners();}
+ 
     },
     render: function () {
 		
