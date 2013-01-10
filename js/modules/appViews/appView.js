@@ -14,6 +14,7 @@ function($, _, Backbone, toolbar, slideModules, sidebar, content, type){
 	typeViewObj	= new type;	
 	slideModulesObj = new slideModules;
 	toolbarViewObj = new toolbar;
+	
 	divMove=	
 	function (e){ 
 		var div = document.getElementById('draggebel'); 
@@ -22,6 +23,7 @@ function($, _, Backbone, toolbar, slideModules, sidebar, content, type){
 		
 	
 	};
+	
 	contentViewObj = new content({model:a});	
 	sidebarViewObj = new sidebar({collection:slides});
 	

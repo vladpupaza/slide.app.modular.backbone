@@ -46,6 +46,8 @@ var contentView = Backbone.View.extend({
 	{	 
 		document.getElementById('slideWorkArea').removeEventListener('mousemove', divMove, true);
 		setTimeout(function(){
+			
+			//I'm passing the event as silent , so I can set the x too without to re-render the view before bothe changes are applyed  
 			currentSlide.set({_y:$('#draggebel').css('top')},{silent: true});
 			currentSlide.set({_x:$('#draggebel').css('left')}); },200);
 
