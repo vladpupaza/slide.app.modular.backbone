@@ -125,6 +125,7 @@ html
 	background-color: #FFFFFF;
 	margin-top: 25px;
 	margin-bottom: 25px;
+	z-index: 9999;
 }
 #slideWorkArea .text
 {
