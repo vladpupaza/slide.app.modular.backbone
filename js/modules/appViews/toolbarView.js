@@ -144,7 +144,11 @@ save: function(){
 },
 //...........selectLanguage...............................................
 selectLanguage: function(){ 
+//........in selOption we store the current selected value (english/ romanian).....
     var selOption = $("#languageOption").val(); 
+//........setEnglishLanguage is a function that receives the data from the JSON....
+//........file englishLanguage and then uses this data to set the text of the...... 
+//........buttons in english.......................................................
     function setEnglishLanguage(){
         $.getJSON('data/englishLanguage', function(data){   
             var englishLanguageObject = data.englishLanguage;
@@ -160,6 +164,9 @@ selectLanguage: function(){
             $('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
             });
     }
+//........setEnglishLanguage is a function that receives the data from the JSON....
+//........file romanianLanguage and then uses this data to set the text of the..... 
+//........buttons in romanian......................................................    
     function setRomanianLanguage(){
          $.getJSON('data/romanianLanguage', function(data){
             var englishLanguageObject = data.romanianLanguage;
@@ -175,8 +182,9 @@ selectLanguage: function(){
             $('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
         });
     };
+//........here we verify the selOption to know what function we need to use.........
     if(selOption === "english"){ setEnglishLanguage();  $('#languageOption').change(setEnglishLanguage); } 
-        else { setRomanianLanguage(); $('#languageOption').change(setRomanianLanguage);}
+    else { setRomanianLanguage(); $('#languageOption').change(setRomanianLanguage);}
 }
 });
 

@@ -11,21 +11,22 @@ define([
 
 function($, _, Backbone, toolbar, slideModules, sidebar, content, type){
 	var appView = function(){
-	typeViewObj	= new type;	
-	slideModulesObj = new slideModules;
-	toolbarViewObj = new toolbar;
-	divMove=	
-	function (e){ 
-		var div = document.getElementById('draggebel'); 
-		div.style.top =( e.clientY -250)+ 'px';
-		div.style.left =( e.clientX -550)+ 'px';
-		
-	
-	};
-	contentViewObj = new content({model:a});	
-	sidebarViewObj = new sidebar({collection:slides});
-	
+//....we create a typeView object..........................................
+		typeViewObj	= new type;	
+//....we create a slideModules object......................................
+		slideModulesObj = new slideModules;
+//....we create a toolbarView object.......................................
+		toolbarViewObj = new toolbar;
+		divMove=	
+		function (e){ 
+			var div = document.getElementById('draggebel'); 
+			div.style.top =( e.clientY -250)+ 'px';
+			div.style.left =( e.clientX -550)+ 'px';
+		};
+//....we create a contentView object.......................................
+		contentViewObj = new content({model:a});	
+//....we create a sidebarView object.......................................
+		sidebarViewObj = new sidebar({collection:slides});
 	};
 	return appView;
-
 });
