@@ -55,9 +55,9 @@ addImage : function() {
 },
 //.........Remove image...................................................
 removeImage : function(){ 
+  if (typeof currentSlide !== "undefined") {
     currentSlide.setUrl("");
-   
-
+   }
 },
 //.........Add video......................................................
 addVideo : function(){ 
