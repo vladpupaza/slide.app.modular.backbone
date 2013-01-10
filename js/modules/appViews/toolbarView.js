@@ -22,7 +22,8 @@ events: {
     "click #saveBtn" : "save",
     "change #languageOption ": "selectLanguage",
     "click #addImageUrlBtn" : "getUrl",
-    "click #cancelImageUrlBtn" : "cancelUrl"     
+    "click #cancelImageUrlBtn" : "cancelUrl",
+    "click #slideshowBtn":"slideshow" 
 },
 //......Adding a slide....................................................
 addSlide : function(){ 
@@ -185,7 +186,31 @@ selectLanguage: function(){
 //........here we verify the selOption to know what function we need to use.........
     if(selOption === "english"){ setEnglishLanguage();  $('#languageOption').change(setEnglishLanguage); } 
     else { setRomanianLanguage(); $('#languageOption').change(setRomanianLanguage);}
+},
+slideshow:function(){
+
+    var i=0;  
+    var nr=slides.length;  
+    if (nr===0)
+      alert("No slides to be shown")
+    else
+    {     
+          $("#slideshowMode").css('visibility','visible');
+          var timer=setInterval(function(){
+        
+          sidebarViewObj.setCurrentSlide(slides.at(i),i);
+         
+          if (i===nr-1)
+          {
+            clearInterval(timer);
+            $("#slideshowMode").css('visibility','hidden');
+          }
+          i++;
+          },4000);
+    }
+
 }
+
 });
 
 return ToolbarView;
