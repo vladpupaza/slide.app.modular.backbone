@@ -232,3 +232,15 @@ background-color:#C5C4C4;
 color:#64696B;
 border-color:#B8B8B8;
 }
+
+#slideshowMode
+{
+	visibility:hidden;
+	background-color:#C5C4C4;
+	color:#64696B;
+	border-color:#B8B8B8;
+	text-align:center;
+	position: relative;
+	z-index: 99999;
+}
+
