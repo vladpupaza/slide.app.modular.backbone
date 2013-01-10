@@ -1,5 +1,5 @@
 define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], function(_, Backbone,typeTemplate) {
-//console.log(toolbarTemplate);
+//typeView View
 var TypeView=Backbone.View.extend({
 		el:$("#typebar"),
 		tagName:'div',
@@ -9,19 +9,18 @@ var TypeView=Backbone.View.extend({
 		initialize: function(){
 				this.render();
 			},
-		render: function(){
-                           
+		//here we render the toolbarView from the appViewTemplate
+		render: function(){     
            this.el.html( this.template().toString());
-           
           },
+		 //binding events
 		events:{
 				"click #typeImage": "typeImage",
 				"click #typeText": "typeText",
 				"click #typeVideo": "typeVideo"
 			},
-		
+		//here we select the current type and we highlight it in UI
 		typeImage: function(){
-			//removeClass().addClass("slideType");
 				$("#"+this.curr).removeClass().addClass("slideType");
 				this.curr="typeImage";
 				$("#"+this.curr).removeClass().addClass("slideType currentSlideType");
@@ -39,6 +38,7 @@ var TypeView=Backbone.View.extend({
 				$("#"+this.curr).removeClass().addClass("slideType currentSlideType");
 				this.currentType="Video";
 			},
+		//current type getter
 		getCurrentType: function(){
 			return this.currentType;
 		}
