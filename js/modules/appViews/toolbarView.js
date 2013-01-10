@@ -35,18 +35,23 @@ removeSlide : function() {
      
   //  var currentSlideId = $(".currentSlide").attr("id");
   //  var currentSlide=slides.at(currentSlideId);
+  if (typeof currentSlide !== "undefined") {
     slides.remove(currentSlide);
-
+    console.log('DELETE ../slides/id');
+    delete(currentSlide); 
+    $('#content').html('');
+  }
 },
 //........Add image.......................................................
 addImage : function() { 
     
    // var currentSlideId = $(".currentSlide").attr("id");
    // var currentSlide=slides.at(currentSlideId);
-    var tip=currentSlide.getType();
-    if(tip === "Image")
-     $("#wrapper").show();
-      
+    if (typeof currentSlide !== "undefined") {
+      var tip=currentSlide.getType();
+      if(tip === "Image")
+      $("#wrapper").show();
+    }
 },
 //.........Remove image...................................................
 removeImage : function(){ 
@@ -67,9 +72,9 @@ addVideo : function(){
 },
 //.........getUrl.........................................................
 getUrl : function(){
-    var urlNou = $('#myTextAreaUrl').val();
-    pubSub.publish("getUrl",urlNou);
-    $("#wrapper").hide();
+  var urlNou = $('#myTextAreaUrl').val();
+  pubSub.publish("getUrl",urlNou);
+  $("#wrapper").hide();
 },
 //.........cancelUrl.........................................................
 cancelUrl : function(){

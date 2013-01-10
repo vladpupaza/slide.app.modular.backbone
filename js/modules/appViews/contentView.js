@@ -1,7 +1,5 @@
 
 define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/appViews/appViewTemplate'], function(_, Backbone,defaultS,Template) {
-console.log(Template.content_template);
- 
 
 var contentView = Backbone.View.extend({
 	el:$('#content'),
@@ -10,7 +8,7 @@ var contentView = Backbone.View.extend({
     events: {
          //this event will be attached to the model elements in
          //the el of every view inserted by AppView below
-        "click": "alertMe",
+        //"click": "alertMe",
 		"updateReady":'updateText',
 		"txtnbleft":'ceva',
     },
@@ -44,7 +42,7 @@ var contentView = Backbone.View.extend({
 		this.addListeners();
         return this;
     },
-	alertMe:function(){console.log('I"m here');},
+	//alertMe:function(){console.log('I"m here');},
  //here I set those to elements to listen  for events like mousedown/mouseup, and then to do those functions
 	addListeners:function (){
 		document.getElementById('draggebel').addEventListener('mousedown', this.mouseDown, false);
@@ -59,7 +57,7 @@ var contentView = Backbone.View.extend({
  
       //I'm passing the event as silent , so I can set the x too without to re-render the view before bothe changes are applyed  
 			currentSlide.set({_y:$('#draggebel').css('top')},{silent: true});
-			currentSlide.set({_x:$('#draggebel').css('left')}); 
+			currentSlide.set({_x:$('#draggebel').css('left')},{silent: true}); 
         }
 
  
@@ -69,7 +67,7 @@ var contentView = Backbone.View.extend({
     
   //I allso prevent the chields elements from DOM to capture the event e 
 	mouseDown:function (e){
-		console.log('action started');
+		//console.log('action started');
 		document.getElementById('slideWorkArea').addEventListener('mousemove', divMove, true);
 		e.preventDefault();
 	},
