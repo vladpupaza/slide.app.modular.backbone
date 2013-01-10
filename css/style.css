@@ -136,6 +136,11 @@ html
 	overflow:hidden;
 }
 
+#slideWorkArea #txtnb
+{
+	position:absolute;
+	bottom:2px;
+}
 #slideImg 
 {
 	width:200px; 
