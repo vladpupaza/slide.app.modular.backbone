@@ -47,8 +47,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				$("#"+id).addClass("currentSlide");
 				
 				//render current slide content
-				contentViewObj.model=currentSlide;
-				contentViewObj.initialize();
+				contentViewObj.setModel(currentSlide);
 
 
 

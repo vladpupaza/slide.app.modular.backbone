@@ -111,6 +111,8 @@ html
 	background-color: #e4e4e4;
 	margin-left: 5px;
 	z-index: 996;
+	
+	overflow:hidden;
 }
 
 #slideWorkArea
@@ -131,6 +133,7 @@ html
 	max-width:500px;	
 	max-height:200px;
 	width:500px;
+	overflow:hidden;
 }
 
 #slideImg 
