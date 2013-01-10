@@ -7,6 +7,8 @@
 		"addVideoBtn" : "Adauga Video",
 		"removeVideoBtn" : "Sterge Video",
 		"saveBtn" : "Salveaza",
-		"addImageUrlBtn" : "Salveaza"
+		"addImageUrlBtn" : "Salveaza",
+		"slideshowBtn" : "Prezentare",
+		"cancelImageUrlBtn" : "Anulare"
 	}
 }

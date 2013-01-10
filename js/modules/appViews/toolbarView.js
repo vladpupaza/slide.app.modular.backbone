@@ -154,8 +154,10 @@ selectLanguage: function(){
             $("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
             $("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
             $("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
+            $("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
             $("#saveBtn").text(englishLanguageObject.saveBtn);
             $('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
+            $('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
             });
     }
     function setRomanianLanguage(){
@@ -167,8 +169,10 @@ selectLanguage: function(){
             $("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
             $("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
             $("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
+            $("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
             $("#saveBtn").text(englishLanguageObject.saveBtn);
             $('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
+            $('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
         });
     };
     if(selOption === "english"){ setEnglishLanguage();  $('#languageOption').change(setEnglishLanguage); } 

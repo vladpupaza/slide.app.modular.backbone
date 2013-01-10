@@ -7,6 +7,8 @@
 		"addVideoBtn" : "Add Video",
 		"removeVideoBtn" : "Remove Video",
 		"saveBtn" : "Save",
-		"addImageUrlBtn" : "Save"
+		"addImageUrlBtn" : "Save",
+		"slideshowBtn" : "Slideshow",
+		"cancelImageUrlBtn" : "Cancel"
 	}
 }
