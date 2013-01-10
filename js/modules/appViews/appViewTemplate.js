@@ -45,7 +45,7 @@ var appViewTemplate ={
 	content_template :
 	'<div id="slideWorkArea">\
 		<div id="<%= _type %>">\
-			<img src="<%= _url %>" alt="1" style="width:200px; height:200px;" id="slide"/>\
+			<img src="<%= _url %>" alt="1" style="width:460px; height:380px;" id="slide"/>\
 			<%= _text %>\
 		</div>\
 	</div>',
@@ -54,7 +54,7 @@ var appViewTemplate ={
 	'<div id="slideWorkArea" class=".clearfix">\
 		<div id="<%= _type %>"> \
 	<div id="draggebel" style="top:<%= _y %>;left:<%= _x %>;">\
-			<video width="200" height="140" controls>\
+			<video width="560" height="380" controls>\
 				<source src="<%=_url%>" type="video/ogg">\
 			</video>\
 		</div>\
@@ -66,7 +66,7 @@ var appViewTemplate ={
 	'<div id="slideWorkArea" class=".clearfix">\
 		<div id="<%= _type %>">\
 		<div id="draggebel" onclick="event.stopPropagation();" style="top:<%= _y %>;left:<%= _x %>;">\
-			<img src="<%= _url %>" alt="1"  style="width:200px; height:200px;" id="slide"/> \
+			<img src="<%= _url %>" alt="1"  style="width:460px; height:380px;" id="slide"/> \
 		</div>\
 			<textarea class="text" maxlength="250" onkeyup="$(\'#content\').trigger(\'txtnbleft\')" onkeypress="$(\'#content\').trigger(\'txtnbleft\')" onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50"><%= _text %></textarea>\
 			<div id="txtnb"></div>\
