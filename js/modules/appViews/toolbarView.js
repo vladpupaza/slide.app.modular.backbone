@@ -194,7 +194,7 @@ slideshow:function(){
     if (nr===0)
       alert("No slides to be shown")
     else
-    {     $('#wrapper').css('visibility','visible');
+    {     
           $("#slideshowMode").css('visibility','visible');
           var timer=setInterval(function(){
         
@@ -204,7 +204,6 @@ slideshow:function(){
           {
             clearInterval(timer);
             $("#slideshowMode").css('visibility','hidden');
-			$('#wrapper').css('visibility','hidden');
           }
           i++;
           },4000);
