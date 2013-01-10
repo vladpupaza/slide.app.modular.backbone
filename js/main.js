@@ -16,5 +16,5 @@ require.config({
  
 require(['js/modules/appViews/appView'], function(appView){
 //.....we create a appView object that is used to render the app........
-  var appViewObj = new appView; 
+  var appViewObj = new appView(); 
 });

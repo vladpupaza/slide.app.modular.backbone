@@ -19,7 +19,7 @@ var slideTemplate = {
   slide_img : ''+
   '<div class="slideLittle"><div class="slideImg">'
    +'<img src="<%=_url%>" alt="image" />'
-  +'</div><%=_text%></div>',
+  +'</div><%=_text%></div>'
 
 };
 return slideTemplate;

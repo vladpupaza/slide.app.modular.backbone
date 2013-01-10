@@ -1,6 +1,6 @@
-define(['underscore', 'backbone','js/libs/pubsub'], function(_, Backbone, pubSub) {
+define(['underscore', 'backbone'], function(_, Backbone) {
 	var Slide = Backbone.Model.extend({
-// defaults attributes for slide 
+//defaults attributes for slide 
 		defaults: {
 			'id':null,
 			"_type" : 'Image',

@@ -12,11 +12,11 @@ define([
 function($, _, Backbone, toolbar, slideModules, sidebar, content, type){
 	var appView = function(){
 //....we create a typeView object..........................................
-		typeViewObj	= new type;	
+		typeViewObj	= new type();	
 //....we create a slideModules object......................................
-		slideModulesObj = new slideModules;
+		slideModulesObj = new slideModules();
 //....we create a toolbarView object.......................................
-		toolbarViewObj = new toolbar;
+		toolbarViewObj = new toolbar();
 		divMove=	
 		function (e){ 
 			var div = document.getElementById('draggebel'); 

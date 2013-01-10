@@ -55,9 +55,9 @@ addImage : function() {
 },
 //.........Remove image...................................................
 removeImage : function(){ 
+  if (typeof currentSlide !== "undefined") {
     currentSlide.setUrl("");
-   
-
+   }
 },
 //.........Add video......................................................
 addVideo : function(){ 
@@ -99,12 +99,7 @@ save: function(){
         function init()
         {
 
-          //private methods
-            function notify(message)
-            {
-              console.log(message);
-            }
-      
+          //private methods 
       
           return {
             //public methods
@@ -115,8 +110,7 @@ save: function(){
               setTimeout(function hide()
                       {
                         $("#notifBar").css("visibility","hidden");
-                      }
-                  ,4000);
+                      },4000);
              
               },
 
