@@ -21,7 +21,8 @@ events: {
     "click #removeVideoBtn" : "removeVideo",
     "click #saveBtn" : "save",
     "change #languageOption ": "selectLanguage",
-    "click #addImageUrlBtn" : "getUrl"     
+    "click #addImageUrlBtn" : "getUrl",
+    "click #cancelImageUrlBtn" : "cancelUrl"     
 },
 //......Adding a slide....................................................
 addSlide : function(){ 
@@ -38,12 +39,12 @@ removeSlide : function() {
 },
 //........Add image.......................................................
 addImage : function() { 
-    $("#wrapper").show();
+    
    // var currentSlideId = $(".currentSlide").attr("id");
    // var currentSlide=slides.at(currentSlideId);
     var tip=currentSlide.getType();
-    if(tip === "Video"||tip === "Text")
-     $("#wrapper").hide();
+    if(tip === "Image")
+     $("#wrapper").show();
       
 },
 //.........Remove image...................................................
@@ -67,6 +68,10 @@ addVideo : function(){
 getUrl : function(){
     var urlNou = $('#myTextAreaUrl').val();
     pubSub.publish("getUrl",urlNou);
+    $("#wrapper").hide();
+},
+//.........cancelUrl.........................................................
+cancelUrl : function(){
     $("#wrapper").hide();
 },
 //.........removeVideo....................................................
@@ -143,7 +148,6 @@ selectLanguage: function(){
     function setEnglishLanguage(){
         $.getJSON('data/englishLanguage', function(data){   
             var englishLanguageObject = data.englishLanguage;
-            console.log(englishLanguageObject);
             $("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
             $("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
             $("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
@@ -157,7 +161,6 @@ selectLanguage: function(){
     function setRomanianLanguage(){
          $.getJSON('data/romanianLanguage', function(data){
             var englishLanguageObject = data.romanianLanguage;
-            console.log(englishLanguageObject);
             $("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
             $("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
             $("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);

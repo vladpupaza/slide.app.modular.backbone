@@ -11,6 +11,7 @@ var appViewTemplate ={
 	+'<button type="button" id="removeImageFromSlideBtn">REMOVE IMAGE</button>'
 	+'<button type="button" id="addVideoBtn">Add Video</button>'
 	+'<button type="button" id="removeVideoBtn">Remove Video</button>'
+	+'<button type="button" id="slideshowBtn">Slideshow</button>'
 	+'<button type="button" id="saveBtn">SAVE</button>'
 	+'</div>'
 	+'<div id="languageDtopdown">'
@@ -23,6 +24,7 @@ var appViewTemplate ={
 	+'<div id="wrapper"><div id="insertImageUrl">'
             +'<textarea name="myTextAreaImageUrl"cols="20" rows="2" id="myTextAreaUrl">Insert image url here</textarea>'
             +'<button type="button" id="addImageUrlBtn">Save</button>'
+            +'<button type="button" id="cancelImageUrlBtn">Cancel</button>'
 	+'</div></div>',
 
 
