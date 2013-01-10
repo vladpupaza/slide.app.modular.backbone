@@ -11,7 +11,7 @@ define(['underscore', 'backbone','js/libs/pubsub'], function(_, Backbone, pubSub
   		},
 //......initializa a slide........................................................
   		initialize:function(){
-   		this.set({id:Math.random().toString(36).substr(2,9)});
+   		if (this.id==null)this.set({id:Math.random().toString(36).substr(2,9)});
    		console.log(this.id);
   		}, 
 //......setType method by param type..............................................

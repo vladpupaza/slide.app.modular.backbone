@@ -9,6 +9,12 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
 		url:'slide', */
 		localStorage:new Store('cosmin_Slides'),
 		
+		updateAll: function() {
+			for(var i=0;i<this.length;i++){
+				this.localStorage.update(this.at(i));
+				
+			}
+		},
 		
 		addSlide: function(){
 			var that=this;
