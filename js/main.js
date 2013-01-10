@@ -9,6 +9,7 @@ require.config({
   }
 });
 
+ 
 require(['js/modules/appViews/appView'], function(appView){
-  var appViewObj = new appView;
+  var appViewObj = new appView; 
 });
