@@ -51,6 +51,18 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 
 
 
+		},
+
+		setCurrentSlide:function(currentSlide,index)
+		{
+							
+				//set current slide on sidebar
+				$(".currentSlide").removeClass("currentSlide");
+				$("#"+index).addClass("currentSlide");
+				
+				//render current slide content
+				contentViewObj.model=currentSlide;
+				contentViewObj.initialize();
 		}
 
 	});
