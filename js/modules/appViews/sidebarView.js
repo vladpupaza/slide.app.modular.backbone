@@ -1,9 +1,8 @@
-define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js/modules/appViews/contentView','js/modules/slideModules/slides'],function ($,_,Backbone,slideView,contentView)
+define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js/modules/appViews/contentView','js/modules/slideModules/slides'],function ($,_,Backbone,slideView,ContentView)
 {
 	var sidebarView=Backbone.View.extend({
 		el:$('#sidebar'),
-		tagName:"div",
-		//cv:new contentView({model:a}),
+		tagName:"div", 
 		events: {
          //this event will be attached to the model elements in
          //the el of every view inserted by AppView below
@@ -34,14 +33,14 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				$('div .slideLittle').last().attr("id",i);
 			}
 			$("#"+idCurrent).addClass("currentSlide");
-			if(typeof currentSlide!=='undefined') contentViewObj=new contentView({model:currentSlide});
+			if(typeof currentSlide!=='undefined') contentViewObj=new ContentView({model:currentSlide});
 		},
 		selectSlide:function(e)
 		{
 				//get current slide
 				e.preventDefault();
 				var id =$(e.currentTarget).context.id;
-				if(typeof currentSlide!=='undefined') contentViewObj=new contentView({model:currentSlide});
+				if(typeof currentSlide!=='undefined') contentViewObj=new ContentView({model:currentSlide});
 				currentSlide=this.collection.at(id);
 				
 				//set current slide on sidebar
@@ -50,7 +49,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				idCurrent = id;
 				
 				//render current slide content
-				contentViewObj=new contentView({model:currentSlide});
+				contentViewObj=new ContentView({model:currentSlide});
 
 
 
