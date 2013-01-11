@@ -116,7 +116,8 @@ var ContentView = Backbone.View.extend({
 	}, */
 	/* @method */
   	updateText:function(){
-		this.model.setText($('.text')[0].value);
+  		var text = $('.text')[0].value;
+		this.model.set({"_text": text});
 	}, 
  
    
