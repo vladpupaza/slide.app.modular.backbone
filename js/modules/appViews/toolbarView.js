@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/modules/slideModules/slides', 'js/libs/pubsub'],
-function($,_,Backbone,toolbarTemplate,slideCollection,pubSub){
+define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub'],
+function($,_,Backbone,toolbarTemplate,pubSub){
 ToolbarView = Backbone.View.extend({
 el: $("#toolbar"),
 initialize: function(){
@@ -27,7 +27,7 @@ events: {
 },
 //......Adding a slide....................................................
 addSlide : function(){ 
-    window.slides.addSlide();
+    slideModulesObj.slides.addSlide();
 
 },
 //.......Remove a slide...................................................
@@ -36,7 +36,7 @@ removeSlide : function() {
   //  var currentSlideId = $(".currentSlide").attr("id");
   //  var currentSlide=slides.at(currentSlideId);
   if (typeof currentSlide !== "undefined") {
-    slides.remove(currentSlide);
+    slideModulesObj.slides.remove(currentSlide);
     console.log('DELETE ../slides/id');
     delete(currentSlide); 
     $('#content').html('');
@@ -90,7 +90,7 @@ removeVideo : function(){
 save: function(){
 
   var currentDate=new Date();
-    localStorage.setItem("savedSlides",JSON.stringify(slides));//save collection to localStorage
+    localStorage.setItem("savedSlides",JSON.stringify(slideModulesObj.slides));//save collection to localStorage
     
     //************* Singleton to create a notification*******/
     var notification=(function()
@@ -111,6 +111,7 @@ save: function(){
               setTimeout(function hide()
                       {
                         $("#notifBar").css("visibility","hidden");
+
                       },4000);          
               },
 
@@ -185,7 +186,7 @@ selectLanguage: function(){
 slideshow:function(){
 
     var i=0;  
-    var nr=slides.length;  
+    var nr=slideModulesObj.slides.length;  
     if (nr===0)
       alert("No slides to be shown")
     else
@@ -193,7 +194,7 @@ slideshow:function(){
           $("#slideshowMode").css('visibility','visible');
           var timer=setInterval(function(){
         
-          sidebarViewObj.setCurrentSlide(slides.at(i),i);
+          sidebarViewObj.setCurrentSlide(slideModulesObj.slides.at(i),i);
          
           if (i===nr-1)
           {

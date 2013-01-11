@@ -9,7 +9,9 @@ define([
   'js/modules/appViews/typeView'
   ],
 
-function($, _, Backbone, slideModules, toolbar,  sidebar, content, type){
+
+function($, _, Backbone,slideModules,toolbar, sidebar, content, type){
+
 	var appView = function(){
 //....we create a typeView object..........................................
 		typeViewObj	= new type();	
@@ -24,9 +26,9 @@ function($, _, Backbone, slideModules, toolbar,  sidebar, content, type){
 			div.style.left =( e.clientX -540)+ 'px';
 		};
 //....we create a contentView object.......................................
-		contentViewObj = new content({model:a});	
+		contentViewObj = new content({model:slideModulesObj.a});	
 //....we create a sidebarView object.......................................
-		sidebarViewObj = new sidebar({collection:slides});
+		sidebarViewObj = new sidebar({collection:slideModulesObj.slides});
 	};
 	return appView;
 });
