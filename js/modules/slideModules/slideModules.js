@@ -2,7 +2,7 @@ define(['js/modules/slideModules/slides', 'js/modules/slideModules/slide'],
 	function(s,slide) {
 	// slideModule is used for making an instance of Slides collection that basicly starts the engine of the application
 	var slideModule =function()
-	{		
+	{
 		// we create a new Collection so we can add slides to it.
 		this.slides= new s();
 		// read the local storage and see if there's anything in there, equivalent to a GET ../slides REST operation
@@ -20,6 +20,5 @@ define(['js/modules/slideModules/slides', 'js/modules/slideModules/slide'],
 		this.a = new slide({id:'10'});
 		this.a.set({id:null});
 	};
-	
 	return slideModule;
 });
