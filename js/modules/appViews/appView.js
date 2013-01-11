@@ -12,8 +12,7 @@ define([
 
 function($, _, Backbone,slideModules,toolbar, sidebar, content, type){
 /**
- * @class Slide A Slide Model
- * @extends Backbone.Model
+ * @class AppView A View representing the UI
  * @constructor
  */	
 	var AppView = function(){
