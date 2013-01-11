@@ -144,9 +144,47 @@ function($,_,Backbone,toolbarTemplate,pubSub){
         /**
         * @method    
         */
-            var urlNou = $('#myTextAreaUrl').val();
-            pubSub.publish("getUrl",urlNou);
-            $("#wrapper").hide();
+            var urlNou = this.el.find('#myTextAreaUrl').val();
+            var validateUrl=function(url)
+              {
+                var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', 'i');
+                if (urlPattern.test(url))
+                  return true
+                else
+                  return false;
+              };
+
+            if (currentSlide.get("_type")==="Image")
+            {
+                $("#testImg img").attr("src",urlNou)
+                var image = $($('#testImg').html());
+                 image.load(function() 
+                 {    
+                      
+                      pubSub.publish("getUrl",urlNou);
+                      $("#wrapper").hide();
+                      $("#testImg img").attr("src","");
+                 }).error(function() 
+                 {
+                      alert("Please insert a valid URL");
+                      $("#testImg img").attr("src","");
+                 });
+              }
+                  else
+              {
+              if (validateUrl(urlNou))
+                 {
+                      pubSub.publish("getUrl",urlNou);
+                      $("#wrapper").hide();
+                 }
+                  else
+                  {
+                      alert("Please insert a valid URL");
+                      
+                  };
+              };
+
+            
         },
         cancelUrl : function(){
         /**
@@ -204,7 +242,7 @@ function($,_,Backbone,toolbarTemplate,pubSub){
         * @method    
         *in selOption we store the current selected value (english/ romanian)
         */
-            var selOption = $("#languageOption").val(); 
+            var selOption = this.el.find("#languageOption").val(); 
         /**    
         * setEnglishLanguage is a function that receives the data from the JSON
         * file englishLanguage and then uses this data to set the text of the 
@@ -213,16 +251,16 @@ function($,_,Backbone,toolbarTemplate,pubSub){
             function setEnglishLanguage(){
                 $.getJSON('data/englishLanguage', function(data){   
                 var englishLanguageObject = data.englishLanguage;
-                $("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
-                $("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
-                $("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
-                $("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
-                $("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
-                $("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
-                $("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
-                $("#saveBtn").text(englishLanguageObject.saveBtn);
-                $('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
-                $('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
+                this.el.find("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
+                this.el.find("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
+                this.el.find("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
+                this.el.find("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
+                this.el.find("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
+                this.el.find("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
+                this.el.find("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
+                this.el.find("#saveBtn").text(englishLanguageObject.saveBtn);
+                this.el.find('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
+                this.el.find('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
                 });
             }
             /**
@@ -233,23 +271,23 @@ function($,_,Backbone,toolbarTemplate,pubSub){
             function setRomanianLanguage(){
                 $.getJSON('data/romanianLanguage', function(data){
                 var englishLanguageObject = data.romanianLanguage;
-                $("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
-                $("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
-                $("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
-                $("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
-                $("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
-                $("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
-                $("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
-                $("#saveBtn").text(englishLanguageObject.saveBtn);
-                $('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
-                $('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
+                this.el.find("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
+                this.el.find("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
+                this.el.find("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
+                this.el.find("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
+                this.el.find("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
+                this.el.find("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
+                this.el.find("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
+                this.el.find("#saveBtn").text(englishLanguageObject.saveBtn);
+                this.el.find('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
+                this.el.find('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
                 });
             };
             /**
             * here we verify the selOption to know what function we need to use
             */
-            if(selOption === "english"){ setEnglishLanguage();  $('#languageOption').change(setEnglishLanguage); } 
-                else { setRomanianLanguage(); $('#languageOption').change(setRomanianLanguage);}
+            if(selOption === "english"){ setEnglishLanguage();  this.el.find('#languageOption').change(setEnglishLanguage); } 
+                else { setRomanianLanguage(); this.el.find('#languageOption').change(setRomanianLanguage);}
         },
         slideshow : function(){
             var i = 0;  
