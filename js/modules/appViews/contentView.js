@@ -1,5 +1,5 @@
 
-define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/appViews/appViewTemplate'], function(_, Backbone,defaultS,Template) {
+define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], function(_, Backbone,Template) {
 
 var contentView = Backbone.View.extend({
 	el:$('#content'),
