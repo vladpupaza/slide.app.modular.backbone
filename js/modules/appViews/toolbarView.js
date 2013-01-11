@@ -27,49 +27,28 @@ events: {
 },
 //......Adding a slide....................................................
 addSlide : function(){ 
-    slideModulesObj.slides.addSlide();
-
+   pubSub.publish("addNewSlide",slideModulesObj.slides.addSlide);
 },
 //.......Remove a slide...................................................
 removeSlide : function() { 
-     
-  //  var currentSlideId = $(".currentSlide").attr("id");
-  //  var currentSlide=slides.at(currentSlideId);
-  if (typeof currentSlide !== "undefined") {
-    slideModulesObj.slides.remove(currentSlide);
-    console.log('DELETE ../slides/id');
-    delete(currentSlide); 
-    $('#content').html('');
-    idCurrent = -1;
-  }
+   pubSub.publish("removeCurrentSlide",slideModulesObj.slides.removeSlide);  
 },
 //........Add image.......................................................
 addImage : function() { 
-    
-   // var currentSlideId = $(".currentSlide").attr("id");
-   // var currentSlide=slides.at(currentSlideId);
-    if (typeof currentSlide !== "undefined") {
-      var tip=currentSlide.getType();
-      if(tip === "Image")
-      $("#wrapper").show();
-    }
+   pubSub.publish("addImageSlide",slideModulesObj.slides.addImageToCurrentSlide);   
 },
 //.........Remove image...................................................
 removeImage : function(){ 
-  if (typeof currentSlide !== "undefined") {
-    currentSlide.setUrl("");
-   }
+  slideModulesObj.slides.removeImageFromCurrentSlide();
 },
 //.........Add video......................................................
 addVideo : function(){ 
-    $("#wrapper").show(); 
-    
-   // var currentSlideId = $(".currentSlide").attr("id");
-   // var currentSlide=slides.at(currentSlideId);
-    
-    var tip=currentSlide.getType();
-    if(tip === "Image"||tip === "Text")
-     $("#wrapper").hide();
+ slideModulesObj.slides.addVideoToCurrentSlide();
+},
+//.........removeVideo....................................................
+removeVideo : function(){
+ slideModulesObj.slides.removeVideoFromCurrentSlide();
+   
 },
 //.........getUrl.........................................................
 getUrl : function(){
@@ -81,11 +60,7 @@ getUrl : function(){
 cancelUrl : function(){
     $("#wrapper").hide();
 },
-//.........removeVideo....................................................
-removeVideo : function(){
-    currentSlide.setUrl("");
-   
-},
+
 //..........save..........................................................
 save: function(){
 
