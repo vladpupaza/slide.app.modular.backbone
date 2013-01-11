@@ -12,8 +12,8 @@ require.config({
     underscore: 'js/libs/underscore/underscore-min',
     backbone: 'js/libs/backbone/backbone-optamd3-min',
     localStorage: 'js/libs/backbone/localstorage',
-    order: 'js/libs/require/order'
-  }
+    order: 'js/libs/require/order',
+   }
 });
 
  
