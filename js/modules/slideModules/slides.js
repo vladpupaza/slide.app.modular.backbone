@@ -49,7 +49,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
         *instance of slides collection        
         */
             var sl = new slide();
-            sl.setType(typeViewObj.getCurrentType());
+            sl.set({"_type":typeViewObj.getCurrentType()});
             slideModulesObj.slides.add(sl);
             console.log("POST ../slides");
         },
@@ -73,7 +73,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
         * add image to currentSlide function          
         */
             if (typeof currentSlide !== "undefined"){
-                if(currentSlide.getType() === "Image")
+                if(currentSlide.get("_type") === "Image")
                     $("#wrapper").show();
             }
         },
@@ -82,8 +82,8 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
         * @method   
         *remove image from current slide function          
         */
-            if ((typeof currentSlide !== "undefined")&&(currentSlide.getType() === "Image")){
-                currentSlide.setUrl("");
+            if ((typeof currentSlide !== "undefined")&&(currentSlide.get("_type") === "Image")){
+                currentSlide.set({_url:""});
             }
         },
         addVideoToCurrentSlide : function(){
@@ -92,7 +92,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
         * add video to currentSlide function          
         */
             if (typeof currentSlide !== "undefined"){
-                var tip = currentSlide.getType();
+                var tip = currentSlide.get("_type");
                 if(tip === "Video") $("#wrapper").show();
             }
         },
@@ -101,8 +101,8 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
         * @method   
         * remove video to currentSlide function          
         */
-            if ((typeof currentSlide !== "undefined")&&(currentSlide.getType() === "Video")){
-                currentSlide.setUrl("");
+            if ((typeof currentSlide !== "undefined")&&(currentSlide.get("_type") === "Video")){
+                currentSlide.set({_url:""});
             }
         },
         getUrlSubscriber : function(topic,data){
@@ -111,7 +111,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
         * gets the URL for image or video slides         
         */
           console.log(topic+":"+data);
-          currentSlide.setUrl(data);
+          currentSlide.set({_url:data});
         }
     });
     return Slides;
