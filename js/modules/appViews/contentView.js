@@ -2,10 +2,21 @@
 define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], function(_, Backbone,Template) {
 	
 	"use strict";
+	
+	
+/* * @class contentView , the class of content view 	
+ * @param  as param recives the model of the curent slide
+	 */
 var contentView = Backbone.View.extend({ 
+
+
     tagName: "div", 
 	id:'contentView',
     template: _.template(Template.content_template),
+	
+	
+	/*@event  updateReady, fired from DOM , when the textarea lose focus
+	 *@event txtnbleft , fired when user start's to type in text area	*/
     events: {
          //this event will be attached to the model elements in
          //the el of every view inserted by AppView below
@@ -18,8 +29,9 @@ var contentView = Backbone.View.extend({
 	$("#txtnb").html("Characters left: "+(250-$('.text')[0].value.length));
 	},
 
-
-    //..............At initialize I chose a diferent template base on model's attribute type
+ 
+	/*
+	 * @initialize , at initialize , I give the view's template based on the model's type*/
     initialize: function () {
 		if(this.model.toJSON()._type==='Image'){
 			this.template=_.template(Template.content_template_image);
@@ -32,31 +44,39 @@ var contentView = Backbone.View.extend({
 			}
 		_.bindAll(this, "render");  
 		
-         //..... when the change event fires from the modcel , I rerender the view
-		this.model.bind('change',this.render); 
-		if(window.currentSlide){window.currentSlide.bind('change',this.render);}
-        //I prevent rendering if the Id is null , so I cannot render an invalid model
+        /* binding I binde the change event of the model , to method rander of the object */
+		this.model.bind('change',this.render);  
+        /* I prevent rendering if the Id is null , so I cannot render an invalid model */
 		if(this.model.get('id')!==null){ 
 			this.render(); 
 		}
  
     },
+	/*
+	*@method
+	*/
     render: function () { 
-        $(this.el).html(this.template(this.model.toJSON()));
-        //After drawing the element I bind the latter function , who needs the rendered elements , for draggebel image
+	
+		/* render it will place the view on DOM , and call the addListener functuin , witch needs that those elements to be painted */
+		$(this.el).html(this.template(this.model.toJSON()));
+		
+		/* After drawing the element I bind the latter function , who needs the rendered elements , for draggebel image */
 		$('#content').html(this.el);
 
 		this.addListeners();
         return this;
     },
-	//alertMe:function(){console.log('I"m here');},
- //here I set those to elements to listen  for events like mousedown/mouseup, and then to do those functions
+ 
+	/*
+	* 	@method */
 	addListeners:function (){
+		//	addListeners : here I set those to elements to listen  for events like mousedown/mouseup, and then to do those functions */
 		document.getElementById('draggebel').addEventListener('mousedown', this.mouseDown, false);
 		document.getElementById('slideWorkArea').addEventListener('mouseup', this.mouseUp, false);
 		
 	},
-	
+/*
+ *  @method */
 	mouseUp:function ()
 	{
 		document.getElementById('slideWorkArea').removeEventListener('mousemove', divMove, true);
@@ -68,22 +88,21 @@ var contentView = Backbone.View.extend({
 		}
 	},
 	
-  //this function is called so I will be able to move the draggebel div , base on event's coordonates
-    
-  //I allso prevent the chields elements from DOM to capture the event e 
+ 
+/* 
+ * @method */
 	mouseDown:function (e){
-		//console.log('action started');
+		
+		//this function is called so I will be able to move the draggebel div , base on event's coordonates
 		document.getElementById('slideWorkArea').addEventListener('mousemove', divMove, true);
+		
+		//I allso prevent the chields elements from DOM to capture the event e 
 		e.preventDefault();
 	},
+	/* @method */
 	updateText:function(){
 		this.model.setText($('.text')[0].value);
 	},
-    //this function is to set the model , and after that to initialize the view again , so I won't use more than one content view in this app
-    setModel:function(model){
-		this.model=model;
-		this.initialize();
-	}
  
    
 });
