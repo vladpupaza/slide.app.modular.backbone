@@ -40,10 +40,12 @@ function($, _, Backbone,slideModules,toolbar, sidebar, content, type){
 			div.style.top = ( e.clientY -200)+ 'px';
 			div.style.left = ( e.clientX -550)+ 'px';
 		};
+
 /** 
  * @property
  * @type object
  */
+
 		sidebarViewObj = new sidebar({collection:slideModulesObj.slides});
 	};
 	return AppView;
