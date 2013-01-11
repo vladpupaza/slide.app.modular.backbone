@@ -59,6 +59,7 @@ var appViewTemplate ={
 			</video>\
 		</div>\
 			<textarea class="text" maxlength="250" onkeyup="$(\'#content\').trigger(\'txtnbleft\')" onkeypress="$(\'#content\').trigger(\'txtnbleft\')" onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50"><%= _text %></textarea>\
+			<div id="txtnb"></div>\
 		</div>\
 	</div>',
 	content_template_image: 
@@ -68,6 +69,7 @@ var appViewTemplate ={
 			<img src="<%= _url %>" alt="1"  style="width:460px; height:380px;" id="slide"/> \
 		</div>\
 			<textarea class="text" maxlength="250" onkeyup="$(\'#content\').trigger(\'txtnbleft\')" onkeypress="$(\'#content\').trigger(\'txtnbleft\')" onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50"><%= _text %></textarea>\
+			<div id="txtnb"></div>\
 		</div>\
 	</div>',
 	
@@ -78,6 +80,7 @@ var appViewTemplate ={
 		<div id="draggebel" style="top:<%= _y %>;left:<%= _x %>;">\
 		</div>\
 			<textarea class="text" maxlength="250" onkeyup="$(\'#content\').trigger(\'txtnbleft\')" onkeypress="$(\'#content\').trigger(\'txtnbleft\')" onblur="$(\'#content\').trigger(\'updateReady\')"    rows="4" cols="50"><%= _text %></textarea>\
+			<div id="txtnb"></div>\
 		</div>\
 	</div>'
 
