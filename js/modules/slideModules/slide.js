@@ -39,11 +39,7 @@ define(['underscore', 'backbone'], function(_, Backbone) {
 			return this.get('_url');
 		},
 //...... subscribe obj............................................................
-        subscriber : function(topic,data)
-        {
-          console.log(topic+":"+data);
-          currentSlide.setUrl(data);
-        }
+        
 	});
 	return Slide;
 });

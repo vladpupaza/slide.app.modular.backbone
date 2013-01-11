@@ -5,6 +5,7 @@ define(['js/modules/slideModules/slides', 'js/modules/slideModules/slide'],
 	{
 		// we create a new Collection so we can add slides to it.
 		this.slides= new s();
+        this.slides.subscribeStatements();
 		// read the local storage and see if there's anything in there, equivalent to a GET ../slides REST operation
 		saved=localStorage.getItem("savedSlides");
 		console.log("GET ../slides");
