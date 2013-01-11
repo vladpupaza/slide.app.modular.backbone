@@ -243,3 +243,16 @@ border-color:#B8B8B8;
 	position: relative;
 	z-index: 99999;
 }
+#spinner {
+	display:none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    text-align:center;
+    z-index:99999;
+    overflow: auto;
+    width: 100px;
+    height: 102px; 
+}
