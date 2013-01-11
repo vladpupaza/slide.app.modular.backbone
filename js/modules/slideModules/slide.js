@@ -37,12 +37,14 @@ define(['underscore', 'backbone'], function(_, Backbone) {
  */			
    			'_y':'50'
   		},
+
 /**
  * @method
  */
   		initialize : function(){
    			if (this._id==null)this.set({_id:Math.random().toString(36).substr(2,9)});
   		}
+
 	});
 	return Slide;
 });
