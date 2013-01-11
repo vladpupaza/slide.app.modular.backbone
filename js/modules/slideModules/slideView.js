@@ -7,11 +7,27 @@ define([
 
 	function($, _, Backbone, slideTemplate){
 	// defines the view of a slide
-	var slideView = Backbone.View.extend({
+    /**
+    *@class SlideView View for a Slide Model
+    *@extends Backbone.View
+    *@constructor
+   */
+	var SlideView = Backbone.View.extend({
 	//a silde is a div
+    /**
+    *@property
+    *@type string
+    */
 	tagName: 'div',
+     /**
+    *@property
+    *@type string
+    */
 	template:'',
 	//initialize function for slideView, called whenever a new slideView is created, a slide view should be created for every slide model
+    /**
+    *@method
+    */
 	initialize: function() {
 		//bind the change event to this view's render function, so every time a model is changed the view is updated
 		this.model.bind('change',function(){this.render;console.log('PUT ../slides/id');},this);
@@ -20,10 +36,14 @@ define([
 		//render this view 
 		this.render();
 	},
+    /**
+    *@method
+    *@return this.el Returns the el with the compiled template as it's html value
+    */
 	//render function for slideView used to display the view on the page
 	render: function() {
 	//there are three types of slides so we check what type this view's model has so we know how to render it
-		switch(this.model.getType())
+		switch(this.model.get("_type"))
 		{
 			//if it's a text slide we load the slide_text template from the slideTemplate file
 			case "Text" :
@@ -45,5 +65,5 @@ define([
 	return this.el;
 	}
 });
-	return slideView;
+	return SlideView;
 });

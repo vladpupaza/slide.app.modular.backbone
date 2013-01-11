@@ -1,9 +1,4 @@
-
-define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], function(_, Backbone,Template) {
-	
-	"use strict";
-	
-	
+ 
 /* @class ContentView , the class of content view 	
  * @extends Backbone.View
  * @param  as param recives the model of the curent slide
@@ -13,7 +8,7 @@ var ContentView = Backbone.View.extend({
 
     tagName: "div", 
 	id:'contentView',
-    template: _.template(Template.content_template),
+    template: _.template(appViewTemplate.content_template),
 	
 	
 	/*@event  updateReady, fired from DOM , when the textarea lose focus
@@ -35,20 +30,20 @@ var ContentView = Backbone.View.extend({
 	 * @initialize , at initialize , I give the view's template based on the model's type*/
     initialize: function () {
 		if(this.model.toJSON()._type==='Image'){
-			this.template=_.template(Template.content_template_image);
+			this.template=_.template(appViewTemplate.content_template_image);
 			}
 		else if(this.model.toJSON()._type==='Text'){
-			this.template=_.template(Template.content_template_text);
+			this.template=_.template(appViewTemplate.content_template_text);
 			}
 		else if(this.model.toJSON()._type==='Video'){
-			this.template=_.template(Template.content_template_video);
+			this.template=_.template(appViewTemplate.content_template_video);
 			}
 		_.bindAll(this, "render");  
 		
         /* binding I binde the change event of the model , to method rander of the object */
 		this.model.bind('change',this.render);  
         /* I prevent rendering if the Id is null , so I cannot render an invalid model */
-		if(this.model.get('_id')!==null){ 
+		if(this.model.get('id')!==null){ 
 			this.render(); 
 		}
  
@@ -64,7 +59,7 @@ var ContentView = Backbone.View.extend({
 		/* After drawing the element I bind the latter function , who needs the rendered elements , for draggebel image */
 		$('#content').html(this.el);
 
-		this.addListeners();
+/* 		this.addListeners(); */
         return this;
     },
  
@@ -106,8 +101,5 @@ var ContentView = Backbone.View.extend({
 	},
  
    
-});
-return ContentView;
-});
-
+}); 
 
