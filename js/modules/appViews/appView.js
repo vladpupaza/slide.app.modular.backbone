@@ -9,7 +9,7 @@ define([
   'js/modules/appViews/typeView'
   ],
 
-function($, _, Backbone, toolbar, slideModules, sidebar, content, type){
+function($, _, Backbone, slideModules, toolbar,  sidebar, content, type){
 	var appView = function(){
 //....we create a typeView object..........................................
 		typeViewObj	= new type();	

@@ -40,6 +40,7 @@ removeSlide : function() {
     console.log('DELETE ../slides/id');
     delete(currentSlide); 
     $('#content').html('');
+    idCurrent = -1;
   }
 },
 //........Add image.......................................................
@@ -110,30 +111,25 @@ save: function(){
               setTimeout(function hide()
                       {
                         $("#notifBar").css("visibility","hidden");
-                      },4000);
-             
+                      },4000);          
               },
 
                AddZero:function(num)
                 {
                 return (num >= 0 && num < 10) ? "0" + num : num + "";
-                }
-      
+                }     
           }
         }
 
           return {
             getInstance:function()
-            {
-        
+            {       
                 if ( !instance )
                 {
                   instance = init();
                 }
-
               return instance;
             }   
-
     } 
     })();
      
@@ -207,9 +203,7 @@ slideshow:function(){
           i++;
           },4000);
     }
-
 }
-
 });
 
 return ToolbarView;

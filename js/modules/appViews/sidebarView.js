@@ -33,6 +33,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 
 				$('div .slideLittle').last().attr("id",i);
 			}
+			$("#"+idCurrent).addClass("currentSlide");
 		},
 		selectSlide:function(e)
 		{
@@ -44,6 +45,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				//set current slide on sidebar
 				$(".currentSlide").removeClass("currentSlide");
 				$("#"+id).addClass("currentSlide");
+				idCurrent = id;
 				
 				//render current slide content
 				contentViewObj.setModel(currentSlide);
