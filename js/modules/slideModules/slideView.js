@@ -43,7 +43,7 @@ define([
 	//render function for slideView used to display the view on the page
 	render: function() {
 	//there are three types of slides so we check what type this view's model has so we know how to render it
-		switch(this.model.get("_type")
+		switch(this.model.get("_type"))
 		{
 			//if it's a text slide we load the slide_text template from the slideTemplate file
 			case "Text" :
