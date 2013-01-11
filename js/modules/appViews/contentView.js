@@ -4,6 +4,7 @@ define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], functio
 	"use strict";
 var contentView = Backbone.View.extend({ 
     tagName: "div", 
+	id:'contentView',
     template: _.template(Template.content_template),
     events: {
          //this event will be attached to the model elements in
@@ -13,8 +14,7 @@ var contentView = Backbone.View.extend({
 		"txtnbleft":'ceva'
     },
 	
-	ceva:function(){
-	//console.log ();
+	ceva:function(){ 
 	$("#txtnb").html("Characters left: "+(250-$('.text')[0].value.length));
 	},
 
