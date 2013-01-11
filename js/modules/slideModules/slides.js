@@ -9,7 +9,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
         * @type slide
         */
         model : slide,
-        
+		url: '/slides',
         localStorage : new Store('cosmin_Slides'),
         remove : function(_model){
 			this.get(_model.get('id')).destroy();
