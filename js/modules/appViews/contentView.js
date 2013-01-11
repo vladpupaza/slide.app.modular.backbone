@@ -2,8 +2,7 @@
 define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], function(_, Backbone,Template) {
 	
 	"use strict";
-var contentView = Backbone.View.extend({
-	el:$('#content'),
+var contentView = Backbone.View.extend({ 
     tagName: "div", 
     template: _.template(Template.content_template),
     events: {
@@ -43,8 +42,10 @@ var contentView = Backbone.View.extend({
  
     },
     render: function () { 
-        this.el.html(this.template(this.model.toJSON()));
+        $(this.el).html(this.template(this.model.toJSON()));
         //After drawing the element I bind the latter function , who needs the rendered elements , for draggebel image
+		$('#content').html(this.el);
+
 		this.addListeners();
         return this;
     },
