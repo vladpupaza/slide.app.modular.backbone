@@ -33,16 +33,15 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
 		// add slide function
 		//here we simulate a singleton: we have one single instance of slides collection and we add slides only on it, even if we call addSlide function from another instance of slides collection
 		addSlide: function(){
-			require(['js/modules/slideModules/slide'], function(slide){
+			
 			var sl = new slide();
 			sl.setType(typeViewObj.getCurrentType());
 			slideModulesObj.slides.add(sl);
 			sl.save();
 			console.log("POST ../slides");
-
- 
-			});
+			
 		}
 	});
 	return Slides;
 });
+
