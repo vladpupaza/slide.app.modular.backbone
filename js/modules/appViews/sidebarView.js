@@ -43,7 +43,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 		
 		renderRem: function(){
 			this.renders();
-			console.log(":::"+idCurrent+" "+this.collection.length+"sadasdasdasdasasd");
+			console.log(idCurrent+" "+this.collection.length);
 			currentSlide=slideModulesObj.slides.at(idCurrent);
 			$("#"+(idCurrent)).addClass("currentSlide");
 			contentViewObj=new ContentView({model:currentSlide});
