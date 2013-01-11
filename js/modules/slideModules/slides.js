@@ -37,7 +37,6 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
 			var sl = new slide();
 			sl.setType(typeViewObj.getCurrentType());
 			slideModulesObj.slides.add(sl);
-			sl.save();
 			console.log("POST ../slides");
 			
 		}

@@ -34,12 +34,14 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				$('div .slideLittle').last().attr("id",i);
 			}
 			$("#"+idCurrent).addClass("currentSlide");
+			if(typeof currentSlide!=='undefined') contentViewObj=new contentView({model:currentSlide});
 		},
 		selectSlide:function(e)
 		{
 				//get current slide
 				e.preventDefault();
 				var id =$(e.currentTarget).context.id;
+				if(typeof currentSlide!=='undefined') contentViewObj=new contentView({model:currentSlide});
 				currentSlide=this.collection.at(id);
 				
 				//set current slide on sidebar
@@ -48,7 +50,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				idCurrent = id;
 				
 				//render current slide content
-				contentViewObj.setModel(currentSlide);
+				contentViewObj=new contentView({model:currentSlide});
 
 
 

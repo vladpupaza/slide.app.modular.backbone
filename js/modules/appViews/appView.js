@@ -23,10 +23,10 @@ function($, _, Backbone,slideModules,toolbar, sidebar, content, type){
 		function (e){ 
 			var div = document.getElementById('draggebel'); 
 			div.style.top =( e.clientY -200)+ 'px';
-			div.style.left =( e.clientX -540)+ 'px';
+			div.style.left =( e.clientX -550)+ 'px';
 		};
 //....we create a contentView object.......................................
-		contentViewObj = new content({model:slideModulesObj.a});	
+		//contentViewObj = new content({model:slideModulesObj.a});	
 //....we create a sidebarView object.......................................
 		sidebarViewObj = new sidebar({collection:slideModulesObj.slides});
 	};
