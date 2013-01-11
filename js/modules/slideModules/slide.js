@@ -3,7 +3,7 @@ define(['underscore', 'backbone'], function(_, Backbone) {
 //defaults attributes for slide 
 		defaults: {
 			'id':null,
-			"_type" : null,
+			"_type" : 'Image',
 			"_text" : null,
 			"_url" :null, 
 			'_x':'150',

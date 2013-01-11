@@ -20,8 +20,8 @@ function($, _, Backbone, slideModules, toolbar,  sidebar, content, type){
 		divMove=	
 		function (e){ 
 			var div = document.getElementById('draggebel'); 
-			div.style.top =( e.clientY -250)+ 'px';
-			div.style.left =( e.clientX -550)+ 'px';
+			div.style.top =( e.clientY -200)+ 'px';
+			div.style.left =( e.clientX -540)+ 'px';
 		};
 //....we create a contentView object.......................................
 		contentViewObj = new content({model:a});	

@@ -1,6 +1,7 @@
 
-define(['underscore', 'backbone','js/modules/slideModules/slide','js/modules/appViews/appViewTemplate'], function(_, Backbone,defaultS,Template) {
-
+define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], function(_, Backbone,Template) {
+	
+	"use strict";
 var contentView = Backbone.View.extend({
 	el:$('#content'),
     tagName: "div", 
@@ -10,7 +11,7 @@ var contentView = Backbone.View.extend({
          //the el of every view inserted by AppView below
         //"click": "alertMe",
 		"updateReady":'updateText',
-		"txtnbleft":'ceva',
+		"txtnbleft":'ceva'
     },
 	
 	ceva:function(){
@@ -20,18 +21,23 @@ var contentView = Backbone.View.extend({
 
 
     //..............At initialize I chose a diferent template base on model's attribute type
-    initialize: function () { 
-    	if(this.model.toJSON()._type=='Image')this.template=_.template(Template.content_template_image);
-		else if(this.model.toJSON()._type=='Text')this.template=_.template(Template.content_template_text);
-		else if(this.model.toJSON()._type=='Video')this.template=_.template(Template.content_template_video);
-		else console.log('I don;t have a type');
+    initialize: function () {
+		if(this.model.toJSON()._type==='Image'){
+			this.template=_.template(Template.content_template_image);
+			}
+		else if(this.model.toJSON()._type==='Text'){
+			this.template=_.template(Template.content_template_text);
+			}
+		else if(this.model.toJSON()._type==='Video'){
+			this.template=_.template(Template.content_template_video);
+			}
 		_.bindAll(this, "render");  
 		
          //..... when the change event fires from the modcel , I rerender the view
 		this.model.bind('change',this.render); 
-		if(window.currentSlide){window.currentSlide.bind('change',this.render)};
+		if(window.currentSlide){window.currentSlide.bind('change',this.render);}
         //I prevent rendering if the Id is null , so I cannot render an invalid model
-		if(this.model.get('id')!=null){ 
+		if(this.model.get('id')!==null){ 
 			this.render(); 
 		}
  
@@ -51,16 +57,14 @@ var contentView = Backbone.View.extend({
 	},
 	
 	mouseUp:function ()
-	{	 
+	{
 		document.getElementById('slideWorkArea').removeEventListener('mousemove', divMove, true);
-		  if($('#draggebel').css('top')!='auto'){
- 
-      //I'm passing the event as silent , so I can set the x too without to re-render the view before bothe changes are applyed  
+		if($('#draggebel').css('top')!=='auto')
+		{
+			//I'm passing the event as silent , so I can set the x too without to re-render the view before bothe changes are applyed  
 			currentSlide.set({_y:$('#draggebel').css('top')},{silent: true});
-			currentSlide.set({_x:$('#draggebel').css('left')},{silent: true}); 
-        }
-
- 
+			currentSlide.set({_x:$('#draggebel').css('left')},{silent: true});
+		}
 	},
 	
   //this function is called so I will be able to move the draggebel div , base on event's coordonates
@@ -71,10 +75,11 @@ var contentView = Backbone.View.extend({
 		document.getElementById('slideWorkArea').addEventListener('mousemove', divMove, true);
 		e.preventDefault();
 	},
-	updateText:function(){this.model.setText($('.text')[0].value)},
+	updateText:function(){
+		this.model.setText($('.text')[0].value);
+	},
     //this function is to set the model , and after that to initialize the view again , so I won't use more than one content view in this app
     setModel:function(model){
-		 
 		this.model=model;
 		this.initialize();
 	}
