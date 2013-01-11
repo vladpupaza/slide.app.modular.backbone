@@ -63,19 +63,13 @@ var ContentView = Backbone.View.extend({
 		
 		/* After drawing the element I bind the latter function , who needs the rendered elements , for draggebel image */
 		$('#content').html(this.el);
-
-		this.addListeners();
+		
+		//	addListeners : here I set those to elements to listen  for events like mousedown/mouseup, and then to do those functions */
+		$(this.el).find('#draggebel').mousedown(this.mouseDown);
+		$(this.el).find('#slideWorkArea').mouseup(  this.mouseUp);
         return this;
     },
  
-	/*
-	* 	@method */
-	addListeners:function (){
-		//	addListeners : here I set those to elements to listen  for events like mousedown/mouseup, and then to do those functions */
-		document.getElementById('draggebel').addEventListener('mousedown', this.mouseDown, false);
-		document.getElementById('slideWorkArea').addEventListener('mouseup', this.mouseUp, false);
-		
-	},
 /*
  *  @method */
 	mouseUp:function ()
@@ -88,6 +82,17 @@ var ContentView = Backbone.View.extend({
 			currentSlide.set({_x:$('#draggebel').css('left')},{silent: true});
 		}
 	},
+/* 	mouseUp:function ()
+	{
+		console.log('action stoped');
+		$(this.el).find('#slideWorkArea').mousemove();
+		if($('#draggebel').css('top')!=='auto')
+		{
+			//I'm passing the event as silent , so I can set the x too without to re-render the view before bothe changes are applyed  
+			currentSlide.set({_y:$('#draggebel').css('top')},{silent: true});
+			currentSlide.set({_x:$('#draggebel').css('left')},{silent: true});
+		}
+	}, */
 	
  
 /* 
@@ -100,10 +105,19 @@ var ContentView = Backbone.View.extend({
 		//I allso prevent the chields elements from DOM to capture the event e 
 		e.preventDefault();
 	},
+/* 	If I do this with BB, selectors , I must use JQ bind function , whitch sends an event object witch is not dinimic 
+ * mouseDown:function (event){
+		console.log('action started');
+		//this function is called so I will be able to move the draggebel div , base on event's coordonates
+		$(this.el).find('#slideWorkArea').mousemove(divMove(event));
+		
+		//I allso prevent the chields elements from DOM to capture the event e 
+		event.preventDefault();
+	}, */
 	/* @method */
-	updateText:function(){
+  	updateText:function(){
 		this.model.setText($('.text')[0].value);
-	},
+	}, 
  
    
 });

@@ -35,11 +35,22 @@ function($, _, Backbone,slideModules,toolbar, sidebar, content, type){
  * @method
  * @param {exception} e An exception
  */		
+
+ 
+ 
+ 
 		divMove = function (e){ 	
 			var div = document.getElementById('draggebel'); 
 			div.style.top = ( e.clientY -200)+ 'px';
 			div.style.left = ( e.clientX -550)+ 'px';
 		};
+ 
+ /* 		divMove = function (event){ 	
+			console.log(event.clientY);	
+			console.log(event.clientX);
+			$('#draggebel').css({top:( event.clientY -200),left:( event.clientX -550)}) ;
+		};
+		*/
 
 /** 
  * @property
