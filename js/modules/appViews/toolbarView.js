@@ -113,10 +113,6 @@ save: function(){
                         $("#notifBar").css("visibility","hidden");
 
                       },4000);          
-
-                      },4000);
-             
-
               },
 
                AddZero:function(num)
