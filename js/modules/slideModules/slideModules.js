@@ -13,8 +13,11 @@ define(['js/modules/slideModules/slides', 'js/modules/slideModules/slide'],
         *@type object
         */
 		this.slides= new s();
-		// read the local storage and see if there's anything in there, equivalent to a GET ../slides REST operation        
-		var saved=localStorage.getItem("savedSlides");
+
+        this.slides.subscribeStatements();
+		// read the local storage and see if there's anything in there, equivalent to a GET ../slides REST operation
+		saved=localStorage.getItem("savedSlides");
+
 		console.log("GET ../slides");
 		if (typeof saved==='string')
 		{
