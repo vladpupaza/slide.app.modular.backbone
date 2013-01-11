@@ -49,16 +49,19 @@ define([
 			case "Text" :
 			this.template= _.template(slideTemplate.slide_text);
 			$(this.el).html(this.template(this.model.toJSON()));
+			//$("#"+idCurrent).addClass("currentSlide");
 			break;
 			//if it's an image slide we load the slide_img template from the slideTemplate file
 			case "Image":
 			this.template= _.template(slideTemplate.slide_img);
 			$(this.el).html(this.template(this.model.toJSON()));
+			//$("#"+idCurrent).addClass("currentSlide");
 			break;
 			//if it's a video slide we load the slide_video template from the slideTemplate file
 			case "Video":
 			this.template= _.template(slideTemplate.slide_video);
 			$(this.el).html(this.template(this.model.toJSON()));
+			//$("#"+idCurrent).addClass("currentSlide");
 			break;
 			default: alert("no slide type");
 		}

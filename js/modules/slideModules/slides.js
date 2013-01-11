@@ -52,6 +52,8 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
             sl.set({"_type":typeViewObj.getCurrentType()});
             slideModulesObj.slides.add(sl);
             console.log("POST ../slides");
+			idCurrent=slideModulesObj.slides.length-1;
+			//$("#"+idCurrent).addClass("currentSlide"); ////-----
         },
         removeSlide : function(){
          /**
@@ -61,9 +63,9 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
             if (typeof currentSlide !== "undefined"){
                 slideModulesObj.slides.remove(currentSlide);
                 console.log('DELETE ../slides/id');
-                delete(currentSlide); 
+                //delete(currentSlide); 
                 $('#content').html('');
-                idCurrent = -1;
+                //idCurrent = -1;
             }
      
         },
@@ -112,6 +114,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
         */
           console.log(topic+":"+data);
           currentSlide.set({_url:data});
+		  $("#"+idCurrent).addClass("currentSlide"); //--------------
         }
     });
     return Slides;
