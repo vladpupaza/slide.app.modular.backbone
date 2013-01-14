@@ -43,16 +43,6 @@ define([
  
         };
         PubSub.subscribe("change presentation",presentationChanger);
-        //instance of a slide model
-		console.log("GET ../slides");
-		if (typeof saved==='string')
-		{
-			//if theres something in the local storage load it in our Collection of slides
-			var localSlides=JSON.parse(saved);
-			var l=localSlides.length;
-			for(var i=0;i<l;i++)
-			{this.slides.add(localSlides[i]);}			
-		};  
         /**
         *@property
         *@type object
