@@ -312,7 +312,7 @@ var  ToolbarView = Backbone.View.extend({
         if (localStorage.getItem("presentations"))
         {
             /**
-            * if there is something in local storage add to presentations array of names,prompt user for a name and save it to local storage
+            * checks if there is something in local storage
             */
             var presentations=JSON.parse(localStorage.getItem("presentations"));
             var gasit=false;
@@ -325,7 +325,10 @@ var  ToolbarView = Backbone.View.extend({
             }
             if (gasit)
             {
-                var g=confirm("Are you sure ?");
+                /**
+                *if there is a presentation with the same name alrerady saved,asks for confirmation to replace it
+                */
+                var g=confirm("Are you sure you want to replace this presentation?");
                 if (g)
                 {
                     localStorage.setItem('presentations',JSON.stringify(presentations));
@@ -338,7 +341,7 @@ var  ToolbarView = Backbone.View.extend({
             }   
             else
             {
-                $("#presentationOption").append('<option>'+name+'</option>');
+                this.el.find("presentationOption").append('<option>'+name+'</option>');
                 presentations.push(name);
                 localStorage.setItem('presentations',JSON.stringify(presentations));
             }
@@ -346,9 +349,12 @@ var  ToolbarView = Backbone.View.extend({
         }
         else
         {   
+            /**
+            *if local storage is empty creates an array with presentation names and adds the current presentation to local storage
+            */
             var firstPresentation=[name];
             localStorage.setItem('presentations',JSON.stringify(firstPresentation));
-            $("#presentationOption").append('<option>'+name+'</option>');
+            this.el.find("presentationOption").append('<option>'+name+'</option>');
         }
 
 
