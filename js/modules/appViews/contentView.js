@@ -23,10 +23,10 @@ var ContentView = Backbone.View.extend({
          //the el of every view inserted by AppView below
         //"click": "alertMe",
 		"updateReady":'updateText',
-		"txtnbleft":'ceva'
+		"txtnbleft":'counter'
     },
 	
-	ceva:function(){ 
+	counter:function(){ 
 	$("#txtnb").html("Characters left: "+(250-$('.text')[0].value.length));
 	},
 

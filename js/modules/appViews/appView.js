@@ -41,8 +41,8 @@ function($, _, Backbone,slideModules,toolbar, sidebar, content, type){
  
 		divMove = function (e){ 	
 			var div = document.getElementById('draggebel'); 
-			div.style.top = ( e.clientY -200)+ 'px';
-			div.style.left = ( e.clientX -550)+ 'px';
+			div.style.top = ( e.clientY -300)+ 'px';
+			div.style.left = ( e.clientX -950)+ 'px';
 		};
  
  /* 		divMove = function (event){ 	
