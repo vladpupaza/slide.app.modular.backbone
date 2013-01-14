@@ -11,15 +11,7 @@ var  ToolbarView = Backbone.View.extend({
         el : $("#toolbar"),
         initialize : function(){
 			this.render();
-			var savedPresentation = localStorage.getItem("presentations");
-			if (typeof savedPresentation === 'string'){
-				//if theres something in the local storage load it in our Collection of slides
-				var savedPresentationTitles = JSON.parse(savedPresentation);
-				var l = savedPresentationTitles.length;
-				for(var i=0;i<l;i++){
-					$('#presentationOption').append('<option value='+savedPresentationTitles[i]+'>'+savedPresentationTitles[i]+'</option>');
-				}          
-			}
+			
         },
         /**
         * @template 
@@ -30,6 +22,15 @@ var  ToolbarView = Backbone.View.extend({
         * @method 
         */
             this.el.html( this.template().toString());
+            var savedPresentation = localStorage.getItem("presentations");
+            if (typeof savedPresentation === 'string'){
+                //if theres something in the local storage load it in our Collection of slides
+                var savedPresentationTitles = JSON.parse(savedPresentation);
+                var l = savedPresentationTitles.length;
+                for(var i=0;i<l;i++){
+                    $('#presentationOption').append('<option value='+savedPresentationTitles[i]+'>'+savedPresentationTitles[i]+'</option>');
+                }          
+            }
         },
         /**
         * @property defines all the toolbar events
@@ -97,7 +98,7 @@ var  ToolbarView = Backbone.View.extend({
         * @param {Button} this
         * @param {EventObject} e save        
         */    
-            "click #saveasBtn" : "saveAs",
+            "click #saveAsBtn" : "saveAs",
         /**
         * @event click
         * Fires when languageOption is clicked
@@ -347,6 +348,7 @@ var  ToolbarView = Backbone.View.extend({
         var saveString = name+":Saved at "+n.AddZero(currentDate.getHours())+":"+n.AddZero(currentDate.getMinutes())+" "+"( "+n.AddZero(currentDate.getDate())+"/"+n.AddZero(currentDate.getMonth()+1)+"/"+currentDate.getFullYear()+" )";
         n.sendSaveNotification(saveString);
            }
+        this.render();   
         },
 
         selectLanguage : function(){ 
