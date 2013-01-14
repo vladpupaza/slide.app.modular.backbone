@@ -48,9 +48,19 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 			console.log("Rendering "+nr+" slides...");
 			for (i=0;i<nr;i++)
 			{
+<<<<<<< HEAD
 				var sv=new slideView({model:this.collection.at(i)});
 
 				$(this.el).append(sv.render());
+=======
+				if(typeof this.collection.at(i).view==='undefined'){				
+				var sv=new slideView({model:this.collection.at(i)});//trimit view'uliu un model de tip slide				
+				$(this.el).append(sv.render());}
+				else{
+				var sv=this.collection.at(i).view;				
+				$(this.el).append(sv.render())
+				}
+>>>>>>> better render
 
 				$('div .slideLittle').last().attr("id",i);
 			}
@@ -75,9 +85,19 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 			console.log("Rendering "+nr+" slides...");
 			for (i=0;i<nr;i++)
 			{
+<<<<<<< HEAD
 				var sv=new slideView({model:this.collection.at(i)});
 
 				$(this.el).append(sv.render());
+=======
+				if(typeof this.collection.at(i).view==='undefined'){				
+				var sv=new slideView({model:this.collection.at(i)});//trimit view'uliu un model de tip slide				
+				$(this.el).append(sv.render());}
+				else{
+				var sv=this.collection.at(i).view;				
+				$(this.el).append(sv.render())
+				}
+>>>>>>> better render
 
 				$('div .slideLittle').last().attr("id",i);
 			}
