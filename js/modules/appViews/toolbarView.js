@@ -28,7 +28,7 @@ var  ToolbarView = Backbone.View.extend({
                 var savedPresentationTitles = JSON.parse(savedPresentation);
                 var l = savedPresentationTitles.length;
                 for(var i=0;i<l;i++){
-                    $('#presentationOption').append('<option value='+savedPresentationTitles[i]+'>'+savedPresentationTitles[i]+'</option>');
+                    $('#presentationOption').append('<option >'+savedPresentationTitles[i]+'</option>');
                 }          
             }
         },
@@ -106,7 +106,7 @@ var  ToolbarView = Backbone.View.extend({
         * @param {EventObject} e selectLanguage        
         */    
             "change #languageOption ": "selectLanguage",
-		 /**
+        /**
         * @event click
         * Fires when presentationOption is clicked
         * @param {Select} this
@@ -284,12 +284,19 @@ var  ToolbarView = Backbone.View.extend({
         * @method    
         */
             var currentDate = new Date();
-            var currentPresentation=$("#presentationDropdown").val();
+            var currentPresentation=$("#presentationOption").val();
+            if (currentPresentation!=='Select Presentation')
+            {
             localStorage.setItem(currentPresentation,JSON.stringify(slideModulesObj.slides));
                    
             var n = this.notification.getInstance();
             var saveString = "Saved at "+n.AddZero(currentDate.getHours())+":"+n.AddZero(currentDate.getMinutes())+" "+"( "+n.AddZero(currentDate.getDate())+"/"+n.AddZero(currentDate.getMonth()+1)+"/"+currentDate.getFullYear()+" )";
             n.sendSaveNotification(saveString);
+            }
+            else
+            {
+                alert("You should use save as first");
+            }
         },
 
         saveAs:function(){
@@ -331,6 +338,7 @@ var  ToolbarView = Backbone.View.extend({
             }   
             else
             {
+                $("#presentationOption").append('<option>'+name+'</option>');
                 presentations.push(name);
                 localStorage.setItem('presentations',JSON.stringify(presentations));
             }
@@ -340,6 +348,7 @@ var  ToolbarView = Backbone.View.extend({
         {   
             var firstPresentation=[name];
             localStorage.setItem('presentations',JSON.stringify(firstPresentation));
+            $("#presentationOption").append('<option>'+name+'</option>');
         }
 
 
@@ -404,10 +413,9 @@ var  ToolbarView = Backbone.View.extend({
                 else { setRomanianLanguage(); this.el.find('#languageOption').change(setRomanianLanguage);}
         },
 		selectPresentation: function(){
-		//alert(this.el.find("#presentationOption").val());	
-        if (this.el.find("#presentationOption").val() !== 'Select Presentation'){
-		  pubSub.publish("change presentation",this.el.find("#presentationOption").val());
-        }
+            if (this.el.find("#presentationOption").val() !== 'Select Presentation'){
+		      pubSub.publish("change presentation",this.el.find("#presentationOption").val());
+            }
 		},
         slideshow : function(){
             var i = 0;  
