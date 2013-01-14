@@ -141,7 +141,7 @@ var  ToolbarView = Backbone.View.extend({
         */
             slideModulesObj.slides.reset(); 
             $('#content').html('');
-            //this.el.find('#presentationOption').;
+            this.el.find('#presentationOption').val('Select Presentation').attr('selected',true);
 
         },
         addSlide : function(){ 
