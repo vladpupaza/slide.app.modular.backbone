@@ -405,9 +405,10 @@ var  ToolbarView = Backbone.View.extend({
         },
 		selectPresentation: function(){
 		//alert(this.el.find("#presentationOption").val());	
-		 pubSub.publish("change presentation",this.el.find("#presentationOption").val());
+        if (this.el.find("#presentationOption").val() !== 'Select Presentation'){
+		  pubSub.publish("change presentation",this.el.find("#presentationOption").val());
+        }
 		},
-		
         slideshow : function(){
             var i = 0;  
             var nr=slideModulesObj.slides.length;  

@@ -18,6 +18,7 @@ var appViewTemplate ={
 	<button type="button" id="saveAsBtn">Save As...</button>\
 	<div id="presentationDropdown">\
 			<select id = "presentationOption">\
+				<option value="Select Presentation">Select Presentation</option>\
 			</select>\
 	</div>\
 	</div>\
