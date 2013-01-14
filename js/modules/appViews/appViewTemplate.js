@@ -16,8 +16,10 @@ var appViewTemplate ={
 	<button type="button" id="slideshowBtn">Slideshow</button>\
 	<button type="button" id="saveBtn">SAVE</button>\
 	<button type="button" id="saveAsBtn">Save As...</button>\
-	<select id = "presentationDropdown">\
-	</select>\
+	<div id="presentationDropdown">\
+			<select id = "presentationOption">\
+			</select>\
+	</div>\
 	</div>\
 	</div>\
 	<div id="languageDtopdown">\
