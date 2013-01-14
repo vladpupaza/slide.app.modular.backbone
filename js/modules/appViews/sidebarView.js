@@ -39,6 +39,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 			var i;
 			var nr=this.collection.length;
 			idCurrent=nr-1;
+			if(idCurrent===(-1)) $('#content').html(' ');
 			console.log("Rendering "+nr+" slides...");
 			for (i=0;i<nr;i++)
 			{
