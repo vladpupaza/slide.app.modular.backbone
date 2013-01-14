@@ -141,6 +141,8 @@ var  ToolbarView = Backbone.View.extend({
         */
             slideModulesObj.slides.reset(); 
             $('#content').html('');
+            //this.el.find('#presentationOption').;
+
         },
         addSlide : function(){ 
         /**
@@ -189,7 +191,7 @@ var  ToolbarView = Backbone.View.extend({
             $("#spinner").show();
             var validateUrl=function(url)
               { var i;
-                var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9-_]+(.[a-z0-9-_]+)+([a-z0-9-.,@?^=%&;:~+#]*[a-z0-9-@?^=%&;~+#])?, '+i);
+                var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', 'i');
                 if (urlPattern.test(url))
                     {
                         return true;
@@ -225,6 +227,7 @@ var  ToolbarView = Backbone.View.extend({
                  {
                       pubSub.publish("getUrl",urlNou);
                       $("#wrapper").hide();
+                      $("#spinner").hide();
                  }
                   else
                   {
