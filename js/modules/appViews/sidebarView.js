@@ -104,6 +104,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 		renderRem: function(){
 			this.renders();
 			console.log(idCurrent+" "+this.collection.length);
+			
 			if (idCurrent !== -1){
 				currentSlide=slideModulesObj.slides.at(idCurrent);
 				$("#"+(idCurrent)).addClass("currentSlide");

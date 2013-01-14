@@ -72,6 +72,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
         *remove slide function          
         */
             if ( idCurrent !== -1 ){
+
                 slideModulesObj.slides.remove(currentSlide);
                 console.log('DELETE ../slides/id');
                 //delete(currentSlide); 
