@@ -28,7 +28,7 @@ var  ToolbarView = Backbone.View.extend({
                 var savedPresentationTitles = JSON.parse(savedPresentation);
                 var l = savedPresentationTitles.length;
                 for(var i=0;i<l;i++){
-                    $('#presentationOption').append('<option >'+savedPresentationTitles[i]+'</option>');
+                    $('#presentationOption').append('<option value="'+savedPresentationTitles[i]+'">'+savedPresentationTitles[i]+'</option>');
                 }          
             }
         },
@@ -187,8 +187,7 @@ var  ToolbarView = Backbone.View.extend({
         * @method    
         */
             var urlNou = this.el.find('#myTextAreaUrl').val();
-            $('#toolbar label').html("Please wait...");
-            $("#spinner").show();
+            
             var validateUrl=function(url)
               { var i;
                 var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', 'i');
@@ -204,6 +203,8 @@ var  ToolbarView = Backbone.View.extend({
 
             if (currentSlide.get("_type")==="Image")
             {
+                $('#toolbar label').html("Please wait...");
+                $("#spinner").show();
                 $("#testImg img").attr("src",urlNou);
                 var image = $($('#testImg').html());
                  image.load(function() 
@@ -344,9 +345,10 @@ var  ToolbarView = Backbone.View.extend({
             }   
             else
             {
-                this.el.find("presentationOption").append('<option>'+name+'</option>');
                 presentations.push(name);
                 localStorage.setItem('presentations',JSON.stringify(presentations));
+                this.render();  
+                this.el.find('#presentationOption').val(name).attr("selected",true);
             }
 
         }
@@ -357,7 +359,8 @@ var  ToolbarView = Backbone.View.extend({
             */
             var firstPresentation=[name];
             localStorage.setItem('presentations',JSON.stringify(firstPresentation));
-            this.el.find("presentationOption").append('<option>'+name+'</option>');
+            this.render();  
+            this.el.find('#presentationOption').val(name).attr("selected",true);
         }
 
 
@@ -366,7 +369,6 @@ var  ToolbarView = Backbone.View.extend({
         var saveString = name+":Saved at "+n.AddZero(currentDate.getHours())+":"+n.AddZero(currentDate.getMinutes())+" "+"( "+n.AddZero(currentDate.getDate())+"/"+n.AddZero(currentDate.getMonth()+1)+"/"+currentDate.getFullYear()+" )";
         n.sendSaveNotification(saveString);
            }
-        this.render();   
         },
 
         selectLanguage : function(){ 
