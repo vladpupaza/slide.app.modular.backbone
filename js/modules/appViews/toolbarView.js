@@ -32,6 +32,13 @@ var  ToolbarView = Backbone.View.extend({
         * @param {Button} this
         * @param {EventObject} e addSlide        
         */
+            "click #newPresentationBtn" : "newPresentation",    
+        /**
+        * @event click
+        * Fires when addSlideBtn is clicked
+        * @param {Button} this
+        * @param {EventObject} e addSlide        
+        */
             "click #addSlideBtn" : "addSlide",
         /**
         * @event click
@@ -104,6 +111,13 @@ var  ToolbarView = Backbone.View.extend({
         */    
             "click #slideshowBtn":"slideshow" 
         },
+        newPresentation : function(){
+        /**
+        * @method    
+        */
+            slideModulesObj.slides.reset(); 
+            $('#content').html('');
+        },
         addSlide : function(){ 
         /**
         * @method    
@@ -114,7 +128,9 @@ var  ToolbarView = Backbone.View.extend({
         /**
         * @method    
         */
-            pubSub.publish("removeCurrentSlide",slideModulesObj.slides.removeSlide);  
+            if (slideModulesObj.slides.length !== 0){ 
+                pubSub.publish("removeCurrentSlide",slideModulesObj.slides.removeSlide);  
+            }
         },
         addImage : function(){ 
         /**

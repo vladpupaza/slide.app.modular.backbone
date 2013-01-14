@@ -6,6 +6,7 @@ var appViewTemplate ={
 	// Toolbar Template 
 	toolbar_buttons :
 	'<div id="toolbarB">\
+	<button type="button" id="newPresentationBtn">New Presentation</button>\
 	<button type="button" id="addSlideBtn">ADD SLIDE</button>\
 	<button type="button" id="removeSlideBtn">Remove SLIDE</button>\
 	<button type="button" id="addImageToSlideBtn">ADD IMAGE</button>\
@@ -14,13 +15,17 @@ var appViewTemplate ={
 	<button type="button" id="removeVideoBtn">Remove Video</button>\
 	<button type="button" id="slideshowBtn">Slideshow</button>\
 	<button type="button" id="saveBtn">SAVE</button>\
+	<button type="button" id="saveAsBtn">Save As...</button>\
+	<select id = "presentationDropdown">\
+	</select>\
+	</div>\
 	</div>\
 	<div id="languageDtopdown">\
 		<select id = "languageOption">\
 			<option value="english" selected="selected">English</option>\
 			<option value="romanian">Romanian</option>\
 		</select>\
-		</div>\
+	</div>\
 	<div id="wrapper"><div id="insertImageUrl">\
             <textarea name="myTextAreaImageUrl"cols="20" rows="2" id="myTextAreaUrl">Insert image url here</textarea>\
             <button type="button" id="addImageUrlBtn">Save</button>\
