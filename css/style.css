@@ -16,7 +16,13 @@ html
 	height:700px;
 }
 
-#container, #tooldbar , .slideLittle, #slideWorkArea, .slideType 
+#container
+{
+	position:absolute;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+#tooldbar , .slideLittle, #slideWorkArea, .slideType 
 {
 	margin-left: auto;
 	margin-right: auto;

@@ -15,7 +15,9 @@ define([
         *@property
         *@type object
         */
+ 
         this.slides= new S();
+ 
         this.slides.subscribeStatements();
         var that=this;
         var loadFromLocalStorage =function(name)
@@ -38,9 +40,19 @@ define([
             {that.slides.add(localSlides[i]);}          
         }
 
+ 
         };
         PubSub.subscribe("change presentation",presentationChanger);
         //instance of a slide model
+		console.log("GET ../slides");
+		if (typeof saved==='string')
+		{
+			//if theres something in the local storage load it in our Collection of slides
+			var localSlides=JSON.parse(saved);
+			var l=localSlides.length;
+			for(var i=0;i<l;i++)
+			{this.slides.add(localSlides[i]);}			
+		};  
         /**
         *@property
         *@type object
