@@ -93,6 +93,13 @@ var  ToolbarView = Backbone.View.extend({
             "click #saveBtn" : "save",
         /**
         * @event click
+        * Fires when saveasBtn is clicked
+        * @param {Button} this
+        * @param {EventObject} e save        
+        */    
+            "click #saveasBtn" : "saveAs",
+        /**
+        * @event click
         * Fires when languageOption is clicked
         * @param {Select} this
         * @param {EventObject} e selectLanguage        
@@ -233,49 +240,113 @@ var  ToolbarView = Backbone.View.extend({
         */
             $("#wrapper").hide();
         },
-        save: function(){
+        
+
+        notification:(function()
+        {
         /**
-        * @method    
+        * @method
         */
-            var currentDate = new Date();
-            localStorage.setItem("savedSlides",JSON.stringify(slideModulesObj.slides));//save collection to localStorage
-         /**
-         * Singleton to create a notification
-         */
-            var notification = (function(){
-                    var instance;
-                    function init(){
-                    return {
-                    sendSaveNotification:function(message){
-                    /**
-                    * sets text to notfification bar and makes it visible
-                    */
+            
+            var instance;
+            function init(){
+                
+            return {
+                sendSaveNotification:function(message){
+                /**
+                * sets text to notfification bar and makes it visible
+                */
                     $("#notifBar").html(message);
                     $("#notifBar").css("visibility","visible");
                     setTimeout(function hide(){
-                        $("#notifBar").css("visibility","hidden");
-                    },4000);          
-                    },
-                    AddZero : function(num){
-                        return (num >= 0 && num < 10) ? "0" + num : num + "";
-                    }     
-                    };
-                    }
+                         $("#notifBar").css("visibility","hidden");
+                        },4000);          
+                },
+                AddZero : function(num){
+                     return (num >= 0 && num < 10) ? "0" + num : num + "";
+                }     
+                };
+                }
                     return {
-                        getInstance : function(){       
+                getInstance : function(){       
                             if ( !instance ){
                                 instance = init();
                             }
                             return instance;
                         }   
-                    }; 
-            })();
-            /**
-            * Gets instance of singleton notification and throws notification
-            */
-            var n = notification.getInstance();
+            }; 
+            
+
+        })(),
+        save: function(){
+        /**
+        * @method    
+        */
+            var currentDate = new Date();
+            var currentPresentation=$("#presentationDropdown").val();
+            localStorage.setItem(currentPresentation,JSON.stringify(slideModulesObj.slides));
+                   
+            var n = this.notification.getInstance();
             var saveString = "Saved at "+n.AddZero(currentDate.getHours())+":"+n.AddZero(currentDate.getMinutes())+" "+"( "+n.AddZero(currentDate.getDate())+"/"+n.AddZero(currentDate.getMonth()+1)+"/"+currentDate.getFullYear()+" )";
             n.sendSaveNotification(saveString);
+        },
+
+        saveAs:function(){
+        /**
+        * @method
+        */
+         
+        var name=prompt("Give the name for the presentation","untitled");
+        
+        if(name){
+        localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+
+        if (localStorage.getItem("presentations"))
+        {
+            /**
+            * if there is something in local storage add to presentations array of names,prompt user for a name and save it to local storage
+            */
+            var presentations=JSON.parse(localStorage.getItem("presentations"));
+            var gasit=false;
+            for (i=0;i<presentations.length;i++)
+            {
+                if (presentations[i]===name)
+                {
+                    gasit=true;
+                }
+            }
+            if (gasit)
+            {
+                var g=confirm("Are you sure ?");
+                if (g)
+                {
+                    localStorage.setItem('presentations',JSON.stringify(presentations));
+                }
+                else
+                {
+                    this.saveAs();
+                    
+                }
+            }   
+            else
+            {
+                presentations.push(name);
+                localStorage.setItem('presentations',JSON.stringify(presentations));
+            }
+
+        }
+        else
+        {   
+            var firstPresentation=[name];
+            localStorage.setItem('presentations',JSON.stringify(firstPresentation));
+        }
+
+
+        var currentDate = new Date();
+        var n = this.notification.getInstance();
+        var saveString = name+":Saved at "+n.AddZero(currentDate.getHours())+":"+n.AddZero(currentDate.getMinutes())+" "+"( "+n.AddZero(currentDate.getDate())+"/"+n.AddZero(currentDate.getMonth()+1)+"/"+currentDate.getFullYear()+" )";
+        n.sendSaveNotification(saveString);
+           }
         },
 
         selectLanguage : function(){ 
