@@ -52,18 +52,20 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
             sl.set({"_type":typeViewObj.getCurrentType()});
             slideModulesObj.slides.add(sl);
             console.log("POST ../slides");
+			idCurrent=slideModulesObj.slides.length-1;
+			//$("#"+idCurrent).addClass("currentSlide"); ////-----
         },
         removeSlide : function(){
          /**
         * @method   
         *remove slide function          
         */
-            if (typeof currentSlide !== "undefined"){
+            if ( idCurrent !== -1 ){
                 slideModulesObj.slides.remove(currentSlide);
                 console.log('DELETE ../slides/id');
-                delete(currentSlide); 
-                $('#content').html('');
-                idCurrent = -1;
+                //delete(currentSlide); 
+                //$('#content').html('');
+                //idCurrent = -1;
             }
      
         },
@@ -112,6 +114,7 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
         */
           console.log(topic+":"+data);
           currentSlide.set({_url:data});
+		  $("#"+idCurrent).addClass("currentSlide"); //--------------
         }
     });
     return Slides;
