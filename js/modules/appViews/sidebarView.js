@@ -29,6 +29,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 		{
 			
 			_.bindAll(this, "render");
+
 			this.collection.bind('change', this.render);
 			this.collection.bind("add", this.renderAdd,this);
 			this.collection.bind("remove", this.renderRem,this);
@@ -123,11 +124,9 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				* get current slide
 				*/
 				e.preventDefault();
+
 				var id =$(e.currentTarget).context.id;
-				if(typeof currentSlide!=='undefined') 
-				{
-					contentViewObj=new ContentView({model:currentSlide});
-				}
+
 				currentSlide=this.collection.at(id);
 				idCurrent = id;
 				
@@ -135,6 +134,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				* set current slide on sidebar
 				*/
 				$(".currentSlide").removeClass("currentSlide");
+
 				$("#"+idCurrent).addClass("currentSlide");				
 				idCurrent = id;
 				
@@ -143,6 +143,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 				*/
 
 				contentViewObj=new ContentView({model:currentSlide});
+
 
 
 
