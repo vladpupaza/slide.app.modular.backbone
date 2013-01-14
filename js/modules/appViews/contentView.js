@@ -52,24 +52,26 @@ var ContentView = Backbone.View.extend({
 	/*
 	 * @initialize , at initialize , I give the view's template based on the model's type*/
     initialize: function () {
-		if(this.model.toJSON()._type==='Image'){
-			this.template=_.template(Template.content_template_image);
+		if(this.model){
+			if(this.model.toJSON()._type==='Image'){
+				this.template=_.template(Template.content_template_image);
 			}
-		else if(this.model.toJSON()._type==='Text'){
-			this.template=_.template(Template.content_template_text);
+			else if(this.model.toJSON()._type==='Text'){
+				this.template=_.template(Template.content_template_text);
 			}
-		else if(this.model.toJSON()._type==='Video'){
-			this.template=_.template(Template.content_template_video);
+			else if(this.model.toJSON()._type==='Video'){
+				this.template=_.template(Template.content_template_video);
 			}
-		_.bindAll(this, "render");  
 		
-        /* binding I binde the change event of the model , to method rander of the object */
-		this.model.bind('change',this.render);  
-        /* I prevent rendering if the Id is null , so I cannot render an invalid model */
-		if(this.model.get('_id')!==null){ 
-			this.render(); 
+			_.bindAll(this, "render");  
+		
+			/* binding I binde the change event of the model , to method rander of the object */
+			this.model.bind('change',this.initialize);  
+			/* I prevent rendering if the Id is null , so I cannot render an invalid model */
+			if(this.model.get('_id')!==null){ 
+				this.render(); 
+			}
 		}
- 
     },
 	/*
 	 *@method
@@ -84,6 +86,7 @@ var ContentView = Backbone.View.extend({
 		//	addListeners : here I set those to elements to listen  for events like mousedown/mouseup, and then to do those functions */
 		$(this.el).find('#draggebel').mousedown(this.mouseDown);
 		$(this.el).find('#slideWorkArea').mouseup(  this.mouseUp);
+		console.log('count');
         return this;
     },
  

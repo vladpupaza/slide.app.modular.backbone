@@ -246,20 +246,15 @@ var  ToolbarView = Backbone.View.extend({
         },
         
 
-        notification:(function()
-        {
-        /**
-        * @method
-        */
-            
-            var instance;
-            function init(){
-                
-            return {
-                sendSaveNotification:function(message){
-                /**
-                * sets text to notfification bar and makes it visible
-                */
+ 
+        notification : (function(){
+                    var instance;
+                    function init(){
+                    return {
+                    sendSaveNotification:function(message){
+                    /**
+                    * sets text to notfification bar and makes it visible
+                    */
                     $("#notifBar").html(message);
                     $("#notifBar").css("visibility","visible");
                     setTimeout(function hide(){
