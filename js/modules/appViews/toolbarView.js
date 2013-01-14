@@ -145,6 +145,8 @@ function($,_,Backbone,toolbarTemplate,pubSub){
         * @method    
         */
             var urlNou = this.el.find('#myTextAreaUrl').val();
+            $('#toolbar label').html("Please wait...");
+            $("#spinner").show();
             var validateUrl=function(url)
               {
                 var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', 'i');
@@ -160,12 +162,15 @@ function($,_,Backbone,toolbarTemplate,pubSub){
                 var image = $($('#testImg').html());
                  image.load(function() 
                  {    
-                      
+                      $("#spinner").hide();
+                      $('#toolbar label').html("");
                       pubSub.publish("getUrl",urlNou);
                       $("#wrapper").hide();
                       $("#testImg img").attr("src","");
                  }).error(function() 
                  {
+                      $("#spinner").hide();
+                      $('#toolbar label').html("");
                       alert("Please insert a valid URL");
                       $("#testImg img").attr("src","");
                  });

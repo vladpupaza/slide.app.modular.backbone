@@ -25,6 +25,7 @@ var appViewTemplate ={
             <textarea name="myTextAreaImageUrl"cols="20" rows="2" id="myTextAreaUrl">Insert image url here</textarea>\
             <button type="button" id="addImageUrlBtn">Save</button>\
             <button type="button" id="cancelImageUrlBtn">Cancel</button>\
+            <label></label>\
 	</div></div>',
 
 
