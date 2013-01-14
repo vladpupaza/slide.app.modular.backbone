@@ -4,6 +4,7 @@ define(['underscore', 'backbone'], function(_, Backbone) {
  * @extends Backbone.Model
  * @constructor
  */	
+	"use strict";
 	var Slide = Backbone.Model.extend({
 		defaults: {
 /** 
@@ -35,16 +36,14 @@ define(['underscore', 'backbone'], function(_, Backbone) {
  * @property
  * @type string
  */			
-   			'_y':'50'
-  		},
-
+			'_y':'50'
+		},
 /**
  * @method
  */
-  		initialize : function(){
-   			if (this.id==null)this.set({id:Math.random().toString(36).substr(2,9)});
-  		}
-
+		initialize : function(){
+			if (this.id===null) {this.set({id:Math.random().toString(36).substr(2,9)});}
+		}
 	});
 	return Slide;
 });
