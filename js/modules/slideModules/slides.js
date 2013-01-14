@@ -11,6 +11,11 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
         model : slide,
         
         localStorage : new Store('cosmin_Slides'),
+		
+		/**
+		 * @method
+		 * overwriten the method remove , to remove the object from server to
+		 */
         remove : function(_model){
 			this.get(_model.get('id')).destroy();
 		},
@@ -23,6 +28,9 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
             pubSub.subscribe('removeVideoFromSlide', this.removeVideoFromCurrentSlide);     
             pubSub.subscribe('getUrl', this.getUrlSubscriber);
         },
+		/**
+		 * @method
+		 */
         updateAll : function(){
             var _temp=this.localStorage.findAll();
 			/**
@@ -55,6 +63,9 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
 			idCurrent=slideModulesObj.slides.length-1;
 			//$("#"+idCurrent).addClass("currentSlide"); ////-----
         },
+		/**
+		 * @method
+		 */
         removeSlide : function(){
          /**
         * @method   

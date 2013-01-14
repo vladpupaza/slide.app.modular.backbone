@@ -35,12 +35,12 @@ var ContentView = Backbone.View.extend({
         //the el of every view inserted by AppView below
         //"click": "alertMe",
 		"updateReady":'updateText',
-		"txtnbleft":'charsLeft'
+		"txtnbleft":'counter'
     },
 
 	
 	/*
-		*@method
+	 *@method
 	 */
 	counter:function(){ 
 
@@ -72,7 +72,7 @@ var ContentView = Backbone.View.extend({
  
     },
 	/*
-	*@method
+	 *@method
 	*/
     render: function () { 
 	
@@ -81,7 +81,6 @@ var ContentView = Backbone.View.extend({
 		
 		/* After drawing the element I bind the latter function , who needs the rendered elements , for draggebel image */
 		$('#content').html(this.el);
-		
 		//	addListeners : here I set those to elements to listen  for events like mousedown/mouseup, and then to do those functions */
 		$(this.el).find('#draggebel').mousedown(this.mouseDown);
 		$(this.el).find('#slideWorkArea').mouseup(  this.mouseUp);
@@ -89,8 +88,8 @@ var ContentView = Backbone.View.extend({
     },
  
  
-/*
- *  @method */
+	/*
+	 *  @method */
 	mouseUp:function ()
 	{
 		document.getElementById('slideWorkArea').removeEventListener('mousemove', divMove, true);
@@ -127,7 +126,7 @@ var ContentView = Backbone.View.extend({
 	
 	
 	
-/* If I do this with BB, selectors, I must use JQ bind function, whitch sends an event object witch is not dinimic
+/* If I do this with BB, selectors, I must use JQ bind function, whitch sends an event object witch is not dinamic
  * mouseDown:function (event){
 		console.log('action started');
 		//this function is called so I will be able to move the draggebel div , base on event's coordonates
@@ -144,7 +143,7 @@ var ContentView = Backbone.View.extend({
 	updateText:function(){
 		var text =$('.text')[0].value;
 		this.model.set({"_text":text});
-	}, 
+	}
 });
 return ContentView;
 });
