@@ -106,7 +106,7 @@ var  ToolbarView = Backbone.View.extend({
         * @param {EventObject} e selectLanguage        
         */    
             "change #languageOption ": "selectLanguage",
-		 /**
+        /**
         * @event click
         * Fires when presentationOption is clicked
         * @param {Select} this
@@ -414,7 +414,7 @@ var  ToolbarView = Backbone.View.extend({
         },
 		selectPresentation: function(){
 		//alert(this.el.find("#presentationOption").val());	
-		 pubSub.publish("change presentation",this.el.find("#presentationOption").val());
+        pubSub.publish("change presentation",this.el.find("#presentationOption").val());
 		},
 		
         slideshow : function(){
