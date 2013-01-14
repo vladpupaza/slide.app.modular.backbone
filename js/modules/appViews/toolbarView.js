@@ -10,7 +10,16 @@ var  ToolbarView = Backbone.View.extend({
         */ 
         el : $("#toolbar"),
         initialize : function(){
-            this.render();
+			this.render();
+			var savedPresentation = localStorage.getItem("presentations");
+			if (typeof savedPresentation === 'string'){
+				//if theres something in the local storage load it in our Collection of slides
+				var savedPresentationTitles = JSON.parse(savedPresentation);
+				var l = savedPresentationTitles.length;
+				for(var i=0;i<l;i++){
+					$('#presentationOption').append('<option value='+savedPresentationTitles[i]+'>'+savedPresentationTitles[i]+'</option>');
+				}          
+			}
         },
         /**
         * @template 
@@ -89,6 +98,13 @@ var  ToolbarView = Backbone.View.extend({
         * @param {EventObject} e selectLanguage        
         */    
             "change #languageOption ": "selectLanguage",
+		 /**
+        * @event click
+        * Fires when presentationOption is clicked
+        * @param {Select} this
+        * @param {EventObject} e selectPresentation       
+        */    
+            "change #presentationOption ": "selectPresentation",
         /**
         * @event click
         * Fires when addImageUrlBtn is clicked
@@ -314,6 +330,11 @@ var  ToolbarView = Backbone.View.extend({
             if(selOption === "english"){ setEnglishLanguage();  this.el.find('#languageOption').change(setEnglishLanguage); } 
                 else { setRomanianLanguage(); this.el.find('#languageOption').change(setRomanianLanguage);}
         },
+		selectPresentation: function(){
+		//alert(this.el.find("#presentationOption").val());	
+		 pubSub.publish("change presentation",this.el.find("#presentationOption").val());
+		},
+		
         slideshow : function(){
             var i = 0;  
             var nr=slideModulesObj.slides.length;  
