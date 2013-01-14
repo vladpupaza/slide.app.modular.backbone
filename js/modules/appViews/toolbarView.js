@@ -3,7 +3,7 @@ function($,_,Backbone,toolbarTemplate,pubSub){
 /**
 * @cfg ToolbarView extends Backbone.View
 */
-    ToolbarView = Backbone.View.extend({
+var  ToolbarView = Backbone.View.extend({
         /**
         * @property
         * @type html element  
@@ -148,17 +148,21 @@ function($,_,Backbone,toolbarTemplate,pubSub){
             $('#toolbar label').html("Please wait...");
             $("#spinner").show();
             var validateUrl=function(url)
-              {
-                var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', 'i');
+              { var i;
+                var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9-_]+(.[a-z0-9-_]+)+([a-z0-9-.,@?^=%&;:~+#]*[a-z0-9-@?^=%&;~+#])?, '+i);
                 if (urlPattern.test(url))
-                  return true
+                    {
+                        return true;
+                    }    
                 else
-                  return false;
+                    {
+                        return false;
+                    }    
               };
 
             if (currentSlide.get("_type")==="Image")
             {
-                $("#testImg img").attr("src",urlNou)
+                $("#testImg img").attr("src",urlNou);
                 var image = $($('#testImg').html());
                  image.load(function() 
                  {    
@@ -186,8 +190,8 @@ function($,_,Backbone,toolbarTemplate,pubSub){
                   {
                       alert("Please insert a valid URL");
                       
-                  };
-              };
+                  }
+              }
 
             
         },
@@ -223,7 +227,7 @@ function($,_,Backbone,toolbarTemplate,pubSub){
                     AddZero : function(num){
                         return (num >= 0 && num < 10) ? "0" + num : num + "";
                     }     
-                    }
+                    };
                     }
                     return {
                         getInstance : function(){       
@@ -232,7 +236,7 @@ function($,_,Backbone,toolbarTemplate,pubSub){
                             }
                             return instance;
                         }   
-                    } 
+                    }; 
             })();
             /**
             * Gets instance of singleton notification and throws notification
@@ -287,7 +291,7 @@ function($,_,Backbone,toolbarTemplate,pubSub){
                 this.el.find('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
                 this.el.find('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
                 });
-            };
+            }
             /**
             * here we verify the selOption to know what function we need to use
             */
@@ -297,8 +301,9 @@ function($,_,Backbone,toolbarTemplate,pubSub){
         slideshow : function(){
             var i = 0;  
             var nr=slideModulesObj.slides.length;  
-            if (nr === 0)
-                alert("No slides to be shown")
+            if (nr === 0){            
+                alert("No slides to be shown");
+            }
             else{     
                 $("#slideshowMode").css('visibility','visible');
                 var timer = setInterval(function(){
