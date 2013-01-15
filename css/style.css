@@ -1,256 +1,262 @@
 html
 { 
-	height: 100%;
+    height: 100%;
 }
 
 *
 { 
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 
 #container 
 {
-	width:1100px;
-	height:700px;
+    width:1100px;
+    height:700px;
 }
 
 #container
 {
-	position:absolute;
-	margin-left: 10%;
-	margin-right: 10%;
+    position:absolute;
+    margin-left: 10%;
+    margin-right: 10%;
 }
+
 #tooldbar , .slideLittle, #slideWorkArea, .slideType 
 {
-	margin-left: auto;
-	margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 #draggebel
 {
-	position:absolute;
+    position:absolute;
  
 }
+
 #toolbar 
 {
-	width: 1100px;
-	height: 80px;
-	background-color: #408eab;
-	clear: both;
+    width: 1100px;
+    height: 80px;
+    background-color: #408eab;
+    clear: both;
 }
 
 #toolbarB
 {
-	width: 900px;
-	height: 50px;
-	margin-left: auto;
-	margin-right: auto;
+    width: 900px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
 #languageDtopdown
 {
-	float: right;
+    float: right;
 }
 
 #sidebar
 {
-	position:relative;
-	float: left;
-	width: 250px;
-	height: 600px;
-	overflow: auto;
-	background-color: #e4e4e4;
-	text-overflow: ellipsis;
+    position:relative;
+    float: left;
+    width: 250px;
+    height: 600px;
+    overflow: auto;
+    background-color: #e4e4e4;
+    text-overflow: ellipsis;
 }
 
 .slideLittle
 {
-	display: block;
-	width: 200px;
-	height: 200px;
-	background-color: #FFFFFF;
-	margin-top: 5px;
-	opacity: 0.5;
-	text-align: left;
-	overflow:hidden;
-	font-size: 10px;
+    display: block;
+    width: 200px;
+    height: 200px;
+    background-color: #FFFFFF;
+    margin-top: 5px;
+    opacity: 0.5;
+    text-align: left;
+    overflow:hidden;
+    font-size: 10px;
 }
 
 .slideLittle .slideImg img
 {
-	width: 100px;
-	height: 100px;
-	margin-top: 5px;
+    width: 100px;
+    height: 100px;
+    margin-top: 5px;
 }
 
 .slideLittle .slideVideo video
 {
-	width: 100px;
-	height: 100px;
-	margin-top: 5px;
+    width: 100px;
+    height: 100px;
+    margin-top: 5px;
 }
 
 .currentSlide
 {
-	border: 2px solid #408eab;
-	opacity: 1;
+    border: 2px solid #408eab;
+    opacity: 1;
 }
 
 .slideLittle:hover 
 {
-	opacity: 1;
+    opacity: 1;
 }
 
 .currentSlide:hover
 {
-	border: 4px solid #408eab;
+    border: 4px solid #408eab;
 }
 
 #content
 {
-	position:relative;
-	float:left;
-	width: 750px;
-	height: 600px;
-	background-color: #e4e4e4;
-	margin-left: 5px;
-	z-index: 996;
-	
-	overflow:hidden;
+    position:relative;
+    float:left;
+    width: 750px;
+    height: 600px;
+    background-color: #e4e4e4;
+    margin-left: 5px;
+    z-index: 996;
+    
+    overflow:hidden;
 }
 
 #slideWorkArea
 {
-	padding:20px;
-	position: relative;
-	display: block;
-	width: 550px;
-	height: 510px;
-	background-color: #FFFFFF;
-	margin-top: 25px;
-	margin-bottom: 25px;
+    padding:20px;
+    position: relative;
+    display: block;
+    width: 550px;
+    height: 510px;
+    background-color: #FFFFFF;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
+
 #slideWorkArea .text
 {
-	position:absolute;
-	bottom:20px;
-	max-width:500px;	
-	max-height:200px;
-	width:500px;
-	overflow:hidden;
+    position:absolute;
+    bottom:20px;
+    max-width:500px;    
+    max-height:200px;
+    width:500px;
+    overflow:hidden;
 }
 
 #slideWorkArea #txtnb
 {
-	position:absolute;
-	bottom:2px;
+    position:absolute;
+    bottom:2px;
 }
+
 #slideImg 
 {
-	width:200px; 
-	height:200px;
-	position:realative;
-	margin-left: 20px;
+    width:200px; 
+    height:200px;
+    position:realative;
+    margin-left: 20px;
 }
 
 #typebar
 {
-	position: relative;
-	float: right;
-	display: block;
-	width: 90px;
-	height: 600px;
-	background-color: #e4e4e4;
-	margin-left: 5px;
+    position: relative;
+    float: right;
+    display: block;
+    width: 90px;
+    height: 600px;
+    background-color: #e4e4e4;
+    margin-left: 5px;
 }
 
 .slideType 
 {
-	position: realtive;
-	display: block;
-	width: 70px;
-	height: 70px;
-	opacity: 0.5;
-	background-color: #ffffff;
-	margin-top: 5px;
+    position: realtive;
+    display: block;
+    width: 70px;
+    height: 70px;
+    opacity: 0.5;
+    background-color: #ffffff;
+    margin-top: 5px;
 }
 
 .slideType:hover
 {
-	border: 2px solid #408eab;
-	opacity: 1;
-	
+    border: 2px solid #408eab;
+    opacity: 1;
+    
 }
 
 .currentSlideType
 {
-	border: 2px solid #408eab;
-	opacity: 1;
+    border: 2px solid #408eab;
+    opacity: 1;
 }
 
 .currentSlideType:hover
 {
-	border: 4px solid #408eab;
+    border: 4px solid #408eab;
 }
 
 #wrapper
 {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-color: #87CEFA;
-	display: none;
-	top: 0px;
-	opacity: 0.9;
-	z-index: 9998;
-	left: 0px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #87CEFA;
+    display: none;
+    top: 0px;
+    opacity: 0.9;
+    z-index: 9998;
+    left: 0px;
 }
 
 #insertImageUrl
 {
-	width: 400px;
-	height: 400px;
-	display: block;
-	opacity: 1;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 350px;
-	z-index: 9999;
-
+    width: 400px;
+    height: 400px;
+    display: block;
+    opacity: 1;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 350px;
+    z-index: 9999;
 }
 
 #fix
 {
-	clear: both;
+    clear: both;
 }
 
 #notifBar
 {
-height:60px;
-width:1100px;
-z-index:1000;
-position: relative;
-visibility:hidden;
-font-size:22px;
-background-color:#C5C4C4;
-color:#64696B;
-border-color:#B8B8B8;
+    height:60px;
+    width:1100px;
+    z-index:1000;
+    position: relative;
+    visibility:hidden;
+    font-size:22px;
+    background-color:#C5C4C4;
+    color:#64696B;
+    border-color:#B8B8B8;
 }
 
 #slideshowMode
 {
-	visibility:hidden;
-	background-color:#C5C4C4;
-	color:#64696B;
-	border-color:#B8B8B8;
-	text-align:center;
-	position: relative;
-	z-index: 99999;
+    visibility:hidden;
+    background-color:#C5C4C4;
+    color:#64696B;
+    border-color:#B8B8B8;
+    text-align:center;
+    position: relative;
+    z-index: 99999;
 }
-#spinner {
-	display:none;
+
+#spinner 
+{
+    display:none;
     position: fixed;
     top: 50%;
     left: 50%;

@@ -16,7 +16,7 @@ require.config ( {
     }
 });
 
-require(['js/modules/appViews/appView'], function(AppView) {
+require(['js/modules/appViews/appModule'], function (AppModule) {
 /** Sets the idCurrent variable to -1 so that we start the app with no selected slide
  */
     window.idCurrent = -1;
@@ -24,5 +24,5 @@ require(['js/modules/appViews/appView'], function(AppView) {
  * @property
  * @type object
  */
-    var appViewObj = new AppView(); 
+    var appViewObj = new AppModule(); 
 });
