@@ -38,4 +38,4 @@ clicking it a dialog box will open allowing the user to edit the slide text.
 ## License
 
 MIT License  
-Copyright (c) Alexandra Vîlcan, Pupăză Vlad, Radu Moldovan, Claudia Victoria Ștefan, Daniel Panc, Cosmin Măluțan
+Copyright (c) Alexandra Vîlcan, Pupăză Vlad, Radu Moldovan Iosif, Claudia Victoria Ștefan, Daniel Panc, Cosmin Măluțan
