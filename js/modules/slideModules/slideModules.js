@@ -16,10 +16,8 @@ define([
         *@type object
         */
  
-        this.slides= new S();
- 
+        this.slides= new S(); 
         this.slides.subscribeStatements();
-        var that=this;
         var loadFromLocalStorage =function(name)
         {
             var localStorageItem=localStorage.getItem(name);
@@ -28,7 +26,7 @@ define([
         };
         var presentationChanger= function(msg,data)
         {
-            that.slides.reset();
+            slideModulesObj.slides.reset();
             // read the local storage and see if there's anything in there, equivalent to a GET ../slides REST operation
             var saved=loadFromLocalStorage(data);
             if (typeof saved==='string')
@@ -36,13 +34,18 @@ define([
             //if theres something in the local storage load it in our Collection of slides
             var localSlides=JSON.parse(saved);
             var l=localSlides.length;
-            for(var i=0;i<l;i++)
-            {that.slides.add(localSlides[i]);}          
+            var list=[];
+            for(var i=0;i<l;i++){
+                list.push(localSlides[i])                
+            }
+            slideModulesObj.slides.reset(list);          
         }
 
  
         };
         PubSub.subscribe("change presentation",presentationChanger);
+        //instance of a slide model
+		console.log("GET ../slides");
         /**
         *@property
         *@type object
