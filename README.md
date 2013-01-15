@@ -11,10 +11,10 @@ Your job is to implement a web application to do that having the following speci
 3. Allows adding and removing slides by clicking 2 buttons from the toolbar: Add slide & Remove slide
 4. Allows selecting a slide from the sidebar and show it's contents
 5. Allows Slideshow mode: By clicking a button from the toolbar labeled Slideshow the slides will begin to play 
-6. automatically. The slide in the content area will change every 5 seconds.
-7. Each slide can consist of an image or a video( but not both ) and an optional text. The image/video will be aligned 
-8. to the left and the text, if present, will flow to the right hand side of image/video.
-9. On the currently selected slide the user should be able to:
+automatically. The slide in the content area will change every 5 seconds.
+6. Each slide can consist of an image or a video( but not both ) and an optional text. The image/video will be aligned 
+to the left and the text, if present, will flow to the right hand side of image/video.
+7. On the currently selected slide the user should be able to:
 
     a) Click an Add image button, then enter an image URL into a dialog box and the image will be added to the 
 slide. The Add image button is active only when there is a slide selected and there isn't a video already 
@@ -33,9 +33,9 @@ The text will be added to the slide.
 If there is already text added to the current slide, the Add text button will turn into Edit text and by 
 clicking it a dialog box will open allowing the user to edit the slide text.
 
-10. Save the current presentation. HTML5 LocalStorage should be used for persisting the information.Upon refreshing 
+8. Save the current presentation. HTML5 LocalStorage should be used for persisting the information.Upon refreshing 
 the page the presentation should be reconstructed.
-11. The application must be developed using backbone.js and modular development.
+9. The application must be developed using backbone.js and modular development.
 
 # Requirements update
 
