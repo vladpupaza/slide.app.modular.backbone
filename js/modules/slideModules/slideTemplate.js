@@ -1,3 +1,5 @@
+/*jshint multistr:true */
+
 define([], function() {
 var slideTemplate = {
 // SlideText Template
