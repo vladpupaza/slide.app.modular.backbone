@@ -1,4 +1,6 @@
-# Slide Application with Backbone - Modular Development
+## Slide Application with Backbone - Modular Development
+
+# Requirements
 
 Implement an online presentation system resembling the capabilities of MS Powerpoint or GDocs presentation.
 
@@ -32,8 +34,25 @@ If there is already text added to the current slide, the Add text button will tu
 clicking it a dialog box will open allowing the user to edit the slide text.
 
 10. Save the current presentation. HTML5 LocalStorage should be used for persisting the information.Upon refreshing 
-11. the page the presentation should be reconstructed.
-12. The application must be developed using backbone.js and modular development.
+the page the presentation should be reconstructed.
+11. The application must be developed using backbone.js and modular development.
+
+# Requirements update
+
+1. Develop the application using [Backbone.js](http://documentcloud.github.com/backbone) and [RequireJS](http://requirejs.org).
+1. Code must pass validation on [JSHint] (http://jshint.com/).
+2. Add comments in ext-doc format to your code.
+3. Implement unit testing with Jasmine.
+4. Add multiple presentation support in your application.
+
+## Team
+
+#### [Vlad Pupaza] (https://github.com/vladpupaza)
+#### [Alexandra Vilcan] (https://github.com/alexandravilcan)
+#### [Radu Iosif Moldovan] (https://github.com/radu-iosif-moldovan)
+#### [Claudia Victoria Stefan] (https://github.com/ClaudiaStefan)
+#### [Daniel Panc] (https://github.com/danielpanc)
+#### [Cosmin Malutan] (https://github.com/cosmin-malutan)
 
 ## License
 
