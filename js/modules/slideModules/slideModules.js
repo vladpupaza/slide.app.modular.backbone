@@ -38,11 +38,12 @@ define([
             //if theres something in the local storage load it in our Collection of slides
             localSlides=JSON.parse(saved);
             slideModulesObj.slides.reset(localSlides);
+			PubSub.publish("change presentation reset collection","");
             }
         };
 
         PubSub.subscribe("change presentation",presentationChanger);       
-        
+     
 
     };
     return SlideModule;
