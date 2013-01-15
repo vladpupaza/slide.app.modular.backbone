@@ -306,7 +306,7 @@ var  ToolbarView = Backbone.View.extend({
         var name=prompt("Give the name for the presentation","untitled");
         
         if(name){
-        localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+        
 
         if (localStorage.getItem("presentations"))
         {
@@ -331,6 +331,7 @@ var  ToolbarView = Backbone.View.extend({
                 if (g)
                 {
                     localStorage.setItem('presentations',JSON.stringify(presentations));
+                    localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
                 }
                 else
                 {
@@ -342,6 +343,7 @@ var  ToolbarView = Backbone.View.extend({
             {
                 presentations.push(name);
                 localStorage.setItem('presentations',JSON.stringify(presentations));
+                localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
                 this.render();  
                 this.el.find('#presentationOption').val(name).attr("selected",true);
             }
@@ -354,6 +356,7 @@ var  ToolbarView = Backbone.View.extend({
             */
             var firstPresentation=[name];
             localStorage.setItem('presentations',JSON.stringify(firstPresentation));
+            localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
             this.render();  
             this.el.find('#presentationOption').val(name).attr("selected",true);
         }
