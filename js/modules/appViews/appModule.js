@@ -5,11 +5,10 @@ define([
     'js/modules/slideModules/slideModules',
     'js/modules/appViews/toolbarView',
     'js/modules/appViews/sidebarView',
-    'js/modules/appViews/contentView',
     'js/modules/appViews/typeView'
     ],
 
-function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type) {
+function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Type) {
 /**
  * @class AppModule A View representing the UI
  * @constructor
