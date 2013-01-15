@@ -275,6 +275,7 @@ var  ToolbarView = Backbone.View.extend ({
     /**
     * @method
     */
+    var saved=false;
     var name = prompt("Give the name for the presentation","untitled");
         if(name) {
             if (localStorage.getItem("presentations")) {
@@ -300,8 +301,9 @@ var  ToolbarView = Backbone.View.extend ({
                 presentations.push(name);
                 localStorage.setItem('presentations',JSON.stringify(presentations));
                 localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
-                this.render();  
-                this.el.find('#presentationOption').val(name).attr("selected",true);
+                this.render(); 
+                this.el.find('#presentationOption').val(name).attr("selected",true); 
+                saved=true;
             }
 
         } else {   
@@ -312,14 +314,19 @@ var  ToolbarView = Backbone.View.extend ({
             localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
             this.render();  
             this.el.find('#presentationOption').val(name).attr("selected",true);
+            saved=true;
         }
-        var currentDate = new Date();
-        var n = this.notification.getInstance();
-        var saveString = name+":Saved at "+n.AddZero(currentDate.getHours())+":"
-            +n.AddZero(currentDate.getMinutes())+" "+"( "+n.AddZero(currentDate.getDate())+"/"
-            +n.AddZero(currentDate.getMonth()+1)+"/"+currentDate.getFullYear()+" )";
-        n.sendSaveNotification(saveString);
         }
+        if (saved) {
+            //if the presentation is saved show a notification bar
+            var currentDate = new Date();
+            var n = this.notification.getInstance();
+            var saveString = name+":Saved at "+n.AddZero(currentDate.getHours())+":"
+                +n.AddZero(currentDate.getMinutes())+" "+"( "+n.AddZero(currentDate.getDate())+"/"
+                +n.AddZero(currentDate.getMonth()+1)+"/"+currentDate.getFullYear()+" )";
+            n.sendSaveNotification(saveString);
+        }
+        
     },
     selectLanguage : function(){ 
         /**
