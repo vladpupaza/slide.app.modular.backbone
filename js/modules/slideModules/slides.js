@@ -1,9 +1,9 @@
-define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage','js/libs/pubsub'], function(_, Backbone,slide,_localStorage,pubSub) {
-
+define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage','js/libs/pubsub'], 
+function(_, Backbone,slide,_localStorage,pubSub) {
 /**
 * @cfg Slides extends Backbone.Collection
 */ 
-    var Slides = Backbone.Collection.extend({
+    var Slides = Backbone.Collection.extend ({
          /**
         * @property
         * @type slide
@@ -16,10 +16,10 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
 		 * @method
 		 * overwriten the method remove , to remove the object from server to
 		 */
-        remove : function(_model){
+        remove : function(_model) {
 			this.get(_model.get('id')).destroy();
 		},
-        subscribeStatements: function(){
+        subscribeStatements : function() {
             pubSub.subscribe('addNewSlide', this.addSlide); 
             pubSub.subscribe('removeCurrentSlide', this.removeSlide);  
             pubSub.subscribe('addImageToSlide', this.addImageToCurrentSlide);
@@ -31,104 +31,94 @@ define(['underscore', 'backbone','js/modules/slideModules/slide','localStorage',
 		/**
 		 * @method
 		 */
-        updateAll : function(){
+        updateAll : function() {
             var _temp=this.localStorage.findAll();
-			/**
-            * delete from local storage all the objects that are not in collection
-			*/
-            for (var i=0;i<_temp.length;i++){
+            var i;
+			// delete from local storage all the objects that are not in collection
+			for (i=0; i<_temp.length; i++) {
 				if(!this.get(_temp[i].id)){
 					this.localStorage.destroy(_temp[i]);
 				}
 			} 
-            /**
-            * now I add or update existant objects from collection
-			*/
-            for (var i=0; i<this.length;i++){
+            // now I add or update existant objects from collection
+            for (i=0; i<this.length; i++) {
 				this.at(i).save();
 			}	
         },
-        addSlide : function(){
+        addSlide : function() {
         /**
-        * @method   
-        *add slide function   
-        *here we simulate a singleton: we have one single instance of slides collection
-        *and we add slides only on it, even if we call addSlide function from another 
-        *instance of slides collection        
+        *@method   
+        *@add slide function   
+        *@here we simulate a singleton: we have one single instance of slides collection
+        *@and we add slides only on it, even if we call addSlide function from another 
+        *@instance of slides collection        
         */
             var sl = new slide();
             sl.set({"_type":typeViewObj.getCurrentType()});
             slideModulesObj.slides.add(sl);
             console.log("POST ../slides");
-			idCurrent=slideModulesObj.slides.length-1;
-			//$("#"+idCurrent).addClass("currentSlide"); ////-----
+			idCurrent = slideModulesObj.slides.length-1;
         },
-		/**
-		 * @method
-		 */
-        removeSlide : function(){
+		removeSlide : function() {
          /**
-        * @method   
-        *remove slide function          
+        *@method   
+        *@remove slide function          
         */
-            if ( idCurrent !== -1 ){
-
+            if ( idCurrent !== -1 ) {
                 slideModulesObj.slides.remove(currentSlide);
                 console.log('DELETE ../slides/id');
-                //delete(currentSlide); 
-                //$('#content').html('');
-                //idCurrent = -1;
             }
-     
         },
-        addImageToCurrentSlide : function(){
+        addImageToCurrentSlide : function() {
         /**
-        * @method   
-        * add image to currentSlide function          
+        *@method   
+        *@add image to currentSlide function          
         */
-            if (typeof currentSlide !== "undefined"){
-                if(currentSlide.get("_type") === "Image")
+            if (typeof currentSlide !== "undefined") {
+                if(currentSlide.get("_type") === "Image"){
                     $("#wrapper").show();
+                }    
             }
         },
-        removeImageFromCurrentSlide : function(){
+        removeImageFromCurrentSlide : function() {
         /**
-        * @method   
-        *remove image from current slide function          
+        *@method   
+        *@remove image from current slide function          
         */
-            if ((typeof currentSlide !== "undefined")&&(currentSlide.get("_type") === "Image")){
+            if ((typeof currentSlide !== "undefined") && (currentSlide.get("_type") === "Image")) {
                 currentSlide.set({_url:""});
             }
         },
-        addVideoToCurrentSlide : function(){
+        addVideoToCurrentSlide : function() {
         /**
-        * @method   
-        * add video to currentSlide function          
+        *@method   
+        *@add video to currentSlide function          
         */
-            if (typeof currentSlide !== "undefined"){
+            if (typeof currentSlide !== "undefined") {
                 var tip = currentSlide.get("_type");
-                if(tip === "Video") $("#wrapper").show();
+                if(tip === "Video") {
+                    $("#wrapper").show();
+                }    
             }
         },
-        removeVideoFromCurrentSlide : function(){
+        removeVideoFromCurrentSlide : function() {
         /**
-        * @method   
-        * remove video to currentSlide function          
+        *@method   
+        *@remove video to currentSlide function          
         */
-            if ((typeof currentSlide !== "undefined")&&(currentSlide.get("_type") === "Video")){
+            if ((typeof currentSlide !== "undefined") && (currentSlide.get("_type") === "Video")) {
                 currentSlide.set({_url:""});
             }
         },
-        getUrlSubscriber : function(topic,data){
+        getUrlSubscriber : function(topic,data) {
         /**
-        * @method   
-        * gets the URL for image or video slides         
+        *@method   
+        *@gets the URL for image or video slides         
         */
-          console.log(topic+":"+data);
-          currentSlide.set({_url:data});
-		  $("#"+idCurrent).addClass("currentSlide"); //--------------
+            console.log(topic+":"+data);
+            currentSlide.set({_url:data});
+            $("#"+idCurrent).addClass("currentSlide"); 
         }
     });
     return Slides;
-
 });
