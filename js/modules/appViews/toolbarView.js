@@ -333,7 +333,7 @@ var  ToolbarView = Backbone.View.extend ({
         *@method    
         *@ in selOption we store the current selected value (english/ romanian)
         */
-        var selOption = this.el.find("#languageOption").val(); 
+        var selOption = toolbarViewObj.el.find("#languageOption").val(); 
         /*    
         setEnglishLanguage is a function that receives the data from the JSON
         file englishLanguage and then uses this data to set the text of the 
@@ -342,36 +342,40 @@ var  ToolbarView = Backbone.View.extend ({
         function setEnglishLanguage() {
             $.getJSON('data/englishLanguage', function(data) {   
                 var englishLanguageObject = data.englishLanguage;
-                this.el.find("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
-                this.el.find("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
-                this.el.find("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
-                this.el.find("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
-                this.el.find("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
-                this.el.find("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
-                this.el.find("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
-                this.el.find("#saveBtn").text(englishLanguageObject.saveBtn);
-                this.el.find('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
-                this.el.find('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
+                toolbarViewObj.el.find("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
+                toolbarViewObj.el.find("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
+                toolbarViewObj.el.find("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
+                toolbarViewObj.el.find("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
+                toolbarViewObj.el.find("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
+                toolbarViewObj.el.find("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
+                toolbarViewObj.el.find("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
+                toolbarViewObj.el.find("#saveBtn").text(englishLanguageObject.saveBtn);
+                toolbarViewObj.el.find('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
+                toolbarViewObj.el.find('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
+                toolbarViewObj.el.find('#newPresentationBtn').text(englishLanguageObject.newPresentationBtn);
+                toolbarViewObj.el.find('#saveAsBtn').text(englishLanguageObject.saveAsBtn);
             });
         }
         /*
-        setEnglishLanguage is a function that receives the data from the JSON
+        setRomanianLanguage is a function that receives the data from the JSON
         file romanianLanguage and then uses this data to set the text of the
         buttons in romanian
         */    
         function setRomanianLanguage() {
             $.getJSON('data/romanianLanguage', function(data){
-            var englishLanguageObject = data.romanianLanguage;
-            this.el.find("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
-            this.el.find("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
-            this.el.find("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
-            this.el.find("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
-            this.el.find("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
-            this.el.find("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
-            this.el.find("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
-            this.el.find("#saveBtn").text(englishLanguageObject.saveBtn);
-            this.el.find('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
-            this.el.find('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
+                var englishLanguageObject = data.romanianLanguage;
+                toolbarViewObj.el.find("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
+                toolbarViewObj.el.find("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
+                toolbarViewObj.el.find("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
+                toolbarViewObj.el.find("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
+                toolbarViewObj.el.find("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
+                toolbarViewObj.el.find("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
+                toolbarViewObj.el.find("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
+                toolbarViewObj.el.find("#saveBtn").text(englishLanguageObject.saveBtn);
+                toolbarViewObj.el.find('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
+                toolbarViewObj.el.find('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
+                toolbarViewObj.el.find('#newPresentationBtn').text(englishLanguageObject.newPresentationBtn);
+                toolbarViewObj.el.find('#saveAsBtn').text(englishLanguageObject.saveAsBtn);
             });
         }
         /*

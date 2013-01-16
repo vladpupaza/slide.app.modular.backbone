@@ -9,14 +9,14 @@ var appViewTemplate ={
 	toolbar_buttons :
 	'<div id="toolbarB">\
 	<button type="button" id="newPresentationBtn">New Presentation</button>\
-	<button type="button" id="addSlideBtn">ADD SLIDE</button>\
-	<button type="button" id="removeSlideBtn">Remove SLIDE</button>\
-	<button type="button" id="addImageToSlideBtn">ADD IMAGE</button>\
-	<button type="button" id="removeImageFromSlideBtn">REMOVE IMAGE</button>\
+	<button type="button" id="addSlideBtn">Add Slide</button>\
+	<button type="button" id="removeSlideBtn">Remove Slide</button>\
+	<button type="button" id="addImageToSlideBtn">Add Image</button>\
+	<button type="button" id="removeImageFromSlideBtn">Remove Image</button>\
 	<button type="button" id="addVideoBtn">Add Video</button>\
 	<button type="button" id="removeVideoBtn">Remove Video</button>\
 	<button type="button" id="slideshowBtn">Slideshow</button>\
-	<button type="button" id="saveBtn">SAVE</button>\
+	<button type="button" id="saveBtn">Save</button>\
 	<button type="button" id="saveAsBtn">Save As...</button>\
 	<div id="presentationDropdown">\
 			<select id = "presentationOption">\

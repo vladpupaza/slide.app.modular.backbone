@@ -9,6 +9,8 @@
 		"saveBtn" : "Salveaza",
 		"addImageUrlBtn" : "Salveaza",
 		"slideshowBtn" : "Prezentare",
-		"cancelImageUrlBtn" : "Anulare"
+		"cancelImageUrlBtn" : "Anulare",
+		"newPresentationBtn": "Prezentare Noua",
+		"saveAsBtn": "Salveaza Ca..."
 	}
 }

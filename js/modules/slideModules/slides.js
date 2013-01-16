@@ -4,7 +4,7 @@ function(_, Backbone,slide,_localStorage,pubSub) {
 * @cfg Slides extends Backbone.Collection
 */ 
     var Slides = Backbone.Collection.extend ({
-         /**
+        /**
         * @property
         * @type slide
         */

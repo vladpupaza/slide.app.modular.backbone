@@ -9,6 +9,8 @@
 		"saveBtn" : "Save",
 		"addImageUrlBtn" : "Save",
 		"slideshowBtn" : "Slideshow",
-		"cancelImageUrlBtn" : "Cancel"
+		"cancelImageUrlBtn" : "Cancel",
+		"newPresentationBtn": "New Presentation",
+		"saveAsBtn": "Save As..."
 	}
 }

@@ -1,8 +1,7 @@
 define([
 'js/modules/slideModules/slides',
-'js/modules/slideModules/slide',
 'js/libs/pubsub'], 
-    function(S,Slide,PubSub) {
+    function(S,PubSub) {
     // slideModule is used for making an instance of Slides collection that basicly starts the engine of the application
     /**
     *@class SlideModule The Slide Module used in the application    
