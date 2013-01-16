@@ -41,6 +41,7 @@ html
     height: 80px;
     background-color: #408eab;
     clear: both;
+    font-size: 1em;
 }
 
 #toolbarB
@@ -51,7 +52,26 @@ html
     margin-right: auto;
 
 }
+button
+{
+ background: #e4e4e4;
+ -moz-border-radius: 0px 0px 5px 5px;
+ -webkit-border-radius: 0px 0px 5px 5px; 
+ border: 2px solid #cdcdcd;
+ color:#2d2d2d;
+ font-size: 1em;
+}
+select
+{
+-moz-border-radius: 5px 5px 5px 5px;
+-webkit-border-radius: 5px 5px 5px 5px; 
+background:#e4e4e4;
+}
 
+button:hover
+{
+background:#9f9f9f;
+}
 #languageDtopdown
 {
     float: right;
