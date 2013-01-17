@@ -67,10 +67,7 @@ var bigSlideView = Backbone.View.extend ({
 			this.changeTemplate();
             // binding I binde the change event of the model , to method rander of the object 
             this.model.bind('change',this.initialize);  
-            //I prevent rendering if the Id is null , so I cannot render an invalid model 
-/*             if (this.model.get('_id') !== null) { 
-                this.render(); 
-            } */
+
         }
     },
     /**
@@ -84,9 +81,8 @@ var bigSlideView = Backbone.View.extend ({
         /*addListeners : here I set those to elements to listen  for events like mousedown/mouseup,
         and then to do those functions */
         $(this.el).find('#draggebel').mousedown(this.mouseDown);
-        $(this.el).find('#slideWorkArea').mouseup(  this.mouseUp);
-		pubSub.publish('content', this.el);
-        return this;
+        $(this.el).find('#slideWorkArea').mouseup(  this.mouseUp); 
+        return this.el;
     }, 
  
     /**

@@ -5,18 +5,16 @@ function(_, Backbone,pubSub) {
  * @extends Backbone.View
  * @param  as param recives the model of the curent slide
      */
-var contentView = Backbone.View.extend ({ 
+var contentView = Backbone.View.extend ({
 	el:'#content',
 	tagName:'div',
-	listener:function(){
-		var self=this;
-		pubSub.subscribe('content',this.render);
+	display:function(data){
+		this.render(data);
 	},
 	initialize:function(){
-		_.bindAll(this,'render','initialize');  
-		this.listener();
+		_.bindAll(this,'render');  
 	},
-	render:function(topic,data){
+	render:function(data){
 		$(this.el).html(data);
 	} 
 });
