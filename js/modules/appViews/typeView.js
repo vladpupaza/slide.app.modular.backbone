@@ -1,6 +1,15 @@
-define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], function(_, Backbone,typeTemplate) {
+/*global define:false*/
+define([
+'underscore',
+'backbone',
+'js/modules/appViews/appViewTemplate'
+], 
+function(_, Backbone,typeTemplate) {
+    "use strict";
+    /*global $:false*/
+    
 //TypeView View
-var TypeView=Backbone.View.extend({
+    var TypeView=Backbone.View.extend({
 		el:$("#typebar"),
 		tagName:'div',
 		curr:"typeText",
@@ -18,7 +27,7 @@ var TypeView=Backbone.View.extend({
            this.el.html( this.template().toString());
           },
           
-		 /**
+        /**
          * @method
          * binding events
          **/
@@ -63,5 +72,4 @@ var TypeView=Backbone.View.extend({
 		
 	});
 	return TypeView;
-})
-	
+});
