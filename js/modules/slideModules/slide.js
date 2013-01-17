@@ -1,4 +1,10 @@
-define(['underscore', 'backbone'], function(_, Backbone) {
+/*global define:false*/
+define([
+'underscore', 
+'backbone'
+], 
+
+function(_, Backbone) {
 /**
  * @class Slide A Slide Model
  * @extends Backbone.Model

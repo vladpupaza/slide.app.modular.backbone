@@ -14,6 +14,7 @@ function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type) {
  * @class AppModule A View representing the UI
  * @constructor
  */ 
+    "use strict";
     var AppModule = function () {
 
 /** 
