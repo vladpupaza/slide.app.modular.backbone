@@ -1,29 +1,32 @@
-define(['underscore', 'backbone','localStorage','js/libs/pubsub'], 
+/*global define:false*/
+define([
+'underscore',
+'backbone',
+'localStorage',
+'js/libs/pubsub'
+], 
 function(_, Backbone,_localStorage,pubSub) {
-
+    "use strict";
+    /*global console:false*/
+    /*global slideModulesObj:false*/
+    /*global typeViewObj:false*/
+    /*global idCurrent:false*/
+    /*global currentSlide:false*/
+    /*global $:false*/
+    
 //private fuction that binds the function subscribers with the apropriate messages
 //it is used in subscribe statements 
- var bindSubscribers = function(message,fun){
+    var bindSubscribers = function(message,fun){
             for(var i=0;i<=message.length;i++){
                 pubSub.subscribe(message[i],fun[i]); 
             }
-        }
+        };
         
     /**
     * @cfg Slides extends Backbone.Collection
     */ 
     var Slides = Backbone.Collection.extend ({
-        
-        localStorage : new Store('cosmin_Slides'),
-		
-		/**
-		 * @method
-		 * overwriten the method remove , to remove the object from server too
-		 */
-        remove : function(model) {
-			this.get(model.get('id')).destroy();
-		},
-        
+    
         /**
 		 * @method
          * binds the functions with the messages for pubsub.subscribe
@@ -36,19 +39,6 @@ function(_, Backbone,_localStorage,pubSub) {
 		/**
 		 * @method
 		 */
-        updateAll : function() {
-			// delete from local storage all the objects that are not in collection
-			for (var i=0,temp=this.localStorage.findAll().length; i<temp; i++) {
-				if(!this.get(temp[i].id)){
-					this.localStorage.destroy(temp[i]);
-				}
-			} 
-            // now I add or update existant objects from collection
-            for (i=0; i<this.length; i++) {
-				this.at(i).save();
-			}	
-        },
-
         addSlide : function() {
         /**
         *@method   
@@ -63,7 +53,7 @@ function(_, Backbone,_localStorage,pubSub) {
         },
         
 		removeSlide : function() {
-         /**
+        /**
         *@method   
         *@remove slide function          
         */
@@ -90,7 +80,7 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@remove image from current slide function          
         */
-            if ((typeof currentSlide !== "undefined") && (currentSlide.get("_type") === "Image")) {
+            if ((typeof currentSlide !== "undefined") && (currentSlide.get("_url")!==null) && (currentSlide.get("_type") === "Image")) {
                 currentSlide.set({_url:""});
             }
         },
@@ -113,7 +103,7 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@remove video to currentSlide function          
         */
-            if ((typeof currentSlide !== "undefined") && (currentSlide.get("_type") === "Video")) {
+            if ((typeof currentSlide !== "undefined") && (currentSlide.get("_url")!==null) && (currentSlide.get("_type") === "Video")) {
                 currentSlide.set({_url:""});
             }
         },
