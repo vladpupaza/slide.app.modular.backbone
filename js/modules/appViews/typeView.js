@@ -1,5 +1,5 @@
 define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], function(_, Backbone,typeTemplate) {
-//typeView View
+//TypeView View
 var TypeView=Backbone.View.extend({
 		el:$("#typebar"),
 		tagName:'div',
@@ -9,36 +9,54 @@ var TypeView=Backbone.View.extend({
 		initialize: function(){
 				this.render();
 			},
-		//here we render the toolbarView from the appViewTemplate
+         
+         /**
+         * @method
+         * render the toolbarView from the appViewTemplate
+         **/
 		render: function(){     
            this.el.html( this.template().toString());
           },
-		 //binding events
+          
+		 /**
+         * @method
+         * binding events
+         **/
 		events:{
 				"click #typeImage": "typeImage",
 				"click #typeText": "typeText",
 				"click #typeVideo": "typeVideo"
 			},
-		//here we select the current type and we highlight it in UI
+          
+        /**
+         * @method
+         * select the current type and highlight it in UI
+         **/
 		typeImage: function(){
 				$("#"+this.curr).removeClass().addClass("slideType");
 				this.curr="typeImage";
 				$("#"+this.curr).removeClass().addClass("slideType currentSlideType");
 				this.currentType="Image";
 			},
+            
 		typeText: function(){
 				$("#"+this.curr).removeClass().addClass("slideType");
 				this.curr="typeText";
 				$("#"+this.curr).removeClass().addClass("slideType currentSlideType");
 				this.currentType="Text";
 			},
+            
 		typeVideo: function(){
 				$("#"+this.curr).removeClass().addClass("slideType");
 				this.curr="typeVideo";
 				$("#"+this.curr).removeClass().addClass("slideType currentSlideType");
 				this.currentType="Video";
 			},
-		//current type getter
+            
+         /**
+         * @method
+         * @gets current type
+         **/
 		getCurrentType: function(){
 			return this.currentType;
 		}
