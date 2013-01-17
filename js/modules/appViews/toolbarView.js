@@ -276,7 +276,7 @@ var  ToolbarView = Backbone.View.extend ({
         return false;         
     },
     // NUMEREGEE>...............................................
-    confirmRename: function(presentations) {
+    confirmRename: function(name,presentations) {
         var g = confirm("Are you sure you want to replace this presentation?");
         if (g) {
             localStorage.setItem('presentations',JSON.stringify(presentations));
@@ -306,7 +306,7 @@ var  ToolbarView = Backbone.View.extend ({
         if (this.unicPresentation(presentations,presentations.length,name)) {
         //if there is a presentation with the same name alrerady saved,
         //asks for confirmation to replace it
-            this.confirmRename(presentations);
+            this.confirmRename(name,presentations);
         } else {
             this.addNewPresentation(presentations,name);
             return true;
