@@ -147,39 +147,39 @@ var  ToolbarView = Backbone.View.extend ({
     /**
     * @method    
     */
-        pubSub.publish("addNewSlide",slideModulesObj.slides.addSlide);
+        pubSub.publish("addNewSlide");
     },
     removeSlide : function() { 
     /**
     * @method    
     */
         if (slideModulesObj.slides.length !== 0) { 
-            pubSub.publish("removeCurrentSlide",slideModulesObj.slides.removeSlide);  
+            pubSub.publish("removeCurrentSlide");  
         }
     },
     addImage : function() { 
     /**
     * @method    
     */
-        pubSub.publish("addImageToSlide",slideModulesObj.slides.addImageToCurrentSlide);   
+        pubSub.publish("addImageToSlide");   
     },
     removeImage : function(){ 
     /**
     * @method    
     */
-        pubSub.publish("removeImageFromSlide",slideModulesObj.slides.removeImageFromCurrentSlide);    
+        pubSub.publish("removeImageFromSlide");    
     },
     addVideo : function() { 
     /**
     * @method    
     */
-        pubSub.publish("addVideoToSlide",slideModulesObj.slides.addVideoToCurrentSlide); 
+        pubSub.publish("addVideoToSlide"); 
     },
     removeVideo : function() {
     /**
     * @method    
     */
-        pubSub.publish("removeVideoFromSlide",slideModulesObj.slides.removeVideoFromCurrentSlide);
+        pubSub.publish("removeVideoFromSlide");
     },
     getUrl : function(){
     /**
