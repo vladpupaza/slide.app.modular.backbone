@@ -192,20 +192,16 @@ var  ToolbarView = Backbone.View.extend ({
             var image = $($('#testImg').html());
             image.load(function () {    
                 that.testSpinner(); 
-                $('#toolbar label').html("");
-                pubSub.publish("getUrl",urlNou);
-                $("#wrapper").hide();
-                $("#testImg img").attr("src","");
+                that.testPublish();              
+                
             }).error(function () {
+                that.testSpinner(); 
                 $("#spinner").hide();
-                $('#toolbar label').html("");
                 alert("Please insert a valid URL");
-                $("#testImg img").attr("src","");
+               
             });
         } else if (this.validateUrl(urlNou)) {
-                pubSub.publish("getUrl",urlNou);
-                $("#wrapper").hide();
-                $("#spinner").hide();
+               that.testPublish(); 
         } else {
                 alert("Please insert a valid URL");
         }
@@ -216,8 +212,15 @@ var  ToolbarView = Backbone.View.extend ({
         $("#spinner").show();
         $("#testImg img").attr("src",urlNou);
     },
+    testPublish: function(urlNou){
+        pubSub.publish("getUrl",urlNou);
+        $("#wrapper").hide();
+        $("#spinner").hide();
+    },
     testSpinner: function(){
-       $("#spinner").hide();
+       
+       $('#toolbar label').html("");
+       $("#testImg img").attr("src","");
     },
     //validates new url
     validateUrl : function(url) {
