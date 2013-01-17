@@ -1,9 +1,10 @@
 /*global define:false*/
 define([
 'js/modules/slideModules/slides',
-'js/libs/pubsub'], 
-    function(S,PubSub) {
-    "use strict";
+'js/libs/pubsub',
+'js/modules/slideModules/slide'], 
+function(S,PubSub,slide) {
+"use strict";
     // slideModule is used for making an instance of Slides collection that basicly starts the engine of the application
     /**
     *@class SlideModule The Slide Module used in the application    
@@ -19,6 +20,7 @@ define([
         */ 
         //we create a new Collection so we can add slides to it.
         this.slides= new S(); 
+        this.slides.model=slide;
         //the collection subscribes to events on the toolbar
         this.slides.subscribeStatements();
         //function that reads the entry in local storage with the name recieved as a parameter
@@ -41,7 +43,11 @@ define([
             //read the local storage and see if there's anything in there, equivalent to a GET ../slides REST operation
             var saved=loadFromLocalStorage(data);            
             if (typeof saved==='string') {
-            replaceSlides(saved);                  
+
+            replaceSlides(saved);               
+            //if theres something in the local storage load it in our Collection of slides
+            slideModulesObj.slides.reset(JSON.parse(saved));
+			PubSub.publish("change presentation reset collection","");
             }
         };
         PubSub.subscribe("change presentation",presentationChanger);
