@@ -47,12 +47,12 @@ the page the presentation should be reconstructed.
 
 # Requirements update 2
 
-1. Integrate Bootstrap framework in your application.
+1. Integrate [Bootstrap] (http://twitter.github.com/bootstrap/index.html) framework in your application.
 2. Each function must have max 5 rows.
 3. Each class must have max 100 rows.
 4. Content must use a slideView for render.
 5. Jasmine test must be related to the application. (ex. Don't test Backbone functionality because it's already tested)
-6. Use less to write the CSS.
+6. Use [less] (http://lesscss.org/) to write the CSS.
 7. Integrate "use strict" in your code and make it work.
 8. Use imediatly invoked functions.
 9. Use JSON when you create the collection. 
