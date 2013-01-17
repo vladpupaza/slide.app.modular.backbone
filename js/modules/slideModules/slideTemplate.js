@@ -1,12 +1,13 @@
 /*jshint multistr:true */
-
+/*global define:false*/
 define([], function() {
+"use strict";
 var slideTemplate = {
 // SlideText Template
-slide_text : 
+"Text" : 
 '<div class="slideLittle"><div class="slideText"></div><%=_text%></div>',
 // SlideVideo Template
-slide_video :
+"Video" :
 '<div class="slideLittle">\
     <div class="slideVideo">\
         <video width="200" height="140" controls>\
@@ -17,7 +18,7 @@ slide_video :
     <%=_text%>\
 </div>',
 // SlideImage Template
-slide_img :
+"Image" :
 '<div class="slideLittle">\
     <div class="slideImg">\
     <img src="<%=_url%>" alt="image" />\
