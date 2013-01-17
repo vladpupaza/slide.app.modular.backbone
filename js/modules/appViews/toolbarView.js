@@ -186,22 +186,12 @@ var  ToolbarView = Backbone.View.extend ({
     * @method    
     */
         var urlNou = this.el.find('#myTextAreaUrl').val();
-        var validateUrl = function(url) {
-            var i;
-            var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', 'i');
-            if (urlPattern.test(url)) {
-                return true;
-            } else {
-                return false;
-            }    
-        };
         if (currentSlide.get("_type") === "Image") {
-            $('#toolbar label').html("Please wait...");
-            $("#spinner").show();
-            $("#testImg img").attr("src",urlNou);
+            this.setCSSGetUrl(urlNou);
+            var that=this;
             var image = $($('#testImg').html());
             image.load(function () {    
-                $("#spinner").hide();
+                that.testSpinner(); 
                 $('#toolbar label').html("");
                 pubSub.publish("getUrl",urlNou);
                 $("#wrapper").hide();
@@ -212,13 +202,32 @@ var  ToolbarView = Backbone.View.extend ({
                 alert("Please insert a valid URL");
                 $("#testImg img").attr("src","");
             });
-        } else if (validateUrl(urlNou)) {
+        } else if (this.validateUrl(urlNou)) {
                 pubSub.publish("getUrl",urlNou);
                 $("#wrapper").hide();
                 $("#spinner").hide();
         } else {
                 alert("Please insert a valid URL");
         }
+    },
+    //set css and load 
+    setCSSGetUrl: function(urlNou){
+        $('#toolbar label').html("Please wait...");
+        $("#spinner").show();
+        $("#testImg img").attr("src",urlNou);
+    },
+    testSpinner: function(){
+       $("#spinner").hide();
+    },
+    //validates new url
+    validateUrl : function(url) {
+        var i;
+        var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', 'i');
+        if (urlPattern.test(url)) {
+                return true;
+        } else {
+            return false;
+        }    
     },
     cancelUrl : function() {
         /**
