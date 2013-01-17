@@ -5,15 +5,17 @@ define([
     'js/modules/slideModules/slideModules',
     'js/modules/appViews/toolbarView',
     'js/modules/appViews/sidebarView',
+    'js/modules/appViews/contentView',
     'js/modules/appViews/typeView'
     ],
 
-function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Type) {
+function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type) {
 /**
  * @class AppModule A View representing the UI
  * @constructor
  */ 
     var AppModule = function () {
+	content=new Content();
 /** 
  * @property
  * @type object
@@ -38,6 +40,7 @@ function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Type) {
             div.style.top = ( e.clientY -300)+ 'px';
             div.style.left = ( e.clientX -950)+ 'px';
         };
+
 /** 
  * @property
  * @type object
