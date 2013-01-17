@@ -37,11 +37,9 @@ function ($, _, Backbone, slideTemplate,BigSlideView){
 
 	bigSlideView:{},
 	bigSlideViewRender:function(){
-		this.bigSlideView.render()
+		return this.bigSlideView.render()
 		},
-	events:{
-		'click':'bigSlideViewRender'
-	},
+ 
     initialize: function () {
 		this.bigSlideView= new BigSlideView({model:this.model});
 		 //bind the change event to this view's render function, so every time a model is changed the view is updated

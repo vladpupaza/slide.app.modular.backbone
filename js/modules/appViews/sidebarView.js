@@ -86,6 +86,7 @@ var sidebarView=Backbone.View.extend({
     renderAdd: function() {
         this.renders();
         currentSlide=slideModulesObj.slides.at(idCurrent);
+		contentView.display(currentSlide.view.bigSlideView.render());
         $("#"+(idCurrent)).addClass("currentSlide");
     },
 /**
@@ -96,6 +97,7 @@ var sidebarView=Backbone.View.extend({
         console.log(idCurrent+" "+this.collection.length);
         if (idCurrent !== -1) {
             currentSlide=slideModulesObj.slides.at(idCurrent);
+			contentView.display(currentSlide.view.bigSlideView.render());
             $("#"+(idCurrent)).addClass("currentSlide");
         }
     },
@@ -107,11 +109,12 @@ var sidebarView=Backbone.View.extend({
         e.preventDefault();
         var id =$(e.currentTarget).context.id;
         currentSlide=this.collection.at(id);
-        idCurrent = id;
+		contentView.display(currentSlide.view.bigSlideView.render());
+		idCurrent = id;
 //set current slide on sidebar
         $(".currentSlide").removeClass("currentSlide");
         $("#"+idCurrent).addClass("currentSlide");              
-        idCurrent = id;
+
     },
 /**
 * @method
