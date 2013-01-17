@@ -1,3 +1,4 @@
+/*global define:false*/
 define([
     'jquery',
     'underscore',
@@ -15,40 +16,41 @@ function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type) {
  * @constructor
  */ 
     "use strict";
+    /*global slideModulesObj:false*/
     var AppModule = function () {
 
 /** 
  * @property
  * @type object
  */
-        typeViewObj = new Type();   
+        window.typeViewObj = new Type();   
 /** 
  * @property
  * @type object
  */
-        slideModulesObj = new SlideModules();
+        window.slideModulesObj = new SlideModules();
 /** 
  * @property
  * @type object
  */
-        toolbarViewObj = new Toolbar();
+        window.toolbarViewObj = new Toolbar();
 /**
  * @method
  * @param {exception} e An exception
  */     
-        divMove = function (e) {    
+        window.divMove = function (e) {    
             var div = document.getElementById('draggebel'); 
             div.style.top = ( e.clientY -300)+ 'px';
             div.style.left = ( e.clientX -750)+ 'px';
         };
-		contentView=new Content();
+		window.contentView=new Content();
 
 /** 
  * @property
  * @type object
  */
-        sidebarViewObj = new Sidebar({collection:slideModulesObj.slides});
-		sidebarViewObj.subscribeStatements();
+        window.sidebarViewObj = new Sidebar({collection:slideModulesObj.slides});
+		window.sidebarViewObj.subscribeStatements();
     };
     return AppModule;
 });
