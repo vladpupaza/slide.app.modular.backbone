@@ -1,3 +1,4 @@
+/*global define:false*/
 define([
 'jquery',
 'underscore',
@@ -5,8 +6,13 @@ define([
 'js/modules/slideModules/slideTemplate',
 'js/modules/slideModules/bigSlideView'
 ],
+
 function ($, _, Backbone, slideTemplate,BigSlideView){
     
+
+    "use strict";
+    /*global console:false*/
+
     /**
     *@class SlideView View for a Slide Model
     *@extends Backbone.View
@@ -47,30 +53,21 @@ function ($, _, Backbone, slideTemplate,BigSlideView){
     },
     /**
     *@method
+    *@return this.renders(this.model.get("_type")) Returns whatever the call to renders returns 
+    */
+    //render function for slideView used to call renders function that takes as a parameter the type of slide to be rendered 
+    render: function () {
+        return this.renders(this.model.get("_type"));
+    },
+    /**
+    *@method
     *@return this.el Returns the el with the compiled template as it's html value
     */
-    //render function for slideView used to display the view on the page
-    render: function () {
-    //there are three types of slides so we check what type this view's model has so we know how to render it
-        switch(this.model.get("_type")) {
-            //if it's a text slide we load the slide_text template from the slideTemplate file
-        case "Text" :
-            this.template= _.template(slideTemplate.slide_text);
-            $(this.el).html(this.template(this.model.toJSON()));
-            break;
-            //if it's an image slide we load the slide_img template from the slideTemplate file
-        case "Image":
-            this.template= _.template(slideTemplate.slide_img);
-            $(this.el).html(this.template(this.model.toJSON()));
-            break;
-            //if it's a video slide we load the slide_video template from the slideTemplate file
-        case "Video":
-            this.template= _.template(slideTemplate.slide_video);
-            $(this.el).html(this.template(this.model.toJSON()));
-            break;
-        default: alert("no slide type");
-        }
-    return this.el;
+    //renders takes as a parameter the type of slide to be rendered, based on that it selects the required template from slideTemplate 
+    renders: function(tip){
+        this.template= _.template(slideTemplate[tip]);
+        $(this.el).html(this.template(this.model.toJSON()));
+        return this.el;
     }
     });
     return SlideView;

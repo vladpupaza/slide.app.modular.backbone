@@ -125,13 +125,15 @@ var sidebarView=Backbone.View.extend({
 * @param {int} index the index of current slide in our collection
 */
 
-		setCurrentSlide:function(currentSlide,index)
+		setCurrentSlide:function(cs,index)
 		{
+//set currentSlide
+                currentSlide=cs;
  //set current slide on sidebar
 				$(".currentSlide").removeClass("currentSlide");
 				$("#"+index).addClass("currentSlide");
 //render current slide content
-				contentViewObj=new ContentView({model:currentSlide});
+				contentViewObj=new ContentView({model:cs});
 		},
 		
 		setPresentation: function(){
