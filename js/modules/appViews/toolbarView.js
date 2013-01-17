@@ -181,11 +181,10 @@ var  ToolbarView = Backbone.View.extend ({
     */
         pubSub.publish("removeVideoFromSlide");
     },
-   getUrl : function(){
-        var urlNou = this.el.find('#myTextAreaUrl').val();
+    // method that calls the testImage method or testVideo method
+    getUrl : function(){
+        var urlNou = this.el.find("#myTextAreaUrl").val();
         if (currentSlide.get("_type") === "Image") {
-            $('#toolbar label').html("Please wait...");
-            $("#spinner").show();
             this.testImage(urlNou);
         } else {
             this.testVideo(urlNou);
@@ -193,35 +192,43 @@ var  ToolbarView = Backbone.View.extend ({
     },
     testVideo: function(urlNou){
         if (this.validateUrl(urlNou)) {
-            $("#spinner").show();
             pubSub.publish("getUrl",urlNou);
-            $("#wrapper").hide();
-            $("#spinner").hide();
+            this.hideHelpers();
         } else {
             alert("Please insert a valid URL");
         }
     },
     testImage: function(urlNou){
-            $("#testImg img").attr("src",urlNou);
-            var image = $($('#testImg').html());
-            that = this;
-            image.load(function () {    
-                $("#spinner").hide();
-                $('#toolbar label').html("");
-                pubSub.publish("getUrl",urlNou);
-                $("#wrapper").hide();
-                $("#testImg img").attr("src","");
-            }).error(that.imageLoadError);
+        this.showHelpers(urlNou);
+        var image = $($("#testImg").html());
+        this.loadTestImage(image,urlNou);
+    },
+    loadTestImage: function(image,urlNou){
+        var that = this;
+        image.load(function () {    
+            pubSub.publish("getUrl",urlNou);
+            that.hideHelpers();
+        }).error(that.imageLoadError);
+    },
+    showHelpers: function(urlNou){
+        $("#toolbar label").html("Please wait...");
+        $("#spinner").show();
+        $("#testImg img").attr("src",urlNou);
+    },
+    hideHelpers: function(){
+        $("#wrapper").hide();
+        $("#spinner").hide();
+        $("#toolbar label").html("");
+        $("#testImg img").attr("src","");
     },
     imageLoadError: function(){
         $("#spinner").hide();
-        $('#toolbar label').html("");
+        $("#toolbar label").html("");
         alert("Please insert a valid URL");
         $("#testImg img").attr("src","");
     },
     //validates new url
     validateUrl : function(url) {
-        var i;
         var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', 'i');
         if (urlPattern.test(url)) {
                 return true;
@@ -337,67 +344,6 @@ var  ToolbarView = Backbone.View.extend ({
             n.sendSaveNotification(saveString);
         }
         
-    },
-    selectLanguage : function(){ 
-        /**
-        *@method    
-        *@ in selOption we store the current selected value (english/ romanian)
-        */
-        var selOption = toolbarViewObj.el.find("#languageOption").val(); 
-        /*    
-        setEnglishLanguage is a function that receives the data from the JSON
-        file englishLanguage and then uses this data to set the text of the 
-        buttons in english
-        */
-        function setEnglishLanguage() {
-            $.getJSON('data/englishLanguage', function(data) {   
-                var englishLanguageObject = data.englishLanguage;
-                toolbarViewObj.el.find("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
-                toolbarViewObj.el.find("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
-                toolbarViewObj.el.find("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
-                toolbarViewObj.el.find("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
-                toolbarViewObj.el.find("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
-                toolbarViewObj.el.find("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
-                toolbarViewObj.el.find("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
-                toolbarViewObj.el.find("#saveBtn").text(englishLanguageObject.saveBtn);
-                toolbarViewObj.el.find('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
-                toolbarViewObj.el.find('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
-                toolbarViewObj.el.find('#newPresentationBtn').text(englishLanguageObject.newPresentationBtn);
-                toolbarViewObj.el.find('#saveAsBtn').text(englishLanguageObject.saveAsBtn);
-            });
-        }
-        /*
-        setRomanianLanguage is a function that receives the data from the JSON
-        file romanianLanguage and then uses this data to set the text of the
-        buttons in romanian
-        */    
-        function setRomanianLanguage() {
-            $.getJSON('data/romanianLanguage', function(data){
-                var englishLanguageObject = data.romanianLanguage;
-                toolbarViewObj.el.find("#addSlideBtn").text(englishLanguageObject.addSlideBtn);
-                toolbarViewObj.el.find("#removeSlideBtn").text(englishLanguageObject.removeSlideBtn);
-                toolbarViewObj.el.find("#addImageToSlideBtn").text(englishLanguageObject.addImageToSlideBtn);
-                toolbarViewObj.el.find("#removeImageFromSlideBtn").text(englishLanguageObject.removeImageFromSlideBtn);
-                toolbarViewObj.el.find("#addVideoBtn").text(englishLanguageObject.addVideoBtn);
-                toolbarViewObj.el.find("#removeVideoBtn").text(englishLanguageObject.removeVideoBtn);
-                toolbarViewObj.el.find("#slideshowBtn").text(englishLanguageObject.slideshowBtn);
-                toolbarViewObj.el.find("#saveBtn").text(englishLanguageObject.saveBtn);
-                toolbarViewObj.el.find('#addImageUrlBtn').text(englishLanguageObject.addImageUrlBtn);
-                toolbarViewObj.el.find('#cancelImageUrlBtn').text(englishLanguageObject.cancelImageUrlBtn);
-                toolbarViewObj.el.find('#newPresentationBtn').text(englishLanguageObject.newPresentationBtn);
-                toolbarViewObj.el.find('#saveAsBtn').text(englishLanguageObject.saveAsBtn);
-            });
-        }
-        /*
-        here we verify the selOption to know what function we need to use
-        */
-        if (selOption === "english") { 
-            setEnglishLanguage();  
-            this.el.find('#languageOption').change(setEnglishLanguage); 
-        } else { 
-            setRomanianLanguage(); 
-            this.el.find('#languageOption').change(setRomanianLanguage);
-        }
     },
     selectPresentation : function() {
         if (this.el.find("#presentationOption").val() !== 'Select Presentation') {
