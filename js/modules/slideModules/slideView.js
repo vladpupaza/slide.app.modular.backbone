@@ -35,14 +35,14 @@ function ($, _, Backbone, slideTemplate,BigSlideView){
     *@method
     */
 
-	bigSlideView:{},
-	bigSlideViewRender:function(){
-		return this.bigSlideView.render()
-		},
+    bigSlideView:{},
+    bigSlideViewRender:function(){
+        return this.bigSlideView.render();
+        },
  
     initialize: function () {
-		this.bigSlideView= new BigSlideView({model:this.model});
-		 //bind the change event to this view's render function, so every time a model is changed the view is updated
+        this.bigSlideView= new BigSlideView({model:this.model});
+         //bind the change event to this view's render function, so every time a model is changed the view is updated
         this.model.bind('change',function (){this.render();console.log('PUT ../slides/'+this.model.id);},this);
         //set this model's view to point to this object
         this.model.view = this;
