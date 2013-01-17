@@ -7,12 +7,17 @@ function(_, Backbone,pubSub) {
      */
 var contentView = Backbone.View.extend ({ 
 	el:'#content',
+	tagName:'div',
 	listener:function(){
+		var self=this;
 		pubSub.subscribe('content',this.render);
 	},
-	initialize:function(){},
+	initialize:function(){
+		_.bindAll(this,'render','initialize');  
+		this.listener();
+	},
 	render:function(topic,data){
-		this.el.innerHTML=data;
+		$(this.el).html(data);
 	} 
 });
 return contentView;

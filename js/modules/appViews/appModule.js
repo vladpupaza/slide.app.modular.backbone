@@ -15,7 +15,7 @@ function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type) {
  * @constructor
  */ 
     var AppModule = function () {
-	content=new Content();
+
 /** 
  * @property
  * @type object
@@ -38,8 +38,9 @@ function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type) {
         divMove = function (e) {    
             var div = document.getElementById('draggebel'); 
             div.style.top = ( e.clientY -300)+ 'px';
-            div.style.left = ( e.clientX -950)+ 'px';
+            div.style.left = ( e.clientX -750)+ 'px';
         };
+		contentView=new Content();
 
 /** 
  * @property

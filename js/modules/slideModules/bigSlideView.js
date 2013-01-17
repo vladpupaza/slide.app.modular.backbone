@@ -68,9 +68,9 @@ var bigSlideView = Backbone.View.extend ({
             // binding I binde the change event of the model , to method rander of the object 
             this.model.bind('change',this.initialize);  
             //I prevent rendering if the Id is null , so I cannot render an invalid model 
-            if (this.model.get('_id') !== null) { 
+/*             if (this.model.get('_id') !== null) { 
                 this.render(); 
-            }
+            } */
         }
     },
     /**
