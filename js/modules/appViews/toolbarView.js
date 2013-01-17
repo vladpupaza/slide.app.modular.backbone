@@ -101,18 +101,11 @@ var  ToolbarView = Backbone.View.extend ({
         "click #saveAsBtn" : "saveAs",
     /**
     * @event click
-    * Fires when languageOption is clicked
-    * @param {Select} this
-    * @param {EventObject} e selectLanguage        
-    */    
-        "change #languageOption ": "selectLanguage",
-    /**
-    * @event click
     * Fires when presentationOption is clicked
     * @param {Select} this
     * @param {EventObject} e selectPresentation       
     */    
-        "change #presentationOption ": "selectPresentation",
+        "change #presentationOption" : "selectPresentation",
     /**
     * @event click
     * Fires when addImageUrlBtn is clicked
@@ -135,7 +128,7 @@ var  ToolbarView = Backbone.View.extend ({
     */    
         "click #slideshowBtn":"slideshow" 
     },
-    newPresentation : function() {
+    newPresentation: function() {
     /**
     * @method    
     */
@@ -143,13 +136,13 @@ var  ToolbarView = Backbone.View.extend ({
         $('#content').html('');
         this.el.find('#presentationOption').val('Select Presentation').attr('selected',true);
     },
-    addSlide : function() { 
+    addSlide: function() { 
     /**
     * @method    
     */
         pubSub.publish("addNewSlide");
     },
-    removeSlide : function() { 
+    removeSlide: function() { 
     /**
     * @method    
     */
@@ -157,25 +150,25 @@ var  ToolbarView = Backbone.View.extend ({
             pubSub.publish("removeCurrentSlide");  
         }
     },
-    addImage : function() { 
+    addImage: function() { 
     /**
     * @method    
     */
         pubSub.publish("addImageToSlide");   
     },
-    removeImage : function(){ 
+    removeImage: function(){ 
     /**
     * @method    
     */
         pubSub.publish("removeImageFromSlide");    
     },
-    addVideo : function() { 
+    addVideo: function() { 
     /**
     * @method    
     */
         pubSub.publish("addVideoToSlide"); 
     },
-    removeVideo : function() {
+    removeVideo: function() {
     /**
     * @method    
     */
@@ -228,7 +221,7 @@ var  ToolbarView = Backbone.View.extend ({
         $("#testImg img").attr("src","");
     },
     //validates new url
-    validateUrl : function(url) {
+    validateUrl: function(url) {
         var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', 'i');
         if (urlPattern.test(url)) {
                 return true;
@@ -236,114 +229,113 @@ var  ToolbarView = Backbone.View.extend ({
             return false;
         }    
     },
-    cancelUrl : function() {
+    cancelUrl: function() {
         /**
         * @method    
         */
         $("#wrapper").hide();
         $("#spinner").hide();
-    },
-    notification : (function() {
-        var instance;
-        function init() {
-            return {
-                sendSaveNotification : function(message) {
-                /**
-                * sets text to notfification bar and makes it visible
-                */
-                    $("#notifBar").html(message);
+    },   
+    sendSaveNotification: function(message) {
+        /**
+        * sets text to notfification bar and makes it visible
+        */
+        $("#notifBar").html(message);
                     $("#notifBar").css("visibility","visible");
                     setTimeout(function hide() {
                     $("#notifBar").css("visibility","hidden");
                     },4000);          
-                },
-                AddZero : function(num) {
+    },
+    addZero : function(num) {
                     return (num >= 0 && num < 10) ? "0" + num : num + "";
-                }     
-            };
-        }
-        return {
-            getInstance : function() {       
-                if ( !instance ) {
-                    instance = init();
-                }
-                return instance;
-            }   
-        }; 
-    })(),
+    },               
     save : function() {
     /**
     * @method    
-    */
-        var currentDate = new Date();
-        var currentPresentation = $("#presentationOption").val();
-        if (currentPresentation !== 'Select Presentation') {
-            localStorage.setItem(currentPresentation,JSON.stringify(slideModulesObj.slides));
-            var n = this.notification.getInstance();
-            var saveString = "Saved at "+n.AddZero(currentDate.getHours())+":"
-                +n.AddZero(currentDate.getMinutes())+" "+"( "+n.AddZero(currentDate.getDate())
-                +"/"+n.AddZero(currentDate.getMonth()+1)+"/"+currentDate.getFullYear()+" )";
-            n.sendSaveNotification(saveString);
+    */           
+        if ($("#presentationOption").val() !== 'Select Presentation') {
+            localStorage.setItem($("#presentationOption").val(),JSON.stringify(slideModulesObj.slides));
+            this.saveMessage($("#presentationOption").val());     
         } else {
             alert("You should use save as first");
         }
     },
-    saveAs:function(){
+    saveMessage: function(name){
+        var currentDate = new Date();
+        var saveString = name+" was saved at "+this.addZero(currentDate.getHours())+":"+
+            this.addZero(currentDate.getMinutes())+" "+"( "+this.addZero(currentDate.getDate())+"/"+
+            this.addZero(currentDate.getMonth()+1)+"/"+currentDate.getFullYear()+" )";
+        this.sendSaveNotification(saveString);
+    },
+    unicPresentation: function(presentations,l,name){
+        for (i=0; i<l; i++) {
+            if (presentations[i] === name) {
+                return true;
+            }
+        }    
+        return false;         
+    },
+    // NUMEREGEE>...............................................
+    confirmRename: function(presentations) {
+        var g = confirm("Are you sure you want to replace this presentation?");
+        if (g) {
+            localStorage.setItem('presentations',JSON.stringify(presentations));
+            localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+        } else {
+            this.saveAs();
+        }
+    },
+    addNewPresentation: function(presentations,name) {
+        presentations.push(name);
+        localStorage.setItem('presentations',JSON.stringify(presentations));
+        localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+        this.render(); 
+        this.el.find('#presentationOption').val(name).attr("selected",true); 
+        
+    },
+    firstPresentation: function(name) {
+        var firstPresentation = [name];
+        localStorage.setItem('presentations',JSON.stringify(firstPresentation));
+        localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+        this.render();  
+        this.el.find('#presentationOption').val(name).attr("selected",true);
+    },
+    checkingPresentations: function(name){
+        // checks if there is something in local storage
+        var presentations = JSON.parse(localStorage.getItem("presentations"));
+        if (this.unicPresentation(presentations,presentations.length,name)) {
+        //if there is a presentation with the same name alrerady saved,
+        //asks for confirmation to replace it
+            this.confirmRename(presentations);
+        } else {
+            this.addNewPresentation(presentations,name);
+            return true;
+        }
+    },
+    savePresentation: function(name){
+        if (name) {
+            if (localStorage.getItem("presentations")) {
+                return this.checkingPresentations(name);
+
+            } else {   
+                //if local storage is empty creates an array with presentation names 
+                //and adds the current presentation to local storage
+                this.firstPresentation(name);
+                return true;
+            }
+        }
+        return false;
+    },
+    //...............................NU MEREGEEEEEEEEEEEEEEEEE>................
+    saveAs: function(){
     /**
     * @method
     */
-    var saved=false;
-    var name = prompt("Give the name for the presentation","untitled");
-        if(name) {
-            if (localStorage.getItem("presentations")) {
-            // checks if there is something in local storage
-                var presentations = JSON.parse(localStorage.getItem("presentations"));
-                var gasit = false;
-            for (i=0; i<presentations.length; i++) {
-                if (presentations[i] === name) {
-                    gasit = true;
-                }
-            }
-            if (gasit) {
-            //if there is a presentation with the same name alrerady saved,
-            //asks for confirmation to replace it
-                var g = confirm("Are you sure you want to replace this presentation?");
-                if (g) {
-                    localStorage.setItem('presentations',JSON.stringify(presentations));
-                    localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
-                } else {
-                    this.saveAs();
-                }
-            } else {
-                presentations.push(name);
-                localStorage.setItem('presentations',JSON.stringify(presentations));
-                localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
-                this.render(); 
-                this.el.find('#presentationOption').val(name).attr("selected",true); 
-                saved=true;
-            }
-
-        } else {   
-            //if local storage is empty creates an array with presentation names 
-            //and adds the current presentation to local storage
-            var firstPresentation = [name];
-            localStorage.setItem('presentations',JSON.stringify(firstPresentation));
-            localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
-            this.render();  
-            this.el.find('#presentationOption').val(name).attr("selected",true);
-            saved=true;
-        }
-        }
-        if (saved) {
+        var name = prompt("Give the name for the presentation","untitled");
+        if (this.savePresentation(name)) {
             //if the presentation is saved show a notification bar
-            var currentDate = new Date();
-            var n = this.notification.getInstance();
-            var saveString = name+":Saved at "+n.AddZero(currentDate.getHours())+":"
-                +n.AddZero(currentDate.getMinutes())+" "+"( "+n.AddZero(currentDate.getDate())+"/"
-                +n.AddZero(currentDate.getMonth()+1)+"/"+currentDate.getFullYear()+" )";
-            n.sendSaveNotification(saveString);
+            this.saveMessage(name);
         }
-        
     },
     selectPresentation : function() {
         if (this.el.find("#presentationOption").val() !== 'Select Presentation') {
