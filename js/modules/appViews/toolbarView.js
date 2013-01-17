@@ -190,18 +190,14 @@ var  ToolbarView = Backbone.View.extend ({
             this.setCSSGetUrl(urlNou);
             var that=this;
             var image = $($('#testImg').html());
-            image.load(function () {    
-                that.testSpinner(); 
-                that.testPublish();              
-                
-            }).error(function () {
+            image.load(that.loadImage(urlNou)).error(function () {
                 that.testSpinner(); 
                 $("#spinner").hide();
                 alert("Please insert a valid URL");
                
             });
         } else if (this.validateUrl(urlNou)) {
-               that.testPublish(); 
+               that.testPublish(urlNou); 
         } else {
                 alert("Please insert a valid URL");
         }
@@ -212,6 +208,11 @@ var  ToolbarView = Backbone.View.extend ({
         $("#spinner").show();
         $("#testImg img").attr("src",urlNou);
     },
+    loadImage: function(urlNou){
+        this.testSpinner();
+        this.TestPublish(urlNou);  
+    },
+    //publishes the slides
     testPublish: function(urlNou){
         pubSub.publish("getUrl",urlNou);
         $("#wrapper").hide();
