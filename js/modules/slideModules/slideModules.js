@@ -43,11 +43,8 @@ function(S,PubSub,slide) {
             //read the local storage and see if there's anything in there, equivalent to a GET ../slides REST operation
             var saved=loadFromLocalStorage(data);            
             if (typeof saved==='string') {
-
             replaceSlides(saved);               
             //if theres something in the local storage load it in our Collection of slides
-            slideModulesObj.slides.reset(JSON.parse(saved));
-			PubSub.publish("change presentation reset collection","");
             }
         };
         PubSub.subscribe("change presentation",presentationChanger);
