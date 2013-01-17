@@ -187,18 +187,24 @@ var  ToolbarView = Backbone.View.extend ({
             $('#toolbar label').html("Please wait...");
             $("#spinner").show();
             this.testImage(urlNou);
-        } else if (this.validateUrl(urlNou)) {
-                pubSub.publish("getUrl",urlNou);
-                $("#wrapper").hide();
-                $("#spinner").hide();
         } else {
-                alert("Please insert a valid URL");
+            this.testVideo(urlNou);
+        }
+    },
+    testVideo: function(urlNou){
+        if (this.validateUrl(urlNou)) {
+            $("#spinner").show();
+            pubSub.publish("getUrl",urlNou);
+            $("#wrapper").hide();
+            $("#spinner").hide();
+        } else {
+            alert("Please insert a valid URL");
         }
     },
     testImage: function(urlNou){
             $("#testImg img").attr("src",urlNou);
             var image = $($('#testImg').html());
-            that=this;
+            that = this;
             image.load(function () {    
                 $("#spinner").hide();
                 $('#toolbar label').html("");
@@ -228,6 +234,7 @@ var  ToolbarView = Backbone.View.extend ({
         * @method    
         */
         $("#wrapper").hide();
+        $("#spinner").hide();
     },
     notification : (function() {
         var instance;
