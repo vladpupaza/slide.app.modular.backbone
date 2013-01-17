@@ -45,6 +45,20 @@ the page the presentation should be reconstructed.
 3. Implement unit testing with Jasmine.
 4. Add multiple presentation support in your application.
 
+# Requirements update 2
+
+1. Integrate Bootstrap framework in your application.
+2. Each function must have max 5 rows.
+3. Each class must have max 100 rows.
+4. Content must use a slideView for render.
+5. Jasmine test must be related to the application. (ex. Don't test Backbone functionality because it's already tested)
+6. Use less to write the CSS.
+7. Integrate "use strict" in your code and make it work.
+8. Use imediatly invoked functions.
+9. Use JSON when you create the collection. 
+10. Decouple the presentation list from the toolbarView and make a separete view for it. (presentationListView)
+11. Use a max of one global variable.(Application)
+
 ## Team
 
 #### [Vlad Pupaza] (https://github.com/vladpupaza)
