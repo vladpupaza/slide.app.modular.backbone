@@ -69,7 +69,7 @@ var appViewTemplate ={
 				<source src="<%=_url%>" type="video/ogg">\
 			</video>\
 		</div>\
-			<textarea class="text" maxlength="250" onkeyup="$(\'#contentView\').trigger(\'txtnbleft\')" onkeypress="$(\'#contentView\').trigger(\'txtnbleft\')" onblur="$(\'#contentView\').trigger(\'updateReady\')"    rows="4" cols="50"><%= _text %></textarea>\
+			<textarea class="text" maxlength="250" onkeyup="$(\'#contentView\').trigger(\'txtnbleft\')" onkeypress="$(\'#contentView\').trigger(\'txtnbleft\')"   rows="4" cols="50"><%= _text %></textarea>\
 			<div id="txtnb"></div>\
 		</div>\
 	</div>',
@@ -79,7 +79,7 @@ var appViewTemplate ={
 		<div id="draggebel" onclick="event.stopPropagation();" style="top:<%= _y %>;left:<%= _x %>;">\
 			<img src="<%= _url %>" alt="1"  style="width:460px; height:380px;" id="slide"/> \
 		</div>\
-			<textarea class="text" maxlength="250" onkeyup="$(\'#contentView\').trigger(\'txtnbleft\')" onkeypress="$(\'#contentView\').trigger(\'txtnbleft\')" onblur="$(\'#contentView\').trigger(\'updateReady\')"    rows="4" cols="50"><%= _text %></textarea>\
+			<textarea class="text" maxlength="250" onkeyup="$(\'#contentView\').trigger(\'txtnbleft\')" onkeypress="$(\'#contentView\').trigger(\'txtnbleft\')"     rows="4" cols="50"><%= _text %></textarea>\
 			<div id="txtnb"></div>\
 		</div>\
 	</div>',
@@ -90,7 +90,7 @@ var appViewTemplate ={
 		<div id="<%= id %>">\
 		<div id="draggebel" style="top:<%= _y %>;left:<%= _x %>;">\
 		</div>\
-			<textarea class="text" maxlength="250" onkeyup="$(\'#contentView\').trigger(\'txtnbleft\')" onkeypress="$(\'#contentView\').trigger(\'txtnbleft\')" onblur="$(\'#contentView\').trigger(\'updateReady\')"    rows="4" cols="50"><%= _text %></textarea>\
+			<textarea class="text" maxlength="250" onkeyup="$(\'#contentView\').trigger(\'txtnbleft\')" onkeypress="$(\'#contentView\').trigger(\'txtnbleft\')"  rows="4" cols="50"><%= _text %></textarea>\
 			<div id="txtnb"></div>\
 		</div>\
 	</div>'

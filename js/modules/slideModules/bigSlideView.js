@@ -63,10 +63,11 @@ var bigSlideView = Backbone.View.extend ({
      */
     initialize : function() {
         if (this.model) {
-			_.bind(this.render,this);  
+			_.bindAll(this,"render","updateText");  
 			this.changeTemplate();
             // binding I binde the change event of the model , to method rander of the object 
-            this.model.bind('change',this.initialize);  
+
+			
 
         }
     },
@@ -77,12 +78,14 @@ var bigSlideView = Backbone.View.extend ({
         /* render it will place the view on DOM , and call the addListener function, 
         witch needs that those elements to be painted */
         $(this.el).html(this.template(this.model.toJSON()));
-		
+		contentView.display(this.el);
         /*addListeners : here I set those to elements to listen  for events like mousedown/mouseup,
         and then to do those functions */
         $(this.el).find('#draggebel').mousedown(this.mouseDown);
-        $(this.el).find('#slideWorkArea').mouseup(  this.mouseUp); 
-        return this.el;
+        $(this.el).find('#slideWorkArea').mouseup(  this.mouseUp);  
+		$(this.el).find('.text').bind('focusout', this.updateText);
+		
+		return this;
     }, 
  
     /**
@@ -112,6 +115,7 @@ var bigSlideView = Backbone.View.extend ({
     *@method 
     */
     updateText : function() {
+		console.log('called');
         var text = $('.text')[0].value;
         this.model.set({"_text":text});
     }

@@ -85,8 +85,7 @@ var sidebarView=Backbone.View.extend({
 */
     renderAdd: function() {
         this.renders();
-        currentSlide=slideModulesObj.slides.at(idCurrent);
-		contentView.display(currentSlide.view.bigSlideView.render());
+        currentSlide=slideModulesObj.slides.at(idCurrent); 
         $("#"+(idCurrent)).addClass("currentSlide");
     },
 /**
@@ -96,8 +95,7 @@ var sidebarView=Backbone.View.extend({
         this.renders();
         console.log(idCurrent+" "+this.collection.length);
         if (idCurrent !== -1) {
-            currentSlide=slideModulesObj.slides.at(idCurrent);
-			contentView.display(currentSlide.view.bigSlideView.render());
+            currentSlide=slideModulesObj.slides.at(idCurrent); 
             $("#"+(idCurrent)).addClass("currentSlide");
         }
     },
@@ -108,8 +106,8 @@ var sidebarView=Backbone.View.extend({
 //get current slide
         e.preventDefault();
         var id =$(e.currentTarget).context.id;
-        currentSlide=this.collection.at(id);
-		contentView.display(currentSlide.view.bigSlideView.render());
+        currentSlide=this.collection.at(id); 
+		currentSlide.view.bigSlideViewRender();
 		idCurrent = id;
 //set current slide on sidebar
         $(".currentSlide").removeClass("currentSlide");
