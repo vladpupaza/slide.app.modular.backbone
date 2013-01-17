@@ -181,47 +181,37 @@ var  ToolbarView = Backbone.View.extend ({
     */
         pubSub.publish("removeVideoFromSlide");
     },
-    getUrl : function(){
-    /**
-    * @method    
-    */
+   getUrl : function(){
         var urlNou = this.el.find('#myTextAreaUrl').val();
         if (currentSlide.get("_type") === "Image") {
-            this.setCSSGetUrl(urlNou);
-            var that=this;
-            var image = $($('#testImg').html());
-            image.load(that.loadImage(urlNou)).error(function () {
-                that.testSpinner(); 
-                $("#spinner").hide();
-                alert("Please insert a valid URL");
-               
-            });
+            $('#toolbar label').html("Please wait...");
+            $("#spinner").show();
+            this.testImage(urlNou);
         } else if (this.validateUrl(urlNou)) {
-               that.testPublish(urlNou); 
+                pubSub.publish("getUrl",urlNou);
+                $("#wrapper").hide();
+                $("#spinner").hide();
         } else {
                 alert("Please insert a valid URL");
         }
     },
-    //set css and load 
-    setCSSGetUrl: function(urlNou){
-        $('#toolbar label').html("Please wait...");
-        $("#spinner").show();
-        $("#testImg img").attr("src",urlNou);
+    testImage: function(urlNou){
+            $("#testImg img").attr("src",urlNou);
+            var image = $($('#testImg').html());
+            that=this;
+            image.load(function () {    
+                $("#spinner").hide();
+                $('#toolbar label').html("");
+                pubSub.publish("getUrl",urlNou);
+                $("#wrapper").hide();
+                $("#testImg img").attr("src","");
+            }).error(that.imageLoadError);
     },
-    loadImage: function(urlNou){
-        this.testSpinner();
-        this.TestPublish(urlNou);  
-    },
-    //publishes the slides
-    testPublish: function(urlNou){
-        pubSub.publish("getUrl",urlNou);
-        $("#wrapper").hide();
+    imageLoadError: function(){
         $("#spinner").hide();
-    },
-    testSpinner: function(){
-       
-       $('#toolbar label').html("");
-       $("#testImg img").attr("src","");
+        $('#toolbar label').html("");
+        alert("Please insert a valid URL");
+        $("#testImg img").attr("src","");
     },
     //validates new url
     validateUrl : function(url) {
