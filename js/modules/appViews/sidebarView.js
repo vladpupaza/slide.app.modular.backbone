@@ -54,9 +54,7 @@ var sidebarView=Backbone.View.extend({
             $('div .slideLittle').last().attr("id",i);
         }
         $("#"+idCurrent).addClass("currentSlide");
-        if(typeof currentSlide!=='undefined') {
-            contentViewObj=new ContentView({model:currentSlide});
-        }
+
     },
 /**
 * @method
@@ -89,7 +87,6 @@ var sidebarView=Backbone.View.extend({
         this.renders();
         currentSlide=slideModulesObj.slides.at(idCurrent);
         $("#"+(idCurrent)).addClass("currentSlide");
-        contentViewObj=new ContentView({model:currentSlide});
     },
 /**
 * @method
@@ -100,7 +97,6 @@ var sidebarView=Backbone.View.extend({
         if (idCurrent !== -1) {
             currentSlide=slideModulesObj.slides.at(idCurrent);
             $("#"+(idCurrent)).addClass("currentSlide");
-            contentViewObj=new ContentView({model:currentSlide});
         }
     },
 /**
@@ -116,8 +112,6 @@ var sidebarView=Backbone.View.extend({
         $(".currentSlide").removeClass("currentSlide");
         $("#"+idCurrent).addClass("currentSlide");              
         idCurrent = id;
-//render current slide content
-        contentViewObj=new ContentView({model:currentSlide});
     },
 /**
 * @method
@@ -132,8 +126,6 @@ var sidebarView=Backbone.View.extend({
  //set current slide on sidebar
 				$(".currentSlide").removeClass("currentSlide");
 				$("#"+index).addClass("currentSlide");
-//render current slide content
-				contentViewObj=new ContentView({model:cs});
 		},
 		
 		setPresentation: function(){

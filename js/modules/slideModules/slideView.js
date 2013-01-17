@@ -3,11 +3,16 @@ define([
 'jquery',
 'underscore',
 'backbone',
-'js/modules/slideModules/slideTemplate'
+'js/modules/slideModules/slideTemplate',
+'js/modules/slideModules/bigSlideView'
 ],
-function ($, _, Backbone, slideTemplate){
+
+function ($, _, Backbone, slideTemplate,BigSlideView){
+    
+
     "use strict";
     /*global console:false*/
+
     /**
     *@class SlideView View for a Slide Model
     *@extends Backbone.View
@@ -29,8 +34,17 @@ function ($, _, Backbone, slideTemplate){
     /**
     *@method
     */
+
+	bigSlideView:{},
+	bigSlideViewRender:function(){
+		this.bigSlideView.render()
+		},
+	events:{
+		'click':'bigSlideViewRender'
+	},
     initialize: function () {
-        //bind the change event to this view's render function, so every time a model is changed the view is updated
+		this.bigSlideView= new BigSlideView({model:this.model});
+		 //bind the change event to this view's render function, so every time a model is changed the view is updated
         this.model.bind('change',function (){this.render();console.log('PUT ../slides/'+this.model.id);},this);
         //set this model's view to point to this object
         this.model.view = this;
