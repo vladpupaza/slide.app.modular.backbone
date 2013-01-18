@@ -26,19 +26,16 @@ function(_, Backbone,_localStorage,pubSub) {
     * @cfg Slides extends Backbone.Collection
     */ 
     var Slides = Backbone.Collection.extend ({
-    
-        /**
+
+        subscribeStatements : function() {
+          /**
 		 * @method
          * binds the functions with the messages for pubsub.subscribe
 		 */
-        subscribeStatements : function() {
             bindSubscribers(["addNewSlide","removeCurrentSlide","addImageToSlide","removeImageFromSlide","addVideoToSlide","removeVideoFromSlide","getUrl"],
             [this.addSlide,this.removeSlide,this.addImageToCurrentSlide,this.removeImageFromCurrentSlide,this.addVideoToCurrentSlide,this.removeVideoFromCurrentSlide,this.getUrlSubscriber]);
         },
         
-		/**
-		 * @method
-		 */
         addSlide : function() {
         /**
         *@method   
@@ -49,7 +46,7 @@ function(_, Backbone,_localStorage,pubSub) {
         */
             slideModulesObj.slides.add({"_type":typeViewObj.getCurrentType()});
             console.log("POST ../slides");
-			idCurrent=slideModulesObj.slides.length-1;
+			window.idCurrent=slideModulesObj.slides.length-1;
         },
         
 		removeSlide : function() {
