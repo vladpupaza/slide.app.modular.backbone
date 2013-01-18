@@ -5,10 +5,11 @@ define([], function() {
 var slideTemplate = {
 // SlideText Template
 "Text" : 
-'<div class="slideLittle"><div class="slideText"></div><%=_text%></div>',
+'<a href="#/slide/<%= id %>"><div class="slideLittle"><div class="slideText"></div><%=_text%></div></a>',
 // SlideVideo Template
 "Video" :
-'<div class="slideLittle">\
+'<a href="#/slide/<%= id %>">\
+<div class="slideLittle">\
     <div class="slideVideo">\
         <video width="200" height="140" controls>\
         <source src="<%=_url%>" type="video/ogg">\
@@ -16,13 +17,14 @@ var slideTemplate = {
         </video>\
     </div>\
     <%=_text%>\
-</div>',
+</div></a>',
 // SlideImage Template
 "Image" :
-'<div class="slideLittle">\
+'<a href="#/slide/<%= id %>">\
+	<div class="slideLittle">\
     <div class="slideImg">\
     <img src="<%=_url%>" alt="image" />\
-    </div><%=_text%></div>'
+    </div><%=_text%></div></a>'
 };
 return slideTemplate;
 });
