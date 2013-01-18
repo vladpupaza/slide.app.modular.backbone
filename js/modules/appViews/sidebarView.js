@@ -52,7 +52,8 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
             for (i=0;i<this.collection.length;i++) {
                     this.renderSlide(this.collection.at(i),i);                
             }
-            this.el.find("#"+Application.idCurrent).addClass("currentSlide");          
+            this.el.find("#"+Application.idCurrent).addClass("currentSlide");    
+
         },
     /**
     *@method
@@ -82,8 +83,8 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
     */
         renderAdd: function() {
             this.checkCollectionIsEmpty();
-            this.render(); 
-            this.setCurrentSlide(Application.slideModulesObj.slides.at(Application.idCurrent),Application.idCurrent);
+            this.render();  
+            this.setCurrentSlide(Application.idCurrent);
  
         },
     /**
@@ -91,9 +92,9 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
     */  
         renderRem: function() {
             this.checkCollectionIsEmpty();
-            this.render();
+            this.render(); 
             if (Application.idCurrent !== -1) {
-                this.setCurrentSlide(Application.slideModulesObj.slides.at(Application.idCurrent),Application.idCurrent);
+                this.setCurrentSlide(Application.idCurrent);
             }
  
         },
@@ -114,6 +115,7 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
             //set current slide on sidebar
             $(".currentSlide").removeClass("currentSlide");
             $("#"+index).addClass("currentSlide");
+            window.location.href="#"+this.el.find("#"+index).parent('a').attr('href'); 
             },
     /**
     *@mthod
