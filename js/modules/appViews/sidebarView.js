@@ -103,7 +103,7 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
         //set setCurrentSlide
             Application.currentSlide = cs;
             Application.idCurrent=index;
-            window.location.href="#/slide/"+Application.currentSlide.index;
+            window.location.href="#/slide/"+Application.currentSlide.id;
             //set current slide on sidebar
             $(".currentSlide").removeClass("currentSlide");
             $("#"+index).addClass("currentSlide");
