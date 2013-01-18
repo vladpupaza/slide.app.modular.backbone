@@ -73,6 +73,7 @@ var bigSlideView = Backbone.View.extend ({
     initialize : function() {
         if (this.model instanceof Backbone.Model) {
 			_.bindAll(this,"render","updateText");  
+			this.model.bind('change',this.render,this);
 			this.changeTemplate();
             // binding I binde the change event of the model , to method rander of the object 
 
