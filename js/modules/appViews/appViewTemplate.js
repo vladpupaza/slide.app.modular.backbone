@@ -8,29 +8,37 @@ define([], function(){
 
 	// Toolbar Template 
 	toolbar_buttons :
-	'<div id="toolbarB">\
-	<button type="button" id="newPresentationBtn">New Presentation</button>\
-	<button type="button" id="addSlideBtn">Add Slide</button>\
-	<button type="button" id="removeSlideBtn">Remove Slide</button>\
-	<button type="button" id="addImageToSlideBtn">Add Image</button>\
-	<button type="button" id="removeImageFromSlideBtn">Remove Image</button>\
-	<button type="button" id="addVideoBtn">Add Video</button>\
-	<button type="button" id="removeVideoBtn">Remove Video</button>\
-	<button type="button" id="slideshowBtn">Slideshow</button>\
-	<button type="button" id="saveBtn">Save</button>\
-	<button type="button" id="saveAsBtn">Save As...</button>\
-	<div id="presentationDropdown">\
-			<select id = "presentationOption">\
-				<option value="Select Presentation">Select Presentation</option>\
-			</select>\
-	</div>\
-	</div>\
-	</div>\
-	<div id="languageDtopdown">\
-		<select id = "languageOption">\
-			<option value="english" selected="selected">English</option>\
-			<option value="romanian">Romanian</option>\
-		</select>\
+	'<div class="navbar">\
+        <div class="navbar-inner">\
+            <div class="container">\
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">\
+                    <span class="icon-bar"></span>\
+                    <span class="icon-bar"></span>\
+                    <span class="icon-bar"></span>\
+                </a>\
+                <a class="brand" href="#">Slide Application</a>\
+                <div class="nav-collapse collapse navbar-responsive-collapse">\
+                    <ul class="nav">\
+                        <li id="newPresentationBtn"><a>New Presentation</a></li>\
+                        <li id="addSlideBtn"><a >Add Slide</a></li>\
+                        <li id="removeSlideBtn"><a >Remove Slide</a></li>\
+                        <li id="addImageToSlideBtn"><a >Add Image</a></li>\
+                        <li id="removeImageFromSlideBtn"><a>Remove Image</a></li>\
+                        <li id="addVideoBtn"><a >Add Video</a></li>\
+                        <li id="removeVideoBtn"><a >Remove Video</a></li>\
+                        <li id="slideshowBtn"><a >Slideshow</a></li>\
+                        <li id="saveBtn"><a >Save</a></li>\
+                        <li id="saveAsBtn"><a >Save As...</a></li>\
+                        <li class="dropdown">\
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Presentation <b class="caret"></b></a>\
+                            <ul id = "presentationOption" class="dropdown-menu">\
+                                <li><a href="">none</a></li>\
+                            </ul>\
+                        </li>\
+                    </ul>\
+                </div><!-- /.nav-collapse -->\
+            </div>\
+        </div><!-- /navbar-inner -->\
 	</div>\
 	<div id="wrapper"><div id="insertImageUrl">\
             <textarea name="myTextAreaImageUrl"cols="20" rows="2" id="myTextAreaUrl">Insert image url here</textarea>\
