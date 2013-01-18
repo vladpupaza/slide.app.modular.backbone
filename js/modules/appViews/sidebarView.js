@@ -117,7 +117,9 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
             if (Application.slideModulesObj.slides.length >= 1) {
                 var cs=Application.slideModulesObj.slides.at(0);
                 Application.sidebarViewObj.setCurrentSlide(cs,0);
-            } 
+            } else {
+                 $("#content").html("");
+            }
         },
     /**
     *@mthod
