@@ -1,12 +1,11 @@
-/*global define,idCurrent,slideModulesObj,sidebarViewObj:true*/
+/*global define,Application:true*/
 define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js/modules/appViews/contentView','js/libs/pubsub'],
-    function ($,_,Backbone,SlideView,ContentView,pubSub)
-{
+function ($,_,Backbone,SlideView,ContentView,pubSub) {
 /**
 * @cfg sidebarView extends Backbone.View
 */
     "use strict";
-    var sidebarView=Backbone.View.extend({
+    var sidebarView=Backbone.View.extend( {
     /**
     * @property
     * @type html element
@@ -75,9 +74,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
         renderAdd: function() {
             this.checkCollectionIsEmpty();
             this.render();
-            Application.currentSlide = Application.slideModulesObj.slides.at(Application.idCurrent);
-			window.location.href="#/slide/"+Application.currentSlide.id;
-            $("#"+(Application.idCurrent)).addClass("currentSlide");
+            this.setCurrentSlide(Application.slideModulesObj.slides.at(Application.idCurrent),Application.idCurrent);
         },
     /**
     * @method
@@ -86,55 +83,46 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
             this.checkCollectionIsEmpty();
             this.render();
             if (Application.idCurrent !== -1) {
-                Application.currentSlide = Application.slideModulesObj.slides.at(idCurrent); 
-				window.location.href="#/slide/"+Application.currentSlide.id;
-                $("#"+(Application.idCurrent)).addClass("currentSlide");
+                this.setCurrentSlide(Application.slideModulesObj.slides.at(Application.idCurrent),Application.idCurrent);
             }
         },
     /**
     * @method
     */
         selectSlide:function(e) {       
-    //get current slide
-            var id =$(e.currentTarget).context.id;
-            Application.currentSlide=this.collection.at(id); 
-            window.location.href="#/slide/"+Application.currentSlide.id;
-            Application.idCurrent = id;
-    //set current slide on sidebar
-            $(".currentSlide").removeClass("currentSlide");
-            $("#"+Application.idCurrent).addClass("currentSlide");              
+            //get currently selected slide
+            var id =$(e.currentTarget).context.id; 
+            this.setCurrentSlide(this.collection.at(id),id);      
         },
     /**
     * @method
     * @param {Slide} currentSlide current selected slide of app
     * @param {int} index the index of current slide in our collection
     */
-
-
-            setCurrentSlide:function(cs,index) {
-            //set setCurrentSlide
-                    Application.currentSlide = cs;
+        setCurrentSlide:function(cs,index) {
+        //set setCurrentSlide
+            Application.currentSlide = cs;
+            Application.idCurrent=index;
+            window.location.href="#/slide/"+Application.currentSlide.index;
             //set current slide on sidebar
-                    $(".currentSlide").removeClass("currentSlide");
-                    $("#"+index).addClass("currentSlide");
+            $(".currentSlide").removeClass("currentSlide");
+            $("#"+index).addClass("currentSlide");
             },
     /**
     *@mthod
-    */
-            
-            setPresentation: function(){
-                if (Application.slideModulesObj.slides.length >= 1) {
-                    var cs=Application.slideModulesObj.slides.at(0);
-                    Application.sidebarViewObj.setCurrentSlide(cs,0);
-                } 
-            },
+    */ 
+        setPresentation: function(){
+            if (Application.slideModulesObj.slides.length >= 1) {
+                var cs=Application.slideModulesObj.slides.at(0);
+                Application.sidebarViewObj.setCurrentSlide(cs,0);
+            } 
+        },
     /**
     *@mthod
     */
-            subscribeStatements: function() {
-                pubSub.subscribe("change presentation reset collection",this.setPresentation); 
-            }
+        subscribeStatements: function() {
+            pubSub.subscribe("change presentation reset collection",this.setPresentation); 
+        }
     });
     return sidebarView;
-
 });
