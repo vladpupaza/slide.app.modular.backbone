@@ -1,6 +1,6 @@
 /*global define:false*/
-define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub','bootstraps'],
-function($,_,Backbone,toolbarTemplate,pubSub,bootstraps){
+define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub'],
+function($,_,Backbone,toolbarTemplate,pubSub){
 /**
 * @cfg ToolbarView extends Backbone.View
 */
@@ -258,7 +258,7 @@ var  ToolbarView = Backbone.View.extend ({
     */
     validateUrl: function(url) {
         var i;
-        var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', i);
+        var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\\-_]+(\\.[a-z0-9\\-_]+)+([a-z0-9\\-\\.,@\\?^=%&;:/~\\+#]*[a-z0-9\\-@\\?^=%&;/~\\+#])?', i);
         if (urlPattern.test(url)) {
                 return true;
         } else {
@@ -298,8 +298,8 @@ var  ToolbarView = Backbone.View.extend ({
     *
     */                
     save : function() {
-        localStorage.setItem(window.currentPresentation,JSON.stringify(slideModulesObj.slides));
-        this.saveMessage(window.currentPresentation);     
+        localStorage.setItem(window.Application.currentPresentation,JSON.stringify(slideModulesObj.slides));
+        this.saveMessage(window.Application.currentPresentation);     
        
     },
     /**
