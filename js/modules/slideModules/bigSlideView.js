@@ -1,6 +1,15 @@
 define(['underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub'], 
-function(_, Backbone,Template,pubSub) {
-
+function(_, Backbone,Template,pubSub) 
+{
+// private function that avoid users to inject html code
+var escape_html= function(text){
+        var t=text.replace(/&/g,"&amp;");
+        t=t.replace(/>/g,"&gt;");
+        t=t.replace(/</g,"&lt;");
+        //t=t.replace(/'/g,"&quot;");
+    return t;
+    }
+    
 /* @class ContentView the class of content view
  * @extends Backbone.View
  * @param  as param recives the model of the curent slide
@@ -116,7 +125,7 @@ var bigSlideView = Backbone.View.extend ({
     updateText : function() {
 		console.log('called');
         var text = $('.text')[0].value;
-        this.model.set({"_text":text});
+        this.model.set({"_text":escape_html(text)});
     }
 });
 return bigSlideView;
