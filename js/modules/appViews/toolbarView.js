@@ -1,3 +1,4 @@
+/*global define:false*/
 define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub','bootstraps'],
 function($,_,Backbone,toolbarTemplate,pubSub,bootstraps){
 /**
@@ -8,9 +9,8 @@ function($,_,Backbone,toolbarTemplate,pubSub,bootstraps){
 /*global slideModulesObj:false*/
 /*global alert:false*/
 /*global currentSlide:false*/
-/*global bootstraps:false*/
 /*global prompt:false*/
-
+/*global sidebarViewObj:false*/
 var  ToolbarView = Backbone.View.extend ({
     /**
     * @property
