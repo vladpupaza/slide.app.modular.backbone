@@ -1,9 +1,10 @@
 /*jshint multistr:true */
+/*global define:false*/
 
 define([], function(){
+    "use strict";
 
-var appViewTemplate ={
-
+    var appViewTemplate ={
 
 	// Toolbar Template 
 	toolbar_buttons :
