@@ -124,7 +124,7 @@ var  ToolbarView = Backbone.View.extend ({
     */
     newPresentation: function() {
     
-        slideModulesObj.slides.reset(); 
+        window.Application.slideModulesObj.slides.reset(); 
         $('#content').html('');
         this.el.find('#presentationOption').val('Select Presentation').attr('selected',true);
     },
@@ -140,7 +140,7 @@ var  ToolbarView = Backbone.View.extend ({
     */
     removeSlide: function() { 
     
-        if (slideModulesObj.slides.length !== 0) { 
+        if (window.Application.slideModulesObj.slides.length !== 0) { 
             pubSub.publish("removeCurrentSlide");  
         }
     },
@@ -298,7 +298,7 @@ var  ToolbarView = Backbone.View.extend ({
     *
     */                
     save : function() {
-        localStorage.setItem(window.Application.currentPresentation,JSON.stringify(slideModulesObj.slides));
+        localStorage.setItem(window.Application.currentPresentation,JSON.stringify(window.Application.slideModulesObj.slides));
         this.saveMessage(window.Application.currentPresentation);     
        
     },
@@ -332,7 +332,7 @@ var  ToolbarView = Backbone.View.extend ({
     confirmRename: function(name,presentations) {
         if (confirm("Are you sure you want to replace this presentation?")) {
             localStorage.setItem('presentations',JSON.stringify(presentations));
-            localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+            localStorage.setItem(name,JSON.stringify(window.Application.slideModulesObj.slides));
             pubSub.publish("setCurrentPresentation",name);
         } else {
             this.saveAs();
@@ -345,7 +345,7 @@ var  ToolbarView = Backbone.View.extend ({
     addNewPresentation: function(presentations,name) {
         presentations.push(name);
         localStorage.setItem('presentations',JSON.stringify(presentations));
-        localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+        localStorage.setItem(name,JSON.stringify(window.Application.slideModulesObj.slides));
         pubSub.publish("presentationAdded",name);
     },
     /**
@@ -355,7 +355,7 @@ var  ToolbarView = Backbone.View.extend ({
     firstPresentation: function(name) {
         var firstPresentation = [name];
         localStorage.setItem('presentations',JSON.stringify(firstPresentation));
-        localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+        localStorage.setItem(name,JSON.stringify(window.Application.slideModulesObj.slides));
         pubSub.publish("presentationAdded",name);
     },
     /**
@@ -420,8 +420,8 @@ var  ToolbarView = Backbone.View.extend ({
     */
     nextSlide: function(i,that){
         setInterval(function () {
-                sidebarViewObj.setCurrentSlide(slideModulesObj.slides.at(i),i);
-                that.hideSlideshowBar(i,slideModulesObj.slides.length,this);           
+                sidebarViewObj.setCurrentSlide(window.Application.slideModulesObj.slides.at(i),i);
+                that.hideSlideshowBar(i,window.Application.slideModulesObj.slides.length,this);           
                 i++;
                 },4000);
     },
@@ -431,7 +431,7 @@ var  ToolbarView = Backbone.View.extend ({
     */
     slideshow : function() {
     
-        if (slideModulesObj.slides.length === 0) {            
+        if (window.Application.slideModulesObj.slides.length === 0) {            
             alert("No slides to be shown");
         } else {     
             $("#slideshowMode").css('visibility','visible');
