@@ -22,6 +22,7 @@ require(['js/modules/appViews/appModule'], function (AppModule) {
  */
     "use strict";
     window.idCurrent = -1;
+    window.currentPresentation;
 /** We create a appView object that is used to render the app
  * @property
  * @type object
