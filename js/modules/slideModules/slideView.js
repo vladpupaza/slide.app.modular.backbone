@@ -69,7 +69,7 @@ function ($, _, Backbone, slideTemplate,BigSlideView){
     renders: function(tip){
         this.template= _.template(slideTemplate[tip]);
         $(this.el).html(this.template(this.model.toJSON()));
-        return this.el;
+        return this.el.innerHTML;
     }
     });
     return SlideView;
