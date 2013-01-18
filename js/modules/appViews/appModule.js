@@ -12,6 +12,7 @@ define([
     ],
 
 function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type,presentationOptionView) {
+
 /**
  * @class AppModule A View representing the UI
  * @constructor
@@ -35,12 +36,31 @@ function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type,presentati
  * @type object
  */
         window.toolbarViewObj = new Toolbar();
+
 /** 
  * @property
  * @type object
  */       
         window.presentationOptionViewObj = new presentationOptionView();
         window.presentationOptionViewObj.subscribeStatements();
+
+		
+		var BigSlideView=new Content();		
+		var Router = Backbone.Router.extend({
+			routes:{
+				'':'home',
+				'slide/:id':'bigSlideView'
+			},
+			bigSlideView:function(id){
+				BigSlideView.render({id:id});
+				}
+		});
+		
+
+		window.router=new Router(); 
+		
+		Backbone.history.start();
+
 /**
  * @method
  * @param {exception} e An exception
@@ -50,7 +70,6 @@ function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type,presentati
             div.style.top = ( e.clientY -300)+ 'px';
             div.style.left = ( e.clientX -750)+ 'px';
         };
-		window.contentView=new Content();
 
 /** 
  * @property

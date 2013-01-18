@@ -1,5 +1,10 @@
-define(['underscore', 'backbone','js/libs/pubsub'], 
-function(_, Backbone,pubSub) {
+define([
+	'underscore',
+	'backbone',
+	'js/libs/pubsub',
+	'js/modules/slideModules/bigSlideView'
+	], 
+function(_, Backbone,pubSub,bigslide) {
 
 /* @class ContentView the class of content view
  * @extends Backbone.View
@@ -8,14 +13,16 @@ function(_, Backbone,pubSub) {
 var contentView = Backbone.View.extend ({
 	el:'#content',
 	tagName:'div',
-	display:function(data){
-		this.render(data);
-	},
 	initialize:function(){
 		_.bindAll(this,'render');  
 	},
 	render:function(data){
-		$(this.el).html(data);
+		if(data.id){
+			var obj=slideModulesObj.slides.get(data.id);
+			var slide=new bigslide({model:obj});
+			$(this.el).html(slide.render().el);
+			
+		}
 	} 
 });
 return contentView;

@@ -78,7 +78,6 @@ var bigSlideView = Backbone.View.extend ({
         /* render it will place the view on DOM , and call the addListener function, 
         witch needs that those elements to be painted */
         $(this.el).html(this.template(this.model.toJSON()));
-		contentView.display(this.el);
         /*addListeners : here I set those to elements to listen  for events like mousedown/mouseup,
         and then to do those functions */
         $(this.el).find('#draggebel').mousedown(this.mouseDown);
