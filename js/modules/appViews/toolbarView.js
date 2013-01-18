@@ -1,8 +1,15 @@
+/*global define:false*/
 define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub','bootstraps'],
-function($,_,Backbone,toolbarTemplate,pubSub,bootstraps){
+function($,_,Backbone,toolbarTemplate,pubSub){
 /**
 * @cfg ToolbarView extends Backbone.View
 */
+"use strict";
+/*global confirm:false*/
+/*global alert:false*/
+/*global currentSlide:false*/
+/*global prompt:false*/
+/*global sidebarViewObj:false*/
 var  ToolbarView = Backbone.View.extend ({
     /**
     * @property
@@ -10,7 +17,7 @@ var  ToolbarView = Backbone.View.extend ({
     */ 
     el : $("#toolbar"),
     initialize : function(){
-        this.render();			
+        this.render();
     },
     /**
     * @template 
@@ -111,57 +118,65 @@ var  ToolbarView = Backbone.View.extend ({
     */    
         "click #slideshowBtn":"slideshow" 
     },
-    newPresentation: function() {
     /**
     * @method    
     */
-        slideModulesObj.slides.reset(); 
+    newPresentation: function() {
+    
+        window.Application.slideModulesObj.slides.reset(); 
         $('#content').html('');
         this.el.find('#presentationOption').val('Select Presentation').attr('selected',true);
     },
-    addSlide: function() { 
-    /**
+     /**
     * @method    
     */
+    addSlide: function() { 
+   
         pubSub.publish("addNewSlide");
     },
-    removeSlide: function() { 
     /**
     * @method    
     */
-        if (slideModulesObj.slides.length !== 0) { 
+    removeSlide: function() { 
+    
+        if (window.Application.slideModulesObj.slides.length !== 0) { 
             pubSub.publish("removeCurrentSlide");  
         }
     },
-    addImage: function() { 
     /**
     * @method    
     */
+    addImage: function() { 
+    
         pubSub.publish("addImageToSlide");   
     },
-    removeImage: function(){ 
     /**
     * @method    
     */
+    removeImage: function(){ 
+    
         pubSub.publish("removeImageFromSlide");    
     },
-    addVideo: function() { 
     /**
     * @method    
     */
+    addVideo: function() { 
+    
         pubSub.publish("addVideoToSlide"); 
     },
-    removeVideo: function() {
     /**
     * @method    
     */
+    removeVideo: function() {
+    
         pubSub.publish("removeVideoFromSlide");
     },
-    getUrl : function(){
     /**
     * @method    
     * @ that calls the testImage method or testVideo method
     */
+    getUrl : function(){
+    
         var urlNou = this.el.find("#myTextAreaUrl").val();
         if (currentSlide.get("_type") === "Image") {
             this.testImage(urlNou);
@@ -169,11 +184,12 @@ var  ToolbarView = Backbone.View.extend ({
             this.testVideo(urlNou);
         }
     },
-    testVideo: function(urlNou){
-    /**
+     /**
     * @method    
     * @ that tests the video url
     */
+    testVideo: function(urlNou){
+   
         if (this.validateUrl(urlNou)) {
             pubSub.publish("getUrl",urlNou);
             this.hideHelpers();
@@ -181,102 +197,114 @@ var  ToolbarView = Backbone.View.extend ({
             alert("Please insert a valid URL");
         }
     },
-    testImage: function(urlNou){
     /**
     * @method    
     * @ that tests the image url
     */
+    testImage: function(urlNou){
+    
         this.showHelpers(urlNou);
         var image = $($("#testImg").html());
         this.loadTestImage(image,urlNou);
     },
-    loadTestImage: function(image,urlNou){
-    /**
+     /**
     * @method    
     * @ loads test image
     */
+    loadTestImage: function(image,urlNou){
+   
         var that = this;
         image.load(function () {    
             pubSub.publish("getUrl",urlNou);
             that.hideHelpers();
         }).error(that.imageLoadError);
     },
-    showHelpers: function(urlNou){
     /**
     * @method    
     * @ shows spinners, labels and insersts url to the test img tag
     */
+    showHelpers: function(urlNou){
+    
         $("#toolbar label").html("Please wait...");
         $("#spinner").show();
         $("#testImg img").attr("src",urlNou);
     },
-    hideHelpers: function(){
     /**
     * @method    
     * @ hides the wrapper,spinner,label, and empties the url of the test img tag
     */
+    hideHelpers: function(){
+    
         $("#wrapper").hide();
         $("#spinner").hide();
         $("#toolbar label").html("");
         $("#testImg img").attr("src","");
     },
-    imageLoadError: function(){
     /**
     * @method    
     * @ shows error alert
     */
+    imageLoadError: function(){
+    
         $("#spinner").hide();
         $("#toolbar label").html("");
         alert("Please insert a valid URL");
         $("#testImg img").attr("src","");
     },
-    
-    validateUrl: function(url) {
     /**
     * @method    
     * @ validates new url
     */
-        var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', 'i');
+    validateUrl: function(url) {
+        var i;
+        var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\\-_]+(\\.[a-z0-9\\-_]+)+([a-z0-9\\-\\.,@\\?^=%&;:/~\\+#]*[a-z0-9\\-@\\?^=%&;/~\\+#])?', i);
         if (urlPattern.test(url)) {
                 return true;
         } else {
             return false;
         }    
     },
+    /**
+    * @method   
+    * @ hides the wrapper and the spinner        
+    */
     cancelUrl: function() {
-        /**
-        * @method   
-        * @ hides the wrapper and the spinner        
-        */
+       
         $("#wrapper").hide();
         $("#spinner").hide();
-    },   
+    }, 
+     /**
+    *@method 
+    * sets text to notfification bar and makes it visible
+    */  
     sendSaveNotification: function(message) {
-        /**
-        *@method 
-        * sets text to notfification bar and makes it visible
-        */
+       
         $("#notifBar").html(message);
                     $("#notifBar").css("visibility","visible");
                     setTimeout(function hide() {
                     $("#notifBar").css("visibility","hidden");
                     },4000);          
     },
-    addZero : function(num) {
-                    return (num >= 0 && num < 10) ? "0" + num : num + "";
-    },               
-    save : function() {
     /**
     * @method    
     *
-    */           
-        if ($("#presentationOption").val() !== 'Select Presentation') {
-            localStorage.setItem($("#presentationOption").val(),JSON.stringify(slideModulesObj.slides));
-            this.saveMessage($("#presentationOption").val());     
-        } else {
-            alert("You should use save as first");
-        }
+    */ 
+    addZero : function(num) {
+                    return (num >= 0 && num < 10) ? "0" + num : num + "";
     },
+    /**
+    * @method    
+    *
+    */                
+    save : function() {
+        localStorage.setItem(window.Application.currentPresentation,JSON.stringify(window.Application.slideModulesObj.slides));
+        this.saveMessage(window.Application.currentPresentation);     
+       
+    },
+    /**
+    * @method    
+    *
+    */ 
     saveMessage: function(name){
         var currentDate = new Date();
         var saveString = name+" was saved at "+this.addZero(currentDate.getHours())+":"+
@@ -284,36 +312,55 @@ var  ToolbarView = Backbone.View.extend ({
             this.addZero(currentDate.getMonth()+1)+"/"+currentDate.getFullYear()+" )";
         this.sendSaveNotification(saveString);
     },
+    /**
+    * @method    
+    *
+    */ 
     unicPresentation: function(presentations,l,name){
-        for (i=0; i<l; i++) {
+        for (var i=0; i<l; i++) {
             if (presentations[i] === name) {
                 return true;
             }
         }    
         return false;         
     },
- 
+    /**
+    * @method    
+    *
+    */ 
     confirmRename: function(name,presentations) {
         if (confirm("Are you sure you want to replace this presentation?")) {
             localStorage.setItem('presentations',JSON.stringify(presentations));
-            localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+            localStorage.setItem(name,JSON.stringify(window.Application.slideModulesObj.slides));
             pubSub.publish("setCurrentPresentation",name);
         } else {
             this.saveAs();
         }
     },
+    /**
+    * @method    
+    *
+    */ 
     addNewPresentation: function(presentations,name) {
         presentations.push(name);
         localStorage.setItem('presentations',JSON.stringify(presentations));
-        localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+        localStorage.setItem(name,JSON.stringify(window.Application.slideModulesObj.slides));
         pubSub.publish("presentationAdded",name);
     },
+    /**
+    * @method    
+    *
+    */ 
     firstPresentation: function(name) {
         var firstPresentation = [name];
         localStorage.setItem('presentations',JSON.stringify(firstPresentation));
-        localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+        localStorage.setItem(name,JSON.stringify(window.Application.slideModulesObj.slides));
         pubSub.publish("presentationAdded",name);
     },
+    /**
+    * @method    
+    *
+    */ 
     checkingPresentations: function(name){
         // checks if there is something in local storage
         var presentations = JSON.parse(localStorage.getItem("presentations"));
@@ -326,6 +373,10 @@ var  ToolbarView = Backbone.View.extend ({
             return true;
         }
     },
+    /**
+    * @method    
+    *
+    */ 
     savePresentation: function(name){
         if (name) {
             if (localStorage.getItem("presentations")) {
@@ -340,44 +391,46 @@ var  ToolbarView = Backbone.View.extend ({
         }
         return false;
     },
-  
-    saveAs: function(){
     /**
-    * @method
-    */
-        var name = prompt("Give the name for the presentation","untitled");
+    * @method    
+    *
+    */ 
+    saveAs: function(){
+    var name = prompt("Give the name for the presentation","untitled");
         if (this.savePresentation(name)) {
             //if the presentation is saved show a notification bar
             this.saveMessage(name);
         }
     },
-    hideSlideshowBar: function(i,slidesLength,timer){
     /**
-    * @method
+    *@method
     *@ hides slideshow notify bar
     */
+    hideSlideshowBar: function(i,slidesLength,timer){
+   
         if (i === slidesLength-1) {
             clearInterval(timer);
             $("#slideshowMode").css('visibility','hidden');
         }
     },
-    nextSlide: function(i,that){
     /**
     * @method
     * @shows the next slide
     */
-        var timer = setInterval(function () {
-                sidebarViewObj.setCurrentSlide(slideModulesObj.slides.at(i),i);
-                that.hideSlideshowBar(i,slideModulesObj.slides.length,this);           
+    nextSlide: function(i,that){
+        setInterval(function () {
+                sidebarViewObj.setCurrentSlide(window.Application.slideModulesObj.slides.at(i),i);
+                that.hideSlideshowBar(i,window.Application.slideModulesObj.slides.length,this);           
                 i++;
                 },4000);
     },
-    slideshow : function() {
     /**
     * @method
     * @checks starts the presentation if there are slides in it
     */
-        if (slideModulesObj.slides.length === 0) {            
+    slideshow : function() {
+    
+        if (window.Application.slideModulesObj.slides.length === 0) {            
             alert("No slides to be shown");
         } else {     
             $("#slideshowMode").css('visibility','visible');
