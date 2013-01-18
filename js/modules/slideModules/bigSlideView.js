@@ -128,7 +128,6 @@ var bigSlideView = Backbone.View.extend ({
     *@method 
     */
     updateText : function() {
-		console.log('called');
         var text = $('.text')[0].value;
         this.model.set({"_text":escape_html(text)});
     }
