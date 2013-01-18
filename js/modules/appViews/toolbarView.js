@@ -4,6 +4,13 @@ function($,_,Backbone,toolbarTemplate,pubSub,bootstraps){
 * @cfg ToolbarView extends Backbone.View
 */
 "use strict";
+/*global confirm:false*/
+/*global slideModulesObj:false*/
+/*global alert:false*/
+/*global currentSlide:false*/
+/*global bootstraps:false*/
+/*global prompt:false*/
+
 var  ToolbarView = Backbone.View.extend ({
     /**
     * @property
@@ -11,7 +18,7 @@ var  ToolbarView = Backbone.View.extend ({
     */ 
     el : $("#toolbar"),
     initialize : function(){
-        this.render();			
+        this.render();
     },
     /**
     * @template 
@@ -251,7 +258,7 @@ var  ToolbarView = Backbone.View.extend ({
     */
     validateUrl: function(url) {
         var i;
-        var urlPattern = new RegExp('(http|ftp|https):\/\/[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', i);
+        var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', i);
         if (urlPattern.test(url)) {
                 return true;
         } else {
@@ -291,13 +298,9 @@ var  ToolbarView = Backbone.View.extend ({
     *
     */                
     save : function() {
-              
-        if ($("#presentationOption").val() !== 'Select Presentation') {
-            localStorage.setItem($("#presentationOption").val(),JSON.stringify(slideModulesObj.slides));
-            this.saveMessage($("#presentationOption").val());     
-        } else {
-            alert("You should use save as first");
-        }
+        localStorage.setItem(window.currentPresentation,JSON.stringify(slideModulesObj.slides));
+        this.saveMessage(window.currentPresentation);     
+       
     },
     /**
     * @method    
