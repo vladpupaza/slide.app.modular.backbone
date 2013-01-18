@@ -1,12 +1,11 @@
 /*global define:false*/
-define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub'],
+define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub','bootstraps'],
 function($,_,Backbone,toolbarTemplate,pubSub){
 /**
 * @cfg ToolbarView extends Backbone.View
 */
 "use strict";
 /*global confirm:false*/
-/*global slideModulesObj:false*/
 /*global alert:false*/
 /*global currentSlide:false*/
 /*global prompt:false*/
