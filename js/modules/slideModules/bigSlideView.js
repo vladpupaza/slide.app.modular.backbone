@@ -1,6 +1,9 @@
-define(['underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub'], 
-function(_, Backbone,Template,pubSub) 
+define(['underscore', 'backbone','js/modules/appViews/appViewTemplate'], 
+function(_, Backbone,Template) 
 {
+	"use strict";
+    /*global Application:true*/
+	
 // private function that avoid users to inject html code
 var escape_html= function(text){
         var t=text.replace(/&/g,"&amp;");
@@ -8,7 +11,7 @@ var escape_html= function(text){
         t=t.replace(/</g,"&lt;");
         //t=t.replace(/'/g,"&quot;");
     return t;
-    }
+    };
     
 /* @class ContentView the class of content view
  * @extends Backbone.View
@@ -85,16 +88,16 @@ var bigSlideView = Backbone.View.extend ({
     *@method
     */
     render : function() { 
-	   if (this.model instanceof Backbone.Model) {
-        /* render it will place the view on DOM , and call the addListener function, 
-        witch needs that those elements to be painted */
-        $(this.el).html(this.template(this.model.toJSON()));
-        /*addListeners : here I set those to elements to listen  for events like mousedown/mouseup,
-        and then to do those functions */
-        $(this.el).find('#draggebel').mousedown(this.mouseDown);
-        $(this.el).find('#slideWorkArea').mouseup(  this.mouseUp);  
-		$(this.el).find('.text').bind('focusout', this.updateText);
-	   }
+		if (this.model instanceof Backbone.Model) {
+			/* render it will place the view on DOM , and call the addListener function, 
+			witch needs that those elements to be painted */
+			$(this.el).html(this.template(this.model.toJSON()));
+			/*addListeners : here I set those to elements to listen  for events like mousedown/mouseup,
+			and then to do those functions */
+			$(this.el).find('#draggebel').mousedown(this.mouseDown);
+			$(this.el).find('#slideWorkArea').mouseup(  this.mouseUp);  
+			$(this.el).find('.text').bind('focusout', this.updateText);
+		}
 		return this;
     }, 
  
@@ -103,12 +106,12 @@ var bigSlideView = Backbone.View.extend ({
      */
     mouseUp : function ()
     {
-        document.getElementById('slideWorkArea').removeEventListener('mousemove', divMove, true);
+        document.getElementById('slideWorkArea').removeEventListener('mousemove', Application.divMove, true);
         if ($('#draggebel').css('top') !== 'auto') {
             //I'm passing the event as silent , so I can set the x too without to re-render the view
             //before bothe changes are applyed  
-            currentSlide.set({_y:$('#draggebel').css('top')},{silent: true});
-            currentSlide.set({_x:$('#draggebel').css('left')},{silent: true});
+            Application.currentSlide.set({_y:$('#draggebel').css('top')},{silent: true});
+            Application.currentSlide.set({_x:$('#draggebel').css('left')},{silent: true});
         }
     },
     /** 
@@ -117,7 +120,7 @@ var bigSlideView = Backbone.View.extend ({
     mouseDown : function(e) {
         //this function is called so I will be able to move the draggebel div , base on event's 
         //coordonates
-        document.getElementById('slideWorkArea').addEventListener('mousemove', divMove, true);
+        document.getElementById('slideWorkArea').addEventListener('mousemove', Application.divMove, true);
         //I allso prevent the chields elements from DOM to capture the event e 
         e.preventDefault();
     },

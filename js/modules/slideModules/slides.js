@@ -46,7 +46,9 @@ function(_, Backbone,_localStorage,pubSub) {
         */
             Application.slideModulesObj.slides.add({"_type":Application.typeViewObj.getCurrentType()});
             console.log("POST ../slides");
+ 
 			Application.idCurrent=Application.slideModulesObj.slides.length-1;
+ 
         },
         
 		removeSlide : function() {
@@ -54,8 +56,10 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@remove slide function          
         */
-            if ( idCurrent !== -1 ) {
-                Application.slideModulesObj.slides.remove(currentSlide);
+ 
+            if ( Application.idCurrent !== -1 ) {
+                slideModulesObj.slides.remove(Application.currentSlide);
+ 
                 console.log('DELETE ../slides/id');
             }
         },
