@@ -46,7 +46,9 @@ function(_, Backbone,_localStorage,pubSub) {
         */
             Application.slideModulesObj.slides.add({"_type":Application.typeViewObj.getCurrentType()});
             console.log("POST ../slides");
+ 
 			Application.idCurrent=Application.slideModulesObj.slides.length-1;
+ 
         },
         
 		removeSlide : function() {

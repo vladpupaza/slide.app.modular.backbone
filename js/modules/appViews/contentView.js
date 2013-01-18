@@ -4,9 +4,12 @@ define([
 	'js/libs/pubsub',
 	'js/modules/slideModules/bigSlideView'
 	], 
-function(_, Backbone,pubSub,bigslide) {
-
-/* @class ContentView the class of content view
+function(_, Backbone,pubSub,BigSlide) {
+	"use strict";
+    /*global Application:true*/
+	
+/**
+ * @class ContentView the class of content view
  * @extends Backbone.View
  * @param  as param recives the model of the curent slide
      */
@@ -16,14 +19,16 @@ var contentView = Backbone.View.extend ({
 	initialize:function(){
 		_.bindAll(this,'render');  
 	},
+	/**
+	 *@method
+	 */
 	render:function(data){
 		if(data.id){
 			var obj=Application.slideModulesObj.slides.get(data.id);
-			var slide=new bigslide({model:obj});
+			var slide=new BigSlide({model:obj});
 			$(this.el).html(slide.render().el);
-			
 		}
-	} 
+	}
 });
 return contentView;
 });

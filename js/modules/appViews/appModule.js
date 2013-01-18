@@ -44,14 +44,14 @@ function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, C
         Application.presentationOptionViewObj.subscribeStatements();
 
 		
-		var BigSlideView=new Content();		
+		var content=new Content();		
 		var Router = Backbone.Router.extend({
 			routes:{
 				'':'home',
 				'slide/:id':'bigSlideView'
 			},
 			bigSlideView:function(id){
-				BigSlideView.render({id:id});
+				content.render({id:id});
 				}
 		});
 		
@@ -64,7 +64,7 @@ function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, C
  * @method
  * @param {exception} e An exception
  */     
-        window.divMove = function (e) {    
+        Application.divMove = function (e) {    
             var div = document.getElementById('draggebel'); 
             div.style.top = ( e.clientY -300)+ 'px';
             div.style.left = ( e.clientX -750)+ 'px';
