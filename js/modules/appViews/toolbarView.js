@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub'],
-function($,_,Backbone,toolbarTemplate,pubSub){
+define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub','bootstraps'],
+function($,_,Backbone,toolbarTemplate,pubSub,bootstraps){
 /**
 * @cfg ToolbarView extends Backbone.View
 */

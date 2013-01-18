@@ -9,6 +9,7 @@ require.config ( {
  */ 
     paths: {
     jquery: 'js/libs/jquery/jquery-1.8.3',
+    bootstraps: 'js/libs/bootstrap/bootstrap.min',
     underscore: 'js/libs/underscore/underscore-min',
     backbone: 'js/libs/backbone/backbone-optamd3-min',
     localStorage: 'js/libs/backbone/localstorage',
