@@ -8,6 +8,7 @@ require.config ( {
  * localstorage and order.........................................
  */ 
     paths: {
+    namespace:'js/namespace',
     jquery: 'js/libs/jquery/jquery-1.8.3',
     bootstraps: 'js/libs/bootstrap/bootstrap.min',
     underscore: 'js/libs/underscore/underscore-min',
@@ -16,16 +17,16 @@ require.config ( {
     order: 'js/libs/require/order'
     }
 });
-
-require(['js/modules/appViews/appModule'], function (AppModule) {
+require(['js/modules/appViews/appModule','namespace'], function (AppModule) {
 /** Sets the idCurrent variable to -1 so that we start the app with no selected slide
  */
     "use strict";
-    window.idCurrent = -1;
-    window.currentPresentation;
+    
+    Application.idCurrent = -1;
+    Application.currentPresentation;
 /** We create a appView object that is used to render the app
  * @property
  * @type object
  */
-    var appViewObj = new AppModule(); 
+    Application.appViewObj = new AppModule(); 
 });

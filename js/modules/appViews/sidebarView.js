@@ -44,7 +44,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
             for (i=0;i<this.collection.length;i++) {
                     this.renderSlide(this.collection.at(i),i);                
             }
-            this.el.find("#"+idCurrent).addClass("currentSlide");          
+            this.el.find("#"+Application.idCurrent).addClass("currentSlide");          
         },
     /**
     *@method
@@ -64,8 +64,8 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
     */
         checkCollectionIsEmpty: function() {
             $("#sidebar").html("");
-            window.idCurrent=this.collection.length-1;
-            if(window.idCurrent===(-1)) {
+            Application.idCurrent=this.collection.length-1;
+            if(Application.idCurrent===(-1)) {
                 $("#content").html("");
             }
 		},
@@ -75,7 +75,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
         renderAdd: function() {
             this.checkCollectionIsEmpty();
             this.render();
-            window.currentSlide = slideModulesObj.slides.at(idCurrent);
+            Application.currentSlide = slideModulesObj.slides.at(idCurrent);
 			window.location.href="#/slide/"+currentSlide.id;
             $("#"+(idCurrent)).addClass("currentSlide");
         },
@@ -86,7 +86,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
             this.checkCollectionIsEmpty();
             this.render();
             if (idCurrent !== -1) {
-                window.currentSlide = slideModulesObj.slides.at(idCurrent); 
+                Application.currentSlide = slideModulesObj.slides.at(idCurrent); 
 				window.location.href="#/slide/"+currentSlide.id;
                 $("#"+(idCurrent)).addClass("currentSlide");
             }
@@ -97,12 +97,12 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
         selectSlide:function(e) {       
     //get current slide
             var id =$(e.currentTarget).context.id;
-            window.currentSlide=this.collection.at(id); 
-            window.location.href="#/slide/"+currentSlide.id;
-            window.idCurrent = id;
+            Application.currentSlide=this.collection.at(id); 
+            window.location.href="#/slide/"+Application.currentSlide.id;
+            Application.idCurrent = id;
     //set current slide on sidebar
             $(".currentSlide").removeClass("currentSlide");
-            $("#"+idCurrent).addClass("currentSlide");              
+            $("#"+Application.idCurrent).addClass("currentSlide");              
         },
     /**
     * @method
@@ -113,7 +113,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 
             setCurrentSlide:function(cs,index) {
             //set setCurrentSlide
-                    window.currentSlide=cs;
+                    Application.currentSlide=cs;
             //set current slide on sidebar
                     $(".currentSlide").removeClass("currentSlide");
                     $("#"+index).addClass("currentSlide");
