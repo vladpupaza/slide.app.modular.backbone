@@ -68,6 +68,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
             if(window.idCurrent===(-1)) {
                 $("#content").html("");
             }
+<<<<<<< HEAD
         },
     /**
     * @method
@@ -107,6 +108,44 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
     * @param {Slide} currentSlide current selected slide of app
     * @param {int} index the index of current slide in our collection
     */
+=======
+        $('div .slideLittle').last().attr("id",i);
+        }
+    },
+/**
+* @method
+*/
+    renderAdd: function() {
+        this.renders();
+        currentSlide=slideModulesObj.slides.at(idCurrent);  
+		window.location.href="#/slide/"+currentSlide.id;
+        $("#"+(idCurrent)).addClass("currentSlide");
+    },
+/**
+* @method
+*/  
+    renderRem: function() {
+        this.renders();
+        console.log(idCurrent+" "+this.collection.length);
+        if (idCurrent !== -1) {
+            currentSlide=slideModulesObj.slides.at(idCurrent); 
+			window.location.href="#/slide/"+currentSlide.id;
+            $("#"+(idCurrent)).addClass("currentSlide");
+        }
+    },
+/**
+* @method
+*/
+    selectSlide:function(e) {       
+//get current slide
+        //e.preventDefault();
+        var id =$(e.currentTarget).context.id;
+        currentSlide=this.collection.at(id); 
+		idCurrent = id;
+//set current slide on sidebar
+        $(".currentSlide").removeClass("currentSlide");
+        $("#"+idCurrent).addClass("currentSlide");              
+>>>>>>> with router
 
             setCurrentSlide:function(cs,index) {
             //set setCurrentSlide
