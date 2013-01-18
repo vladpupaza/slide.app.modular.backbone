@@ -32,7 +32,6 @@ define([], function(){
                         <li class="dropdown">\
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Presentation <b class="caret"></b></a>\
                             <ul id = "presentationOption" class="dropdown-menu">\
-                                <li><a href="">none</a></li>\
                             </ul>\
                         </li>\
                     </ul>\

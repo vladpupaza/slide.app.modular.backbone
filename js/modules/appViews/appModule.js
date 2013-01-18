@@ -4,14 +4,16 @@ define([
     'underscore',
     'backbone',
     'js/modules/slideModules/slideModules',
+    'js/modules/appViews/presentationOptionView',
     'js/modules/appViews/toolbarView',
     'js/modules/appViews/sidebarView',
     'js/modules/appViews/contentView',
     'js/modules/appViews/typeView',
-    'js/modules/appViews/presentationOptionView'
+    
     ],
 
-function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type,presentationOptionView) {
+
+function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, Content, Type) {
 
 /**
  * @class AppModule A View representing the UI
@@ -35,13 +37,10 @@ function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type,presentati
  * @property
  * @type object
  */
+       
         window.toolbarViewObj = new Toolbar();
 
-/** 
- * @property
- * @type object
- */       
-        window.presentationOptionViewObj = new presentationOptionView();
+        window.presentationOptionViewObj = new PresentationOptionView();
         window.presentationOptionViewObj.subscribeStatements();
 
 		
