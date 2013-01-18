@@ -73,8 +73,9 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
     */
         renderAdd: function() {
             this.checkCollectionIsEmpty();
-            this.render();
+            this.render(); 
             this.setCurrentSlide(Application.slideModulesObj.slides.at(Application.idCurrent),Application.idCurrent);
+ 
         },
     /**
     * @method
@@ -85,6 +86,7 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
             if (Application.idCurrent !== -1) {
                 this.setCurrentSlide(Application.slideModulesObj.slides.at(Application.idCurrent),Application.idCurrent);
             }
+ 
         },
     /**
     * @method
