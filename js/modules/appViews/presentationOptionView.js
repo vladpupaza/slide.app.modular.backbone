@@ -19,7 +19,7 @@ function ($,_,Backbone,pubSub,templates)
 		selectPresentation : function(e) {
                 var name=$(e.currentTarget).context.textContent;
                 window.currentPresentation=name;
-		        console.log(currentPresentation);
+		    	pubSub.publish("change presentation",name);
         },
         setCurrentPresentation:function(msg,name) {
         	pubSub.publish("change presentation",name);
