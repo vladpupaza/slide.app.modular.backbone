@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub','bootstraps'],
+define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub','bootstraps','js/modules/appViews/slideshow'],
 function($,_,Backbone,toolbarTemplate,pubSub){
 /**
 * @cfg ToolbarView extends Backbone.View
@@ -401,40 +401,13 @@ var  ToolbarView = Backbone.View.extend ({
             this.saveMessage(name);
         }
     },
-    /**
-    *@method
-    *@ hides slideshow notify bar
-    */
-    hideSlideshowBar: function(i,slidesLength,timer){
-   
-        if (i === slidesLength-1) {
-            clearInterval(timer);
-            $("#slideshowMode").css('visibility','hidden');
-        }
-    },
-    /**
-    * @method
-    * @shows the next slide
-    */
-    nextSlide: function(i,that){
-        setInterval(function () {
-                Application.sidebarViewObj.setCurrentSlide(window.Application.slideModulesObj.slides.at(i),i);
-                that.hideSlideshowBar(i,window.Application.slideModulesObj.slides.length,this);           
-                i++;
-                },4000);
-    },
+
     /**
     * @method
     * @checks starts the presentation if there are slides in it
     */
     slideshow : function() {
-    
-        if (window.Application.slideModulesObj.slides.length === 0) {            
-            alert("No slides to be shown");
-        } else {     
-            $("#slideshowMode").css('visibility','visible');
-            this.nextSlide(0,this); 
-        }
+        Application.slideshow();
     }
 });
 
