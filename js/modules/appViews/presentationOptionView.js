@@ -14,9 +14,9 @@ function ($,_,Backbone,pubSub,templates)
 			this.loadNamesFromLocalStorage();
 		},
 		addPresentation:function(msg,data) {
-			this.el.find("#presentationOption").append('<option class="options" value='+data+'>'+data+'</option');
-			this.el.find('#presentationOption').val(data).attr("selected",true);
-			this.render();
+			$("#presentationOption").append('<option class="options" value='+data+'>'+data+'</option');
+			$("#presentationOption").val(data).attr("selected",true);
+			window.presentationOptionViewObj.render();
 		},
 		selectPresentation : function() {
         	if (this.el.find("#presentationOption").val() !== 'Select Presentation') {
@@ -25,20 +25,22 @@ function ($,_,Backbone,pubSub,templates)
         },
         setCurrentPresentation:function(msg,name) {
         	pubSub.publish("change presentation",name);
-        }
+        },
         loadNamesFromLocalStorage: function() {
         	var names = JSON.parse(localStorage.getItem("presentations"));
-        	var count=names.length;
-        	var i;
-        	for (i=0;i<count;i++) {
+        	if(names !== null){
+                var count = names.length;
+                var i;
+                for (i=0;i<count;i++) {
         		this.el.find("#presentationOption").append('<option class="options" value='+names[i]+'>'+names[i]+'</option');
-        	}
+                }
+            }
         },
 
         subscribeStatements:function(){
         	pubSub.subscribe("presentationAdded",this.addPresentation);
         	pubSub.subscribe("setCurrentPresentation",this.setCurrentPresentation); 
-        }()
+        }
 
     });
 	return PresentationOptionView;
