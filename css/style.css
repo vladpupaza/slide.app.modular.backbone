@@ -289,6 +289,14 @@ background:#9f9f9f;
     }
 }
 
+@media screen and (max-width: 1171px) {
+    #slideWorkArea
+    {
+        background-image:url('x.png');
+        background-repeat: no-repeat;
+    }
+}
+
 @media screen and (max-width: 1166px) {
     #sidebar 
     {
@@ -304,13 +312,19 @@ background:#9f9f9f;
         vertical-align: middle;
         
         width: 24%;
-        height: 240px;
+        height: 235px;
         margin-left: 3px;
     }
     #content
     {
         width: 99%;
+        background-image:url('');
     }
+}
+
+#sidebar a:hover, #sidebar a.link, #sidebar a:visited, #sidebar a:active
+{
+    text-decoration: none;
 }
 
 .slideType:hover
@@ -399,3 +413,4 @@ background:#9f9f9f;
     width: 100px;
     height: 102px; 
 }
+
