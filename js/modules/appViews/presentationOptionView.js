@@ -28,11 +28,13 @@ function ($,_,Backbone,pubSub,templates)
         },
         loadNamesFromLocalStorage: function() {
         	var names = JSON.parse(localStorage.getItem("presentations"));
-        	var count=names.length;
-        	var i;
-        	for (i=0;i<count;i++) {
+        	if(names !== null){
+                var count = names.length;
+                var i;
+                for (i=0;i<count;i++) {
         		this.el.find("#presentationOption").append('<option class="options" value='+names[i]+'>'+names[i]+'</option');
-        	}
+                }
+            }
         },
 
         subscribeStatements:function(){
