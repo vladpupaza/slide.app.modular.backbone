@@ -33,11 +33,8 @@ function ($, _, Backbone, slideTemplate){
     /**
     *@method
     */
-
- 
- 
     initialize: function () { 
- 		 //bind the change event to this view's render function, so every time a model is changed the view is updated
+         //bind the change event to this view's render function, so every time a model is changed the view is updated
         this.model.bind('change',function (){this.render();console.log('PUT ../slides/'+this.model.id);},this);
         //set this model's view to point to this object
         this.model.view = this;
