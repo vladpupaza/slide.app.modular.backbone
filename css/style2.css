@@ -141,7 +141,7 @@ background:#9f9f9f;
     margin-left: 5px;
     z-index: 996;
     
-    overflow:hidden;
+    
 }
 
 #slideWorkArea
@@ -154,6 +154,7 @@ background:#9f9f9f;
     background-color: #FFFFFF;
     margin-top: 25px;
     margin-bottom: 25px;
+    overflow:hidden;
 }
 
 #slideWorkArea .text
