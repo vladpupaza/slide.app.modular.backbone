@@ -45,6 +45,7 @@ function(S,PubSub,slide) {
             if (typeof saved==='string') {
             replaceSlides(saved);               
             //if theres something in the local storage load it in our Collection of slides
+            PubSub.publish("change presentation reset collection","");
             }
         };
         PubSub.subscribe("change presentation",presentationChanger);
