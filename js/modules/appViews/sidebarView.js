@@ -32,8 +32,17 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
             this.collection.bind('change', this.render,this);
             this.collection.bind("add", this.renderAdd,this);
             this.collection.bind("remove", this.renderRem,this);
-            this.collection.bind("reset", this.render,this);
+            this.collection.bind("reset", this.resetColection,this);
            },
+
+        resetColection:function(){
+            this.el.html("");var i;
+            for (i=0;i<this.collection.length;i++) {
+                this.renderSlide(this.collection.at(i),i);
+            }
+            this.el.find("#0").addClass("currentSlide");
+            window.location.href="#"+this.el.find("#0").parent('a').attr('href');
+        },
     /**
     * @method
     */
@@ -94,18 +103,14 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
         selectSlide:function(e) {       
             //get currently selected slide
             var id =$(e.currentTarget).context.id; 
-            this.setCurrentSlide(this.collection.at(id),id);      
+            this.setCurrentSlide(id);      
         },
     /**
     * @method
     * @param {Slide} currentSlide current selected slide of app
     * @param {int} index the index of current slide in our collection
     */
-        setCurrentSlide:function(cs,index) {
-        //set setCurrentSlide
-            Application.currentSlide = cs;
-            Application.idCurrent=index;
-            window.location.href="#/slide/"+Application.currentSlide.id;
+        setCurrentSlide:function(index) {
             //set current slide on sidebar
             $(".currentSlide").removeClass("currentSlide");
             $("#"+index).addClass("currentSlide");
@@ -116,7 +121,7 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
         setPresentation: function(){
             if (Application.slideModulesObj.slides.length >= 1) {
                 var cs=Application.slideModulesObj.slides.at(0);
-                Application.sidebarViewObj.setCurrentSlide(cs,0);
+                Application.sidebarViewObj.setCurrentSlide(0);
             } 
         },
     /**
