@@ -18,7 +18,7 @@ var contentView = Backbone.View.extend ({
 	},
 	render:function(data){
 		if(data.id){
-			var obj=slideModulesObj.slides.get(data.id);
+			var obj=Application.slideModulesObj.slides.get(data.id);
 			var slide=new bigslide({model:obj});
 			$(this.el).html(slide.render().el);
 			

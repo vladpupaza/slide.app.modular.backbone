@@ -44,9 +44,9 @@ function(_, Backbone,_localStorage,pubSub) {
         *@and we add slides only on it, even if we call addSlide function from another 
         *@instance of slides collection        
         */
-            slideModulesObj.slides.add({"_type":typeViewObj.getCurrentType()});
+            Application.slideModulesObj.slides.add({"_type":Application.typeViewObj.getCurrentType()});
             console.log("POST ../slides");
-			window.idCurrent=slideModulesObj.slides.length-1;
+			Application.idCurrent=Application.slideModulesObj.slides.length-1;
         },
         
 		removeSlide : function() {
@@ -55,7 +55,7 @@ function(_, Backbone,_localStorage,pubSub) {
         *@remove slide function          
         */
             if ( idCurrent !== -1 ) {
-                slideModulesObj.slides.remove(currentSlide);
+                Application.slideModulesObj.slides.remove(currentSlide);
                 console.log('DELETE ../slides/id');
             }
         },
@@ -65,8 +65,8 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@add image to currentSlide function          
         */
-            if (typeof currentSlide !== "undefined") {
-                if(currentSlide.get("_type") === "Image"){
+            if (typeof Application.currentSlide !== "undefined") {
+                if(Application.currentSlide.get("_type") === "Image"){
                     $("#wrapper").show();
                 }    
             }
@@ -77,8 +77,8 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@remove image from current slide function          
         */
-            if ((typeof currentSlide !== "undefined") && (currentSlide.get("_url")!==null) && (currentSlide.get("_type") === "Image")) {
-                currentSlide.set({_url:""});
+            if ((typeof Application.currentSlide !== "undefined") && (Application.currentSlide.get("_url")!==null) && (Application.currentSlide.get("_type") === "Image")) {
+                Application.currentSlide.set({_url:""});
             }
         },
         
@@ -87,8 +87,8 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@add video to currentSlide function          
         */
-            if (typeof currentSlide !== "undefined") {
-                var tip = currentSlide.get("_type");
+            if (typeof Application.currentSlide !== "undefined") {
+                var tip = Application.currentSlide.get("_type");
                 if(tip === "Video") {
                     $("#wrapper").show();
                 }    
@@ -100,8 +100,8 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@remove video to currentSlide function          
         */
-            if ((typeof currentSlide !== "undefined") && (currentSlide.get("_url")!==null) && (currentSlide.get("_type") === "Video")) {
-                currentSlide.set({_url:""});
+            if ((typeof Application.currentSlide !== "undefined") && (Application.currentSlide.get("_url")!==null) && (Application.currentSlide.get("_type") === "Video")) {
+                Application.currentSlide.set({_url:""});
             }
         },
         
@@ -111,8 +111,8 @@ function(_, Backbone,_localStorage,pubSub) {
         *@gets the URL for image or video slides         
         */
             console.log(topic+":"+data);
-            currentSlide.set({_url:data});
-            $("#"+idCurrent).addClass("currentSlide"); 
+            Application.currentSlide.set({_url:data});
+            $("#"+Application.idCurrent).addClass("currentSlide"); 
         }
         
     });

@@ -27,21 +27,21 @@ function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, C
  * @property
  * @type object
  */
-        window.typeViewObj = new Type();   
+        Application.typeViewObj = new Type();   
 /** 
  * @property
  * @type object
  */
-        window.slideModulesObj = new SlideModules();
+        Application.slideModulesObj = new SlideModules();
 /** 
  * @property
  * @type object
  */
        
-        window.toolbarViewObj = new Toolbar();
+        Application.toolbarViewObj = new Toolbar();
 
-        window.presentationOptionViewObj = new PresentationOptionView();
-        window.presentationOptionViewObj.subscribeStatements();
+        Application.presentationOptionViewObj = new PresentationOptionView();
+        Application.presentationOptionViewObj.subscribeStatements();
 
 		
 		var BigSlideView=new Content();		
@@ -56,7 +56,7 @@ function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, C
 		});
 		
 
-		window.router=new Router(); 
+		Application.router=new Router(); 
 		
 		Backbone.history.start();
 
@@ -74,8 +74,8 @@ function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, C
  * @property
  * @type object
  */
-        window.sidebarViewObj = new Sidebar({collection:slideModulesObj.slides});
-		window.sidebarViewObj.subscribeStatements();
+        Application.sidebarViewObj = new Sidebar({collection:Application.slideModulesObj.slides});
+		Application.sidebarViewObj.subscribeStatements();
     };
     return AppModule;
 });

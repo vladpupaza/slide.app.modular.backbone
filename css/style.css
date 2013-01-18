@@ -35,6 +35,18 @@ html
  
 }
 
+#presentationOption li:hover
+{
+    background-color: #08C;
+    color: #E9EFF5;
+    cursor:pointer;
+}
+
+#toolbar li:hover
+{
+    cursor:pointer;
+}
+
 /*#toolbar 
 {
     width: 1100px;

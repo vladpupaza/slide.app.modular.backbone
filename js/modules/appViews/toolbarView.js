@@ -7,9 +7,8 @@ function($,_,Backbone,toolbarTemplate,pubSub){
 "use strict";
 /*global confirm:false*/
 /*global alert:false*/
-/*global currentSlide:false*/
 /*global prompt:false*/
-/*global sidebarViewObj:false*/
+/*global Application:false*/
 var  ToolbarView = Backbone.View.extend ({
     /**
     * @property
@@ -178,7 +177,7 @@ var  ToolbarView = Backbone.View.extend ({
     getUrl : function(){
     
         var urlNou = this.el.find("#myTextAreaUrl").val();
-        if (currentSlide.get("_type") === "Image") {
+        if (Application.currentSlide.get("_type") === "Image") {
             this.testImage(urlNou);
         } else {
             this.testVideo(urlNou);
@@ -419,7 +418,7 @@ var  ToolbarView = Backbone.View.extend ({
     */
     nextSlide: function(i,that){
         setInterval(function () {
-                sidebarViewObj.setCurrentSlide(window.Application.slideModulesObj.slides.at(i),i);
+                Application.sidebarViewObj.setCurrentSlide(window.Application.slideModulesObj.slides.at(i),i);
                 that.hideSlideshowBar(i,window.Application.slideModulesObj.slides.length,this);           
                 i++;
                 },4000);
