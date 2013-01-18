@@ -34,7 +34,7 @@ function(S,PubSub,slide) {
             //if theres something in the local storage load it in our Collection of slides      
             var localSlides=JSON.parse(slides);
             slideModulesObj.slides.reset(localSlides);
-            PubSub.publish("change presentation reset collection","");
+           // PubSub.publish("change presentation reset collection","");
         };
         //function that loads the correct entry form local storage based on the data it recieves from the toolbar
         var presentationChanger= function(msg,data) {

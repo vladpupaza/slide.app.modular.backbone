@@ -4,7 +4,7 @@ function ($,_,Backbone,pubSub,templates)
 	var PresentationOptionView = Backbone.View.extend({
 		el:$("#toolbar"),
 		events:{
-			"change #presentationOption ": "selectPresentation"
+			"click #presentationOption li ": "selectPresentation"
 		},
 		
 		initialize:function() {
@@ -14,17 +14,14 @@ function ($,_,Backbone,pubSub,templates)
 			this.loadNamesFromLocalStorage();
 		},
 		addPresentation:function(msg,data) {
-			$("#presentationOption").append('<option class="options" value='+data+'>'+data+'</option>');
-			$("#presentationOption").val(data).attr("selected",true);
+			$("#presentationOption").append('<li class="options" value='+data+'>'+data+'</li>');
          },
-		selectPresentation : function() {
-        	if (this.el.find("#presentationOption").val() !== 'Select Presentation') {
-		    	pubSub.publish("change presentation",this.el.find("#presentationOption").val());
-		    }
+		selectPresentation : function(e) {
+                var name=$(e.currentTarget).context.textContent;
+		    	pubSub.publish("change presentation",name);
         },
         setCurrentPresentation:function(msg,name) {
         	pubSub.publish("change presentation",name);
-            $("#presentationOption").val(name).attr("selected",true);
         },
         loadNamesFromLocalStorage: function() {
         	var names = JSON.parse(localStorage.getItem("presentations"));
@@ -32,7 +29,7 @@ function ($,_,Backbone,pubSub,templates)
                 var count = names.length;
                 var i;
                 for (i=0;i<count;i++) {
-        		this.el.find("#presentationOption").append('<option class="options" value='+names[i]+'>'+names[i]+'</option>');
+        		this.el.find("#presentationOption").append('<li class="options" value='+names[i]+'>'+names[i]+'</li>');
                 }
             }
         },
