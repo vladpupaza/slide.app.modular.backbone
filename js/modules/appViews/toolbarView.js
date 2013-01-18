@@ -275,7 +275,7 @@ var  ToolbarView = Backbone.View.extend ({
         }    
         return false;         
     },
-    // NUMEREGEE>...............................................
+ 
     confirmRename: function(name,presentations) {
         var g = confirm("Are you sure you want to replace this presentation?");
         if (g) {
@@ -312,6 +312,7 @@ var  ToolbarView = Backbone.View.extend ({
             return true;
         }
     },
+    //more than 5 ............................................
     savePresentation: function(name){
         if (name) {
             if (localStorage.getItem("presentations")) {
@@ -326,7 +327,7 @@ var  ToolbarView = Backbone.View.extend ({
         }
         return false;
     },
-    //...............................NU MEREGEEEEEEEEEEEEEEEEE>................
+  
     saveAs: function(){
     /**
     * @method
