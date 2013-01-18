@@ -75,9 +75,9 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
         renderAdd: function() {
             this.checkCollectionIsEmpty();
             this.render();
-            Application.currentSlide = slideModulesObj.slides.at(idCurrent);
-			window.location.href="#/slide/"+currentSlide.id;
-            $("#"+(idCurrent)).addClass("currentSlide");
+            Application.currentSlide = Application.slideModulesObj.slides.at(Application.idCurrent);
+			window.location.href="#/slide/"+Application.currentSlide.id;
+            $("#"+(Application.idCurrent)).addClass("currentSlide");
         },
     /**
     * @method
@@ -85,10 +85,10 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
         renderRem: function() {
             this.checkCollectionIsEmpty();
             this.render();
-            if (idCurrent !== -1) {
-                Application.currentSlide = slideModulesObj.slides.at(idCurrent); 
-				window.location.href="#/slide/"+currentSlide.id;
-                $("#"+(idCurrent)).addClass("currentSlide");
+            if (Application.idCurrent !== -1) {
+                Application.currentSlide = Application.slideModulesObj.slides.at(idCurrent); 
+				window.location.href="#/slide/"+Application.currentSlide.id;
+                $("#"+(Application.idCurrent)).addClass("currentSlide");
             }
         },
     /**
@@ -113,7 +113,7 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
 
             setCurrentSlide:function(cs,index) {
             //set setCurrentSlide
-                    Application.currentSlide=cs;
+                    Application.currentSlide = cs;
             //set current slide on sidebar
                     $(".currentSlide").removeClass("currentSlide");
                     $("#"+index).addClass("currentSlide");
@@ -123,9 +123,9 @@ define(['jquery','underscore','backbone','js/modules/slideModules/slideView','js
     */
             
             setPresentation: function(){
-                if (slideModulesObj.slides.length >= 1) {
-                    var cs=slideModulesObj.slides.at(0);
-                    sidebarViewObj.setCurrentSlide(cs,0);
+                if (Application.slideModulesObj.slides.length >= 1) {
+                    var cs=Application.slideModulesObj.slides.at(0);
+                    Application.sidebarViewObj.setCurrentSlide(cs,0);
                 } 
             },
     /**
