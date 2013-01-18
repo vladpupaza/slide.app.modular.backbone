@@ -7,10 +7,11 @@ define([
     'js/modules/appViews/toolbarView',
     'js/modules/appViews/sidebarView',
     'js/modules/appViews/contentView',
-    'js/modules/appViews/typeView'
+    'js/modules/appViews/typeView',
+    'js/modules/appViews/presentationOptionView'
     ],
 
-function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type) {
+function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type,presentationOptionView) {
 /**
  * @class AppModule A View representing the UI
  * @constructor
@@ -34,6 +35,12 @@ function ($, _, Backbone,SlideModules,Toolbar, Sidebar, Content, Type) {
  * @type object
  */
         window.toolbarViewObj = new Toolbar();
+/** 
+ * @property
+ * @type object
+ */       
+        window.presentationOptionViewObj = new presentationOptionView();
+        window.presentationOptionViewObj.subscribeStatements();
 /**
  * @method
  * @param {exception} e An exception

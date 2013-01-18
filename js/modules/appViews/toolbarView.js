@@ -21,16 +21,6 @@ var  ToolbarView = Backbone.View.extend ({
     * @method 
     */
     this.el.html( this.template().toString());
-    var savedPresentation = localStorage.getItem("presentations");
-        if (typeof savedPresentation === 'string') {
-            //if theres something in the local storage load it in our Collection of slides
-            var savedPresentationTitles = JSON.parse(savedPresentation);
-            var l = savedPresentationTitles.length;
-            for(var i=0; i<l; i++) {
-                $('#presentationOption').append('<option value="'+savedPresentationTitles[i]+'">'
-                    +savedPresentationTitles[i]+'</option>');
-            }          
-        }
     },
     /**
     * @property defines all the toolbar events
@@ -101,13 +91,6 @@ var  ToolbarView = Backbone.View.extend ({
         "click #saveAsBtn" : "saveAs",
     /**
     * @event click
-    * Fires when presentationOption is clicked
-    * @param {Select} this
-    * @param {EventObject} e selectPresentation       
-    */    
-        "change #presentationOption" : "selectPresentation",
-    /**
-    * @event click
     * Fires when addImageUrlBtn is clicked
     * @param {Button} this
     * @param {EventObject} e getUrl        
@@ -174,8 +157,11 @@ var  ToolbarView = Backbone.View.extend ({
     */
         pubSub.publish("removeVideoFromSlide");
     },
-    // method that calls the testImage method or testVideo method
     getUrl : function(){
+    /**
+    * @method    
+    * @ that calls the testImage method or testVideo method
+    */
         var urlNou = this.el.find("#myTextAreaUrl").val();
         if (currentSlide.get("_type") === "Image") {
             this.testImage(urlNou);
@@ -184,6 +170,10 @@ var  ToolbarView = Backbone.View.extend ({
         }
     },
     testVideo: function(urlNou){
+    /**
+    * @method    
+    * @ that tests the video url
+    */
         if (this.validateUrl(urlNou)) {
             pubSub.publish("getUrl",urlNou);
             this.hideHelpers();
@@ -192,11 +182,19 @@ var  ToolbarView = Backbone.View.extend ({
         }
     },
     testImage: function(urlNou){
+    /**
+    * @method    
+    * @ that tests the image url
+    */
         this.showHelpers(urlNou);
         var image = $($("#testImg").html());
         this.loadTestImage(image,urlNou);
     },
     loadTestImage: function(image,urlNou){
+    /**
+    * @method    
+    * @ loads test image
+    */
         var that = this;
         image.load(function () {    
             pubSub.publish("getUrl",urlNou);
@@ -204,24 +202,40 @@ var  ToolbarView = Backbone.View.extend ({
         }).error(that.imageLoadError);
     },
     showHelpers: function(urlNou){
+    /**
+    * @method    
+    * @ shows spinners, labels and insersts url to the test img tag
+    */
         $("#toolbar label").html("Please wait...");
         $("#spinner").show();
         $("#testImg img").attr("src",urlNou);
     },
     hideHelpers: function(){
+    /**
+    * @method    
+    * @ hides the wrapper,spinner,label, and empties the url of the test img tag
+    */
         $("#wrapper").hide();
         $("#spinner").hide();
         $("#toolbar label").html("");
         $("#testImg img").attr("src","");
     },
     imageLoadError: function(){
+    /**
+    * @method    
+    * @ shows error alert
+    */
         $("#spinner").hide();
         $("#toolbar label").html("");
         alert("Please insert a valid URL");
         $("#testImg img").attr("src","");
     },
-    //validates new url
+    
     validateUrl: function(url) {
+    /**
+    * @method    
+    * @ validates new url
+    */
         var urlPattern = new RegExp('(http|ftp|https)://[a-z0-9\-_]+(\.[a-z0-9\-_]+)+([a-z0-9\-\.,@\?^=%&;:/~\+#]*[a-z0-9\-@\?^=%&;/~\+#])?', 'i');
         if (urlPattern.test(url)) {
                 return true;
@@ -231,13 +245,15 @@ var  ToolbarView = Backbone.View.extend ({
     },
     cancelUrl: function() {
         /**
-        * @method    
+        * @method   
+        * @ hides the wrapper and the spinner        
         */
         $("#wrapper").hide();
         $("#spinner").hide();
     },   
     sendSaveNotification: function(message) {
         /**
+        *@method 
         * sets text to notfification bar and makes it visible
         */
         $("#notifBar").html(message);
@@ -252,6 +268,7 @@ var  ToolbarView = Backbone.View.extend ({
     save : function() {
     /**
     * @method    
+    *
     */           
         if ($("#presentationOption").val() !== 'Select Presentation') {
             localStorage.setItem($("#presentationOption").val(),JSON.stringify(slideModulesObj.slides));
@@ -277,10 +294,10 @@ var  ToolbarView = Backbone.View.extend ({
     },
  
     confirmRename: function(name,presentations) {
-        var g = confirm("Are you sure you want to replace this presentation?");
-        if (g) {
+        if (confirm("Are you sure you want to replace this presentation?")) {
             localStorage.setItem('presentations',JSON.stringify(presentations));
             localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
+            pubSub.publish("setCurrentPresentation",name);
         } else {
             this.saveAs();
         }
@@ -289,16 +306,13 @@ var  ToolbarView = Backbone.View.extend ({
         presentations.push(name);
         localStorage.setItem('presentations',JSON.stringify(presentations));
         localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
-        this.render(); 
-        this.el.find('#presentationOption').val(name).attr("selected",true); 
-        
+        pubSub.publish("presentationAdded",name);
     },
     firstPresentation: function(name) {
         var firstPresentation = [name];
         localStorage.setItem('presentations',JSON.stringify(firstPresentation));
         localStorage.setItem(name,JSON.stringify(slideModulesObj.slides));
-        this.render();  
-        this.el.find('#presentationOption').val(name).attr("selected",true);
+        pubSub.publish("presentationAdded",name);
     },
     checkingPresentations: function(name){
         // checks if there is something in local storage
@@ -312,7 +326,6 @@ var  ToolbarView = Backbone.View.extend ({
             return true;
         }
     },
-    //more than 5 ............................................
     savePresentation: function(name){
         if (name) {
             if (localStorage.getItem("presentations")) {
@@ -338,26 +351,37 @@ var  ToolbarView = Backbone.View.extend ({
             this.saveMessage(name);
         }
     },
-    selectPresentation : function() {
-        if (this.el.find("#presentationOption").val() !== 'Select Presentation') {
-		    pubSub.publish("change presentation",this.el.find("#presentationOption").val());
+    hideSlideshowBar: function(i,slidesLength,timer){
+    /**
+    * @method
+    *@ hides slideshow notify bar
+    */
+        if (i === slidesLength-1) {
+            clearInterval(timer);
+            $("#slideshowMode").css('visibility','hidden');
         }
     },
+    nextSlide: function(i,that){
+    /**
+    * @method
+    * @shows the next slide
+    */
+        var timer = setInterval(function () {
+                sidebarViewObj.setCurrentSlide(slideModulesObj.slides.at(i),i);
+                that.hideSlideshowBar(i,slideModulesObj.slides.length,this);           
+                i++;
+                },4000);
+    },
     slideshow : function() {
-        var i = 0;  
-        var nr=slideModulesObj.slides.length;  
-        if (nr === 0) {            
+    /**
+    * @method
+    * @checks starts the presentation if there are slides in it
+    */
+        if (slideModulesObj.slides.length === 0) {            
             alert("No slides to be shown");
         } else {     
             $("#slideshowMode").css('visibility','visible');
-            var timer = setInterval(function () {
-                sidebarViewObj.setCurrentSlide(slideModulesObj.slides.at(i),i);
-                if (i === nr-1) {
-                    clearInterval(timer);
-                    $("#slideshowMode").css('visibility','hidden');
-                }
-                i++;
-            },4000);
+            this.nextSlide(0,this); 
         }
     }
 });
