@@ -54,8 +54,8 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@remove slide function          
         */
-            if ( idCurrent !== -1 ) {
-                Application.slideModulesObj.slides.remove(currentSlide);
+            if ( Application.idCurrent !== -1 ) {
+                Application.slideModulesObj.slides.remove(Application.currentSlide);
                 console.log('DELETE ../slides/id');
             }
         },
@@ -65,7 +65,7 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@add image to currentSlide function          
         */
-            if (typeof Application.currentSlide !== "undefined") {
+            if ((typeof Application.currentSlide !== "undefined") && (Application.idCurrent !== -1)) {
                 if(Application.currentSlide.get("_type") === "Image"){
                     $("#wrapper").show();
                 }    
@@ -87,7 +87,7 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@add video to currentSlide function          
         */
-            if (typeof Application.currentSlide !== "undefined") {
+            if ((typeof Application.currentSlide !== "undefined") && (Application.idCurrent !== -1)) {
                 var tip = Application.currentSlide.get("_type");
                 if(tip === "Video") {
                     $("#wrapper").show();
