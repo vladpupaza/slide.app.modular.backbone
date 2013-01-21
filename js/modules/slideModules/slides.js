@@ -56,12 +56,18 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@remove slide function          
         */
-
             if ( Application.idCurrent !== -1 ) {
                 Application.slideModulesObj.slides.remove(Application.currentSlide);
-				window.location.href=('#/slide/'+window.Application.slideModulesObj.slides.at(Application.idCurrent).id);
+                if (Application.slideModulesObj.slides.length !== 0) {
+				    window.location.href=('#/slide/'+window.Application.slideModulesObj.slides.at(Application.idCurrent).id);
+                }
+                else 
+                    { 
+                        Application.currentSlide = undefined;
+                        window.location.href=('#/slide/'); }
                 console.log('DELETE ../slides/id');
             }
+
         },
         
         addImageToCurrentSlide : function() {
@@ -69,7 +75,7 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@add image to currentSlide function          
         */
-            if ((typeof Application.currentSlide !== "undefined") && (Application.idCurrent !== -1)) {
+            if (( Application.currentSlide !== "undefined") && (Application.idCurrent !== -1)) {
                 if(Application.currentSlide.get("_type") === "Image"){
                     $("#wrapper").show();
                 }    
@@ -81,7 +87,7 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@remove image from current slide function          
         */
-            if ((typeof Application.currentSlide !== "undefined") && (Application.currentSlide.get("_url")!==null) && (Application.currentSlide.get("_type") === "Image")) {
+            if (( typeof Application.currentSlide !== "undefined") && (Application.currentSlide.get("_url")!==null) && (Application.currentSlide.get("_type") === "Image")) {
                 Application.currentSlide.set({_url:""});
             }
         },
@@ -91,7 +97,7 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@add video to currentSlide function          
         */
-            if ((typeof Application.currentSlide !== "undefined") && (Application.idCurrent !== -1)) {
+            if (( Application.currentSlide !== "undefined") && (Application.idCurrent !== -1)) {
                 var tip = Application.currentSlide.get("_type");
                 if(tip === "Video") {
                     $("#wrapper").show();
@@ -104,7 +110,7 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@remove video to currentSlide function          
         */
-            if ((typeof Application.currentSlide !== "undefined") && (Application.currentSlide.get("_url")!==null) && (Application.currentSlide.get("_type") === "Video")) {
+            if (( typeof Application.currentSlide !== "undefined")  && (Application.currentSlide.get("_url")!==null) && (Application.currentSlide.get("_type") === "Video")) {
                 Application.currentSlide.set({_url:""});
             }
         },

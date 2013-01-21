@@ -21,7 +21,7 @@ require(['js/modules/appViews/appModule','namespace'], function (AppModule) {
 /** Sets the idCurrent variable to -1 so that we start the app with no selected slide
  */
     "use strict";
-    
+
     Application.idCurrent = -1;
     Application.currentPresentation;
 /** We create a appView object that is used to render the app

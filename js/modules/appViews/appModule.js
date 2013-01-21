@@ -40,6 +40,7 @@ function ($, _, Backbone,SlideModules,PresentationOptionView, Sidebar, Content, 
  * @type object
  */
         Application.saveFeautreObj = new saveFeatures();
+        Application.currentSlide = undefined;
         Application.toolbarViewwithSlideshowObj = new slideShowFeature();
 
         Application.presentationOptionViewObj = new PresentationOptionView();

@@ -106,7 +106,7 @@ var  ToolbarView = Backbone.View.extend ({
         $('#content').html('');
         this.el.find('#presentationOption').val('Select Presentation').attr('selected',true);
         Application.idCurrent=-1;
-        Application.currentSlide="undefined";
+        Application.currentSlide= undefined ;
     },
      /**
     * @method    
