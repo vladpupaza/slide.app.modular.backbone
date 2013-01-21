@@ -58,7 +58,7 @@ var bigSlideView = Backbone.View.extend ({
 	 *@method
 	 * called at initialize to change the tamplate , more specialized:))
 	 */
-	changeTemplate:function(){
+	selectTemplate:function(){
 		if (this.model.toJSON()._type === 'Image') {
 			this.template = _.template(Template.content_template_image);
 			}
@@ -77,8 +77,8 @@ var bigSlideView = Backbone.View.extend ({
         if (this.model instanceof Backbone.Model) {
 			_.bindAll(this,"render","updateText");  
 			this.model.bind('change',this.render,this);
-			this.changeTemplate();
-            // binding I binde the change event of the model , to method rander of the object 
+			this.selectTemplate();
+            //  I bind the change event of the model , to method render of the object 
 
 			
 
@@ -116,6 +116,7 @@ var bigSlideView = Backbone.View.extend ({
     },
     /** 
     *@method 
+    *@param{event}// mouse down event , has coordonates 
     */
     mouseDown : function(e) {
         //this function is called so I will be able to move the draggebel div , base on event's 
@@ -126,6 +127,7 @@ var bigSlideView = Backbone.View.extend ({
     },
     /**
     *@method 
+    *I set the text from textarea on model , when textarea lose focus
     */
     updateText : function() {
         var text = $('.text')[0].value;

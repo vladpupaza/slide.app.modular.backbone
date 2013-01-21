@@ -56,8 +56,10 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@remove slide function          
         */
+
             if ( Application.idCurrent !== -1 ) {
                 Application.slideModulesObj.slides.remove(Application.currentSlide);
+
                 console.log('DELETE ../slides/id');
             }
         },

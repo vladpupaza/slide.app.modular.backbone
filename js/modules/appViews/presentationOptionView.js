@@ -47,6 +47,7 @@ function ($,_,Backbone,pubSub)
         selectPresentation : function(e) {
                 var name=$(e.currentTarget).context.textContent;
                 Application.currentPresentation=name;
+				window.location.href="#";
                 pubSub.publish("change presentation",name);
                 window.location.href="#";
         },

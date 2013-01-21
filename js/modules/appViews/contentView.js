@@ -13,7 +13,7 @@ function(_, Backbone,pubSub,BigSlide) {
  * @extends Backbone.View
  * @param  as param recives the model of the curent slide
      */
-var contentView = Backbone.View.extend ({
+var ContentView = Backbone.View.extend ({
 	el:'#content',
 	tagName:'div',
 	initialize:function(){
@@ -21,16 +21,17 @@ var contentView = Backbone.View.extend ({
 	},
 	/**
 	 *@method
+	 *@param{data}//the adress link witch send us here
 	 */
 	render:function(data){
 		if(data.id){
-			var obj=Application.slideModulesObj.slides.get(data.id);
-			var slide=new BigSlide({model:obj});
+			Application.currentSlide=Application.slideModulesObj.slides.get(data.id);
+			var slide=new BigSlide({model:Application.currentSlide});
 			$(this.el).html(slide.render().el);
 		}
 	}
 });
-return contentView;
+return ContentView;
 });
 
 
