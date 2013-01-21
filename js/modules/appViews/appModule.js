@@ -50,9 +50,9 @@ function ($, _, Backbone,SlideModules,PresentationOptionView, Sidebar, Content, 
 		var Router = Backbone.Router.extend({
 			routes:{
 				'':'home',
-				'slide/:id':'bigSlideView'
+				'slide/:id':'renderSlide'
 			},
-			bigSlideView:function(id){
+			renderSlide:function(id){
 				content.render({id:id});
 				}
 		});
