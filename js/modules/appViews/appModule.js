@@ -9,11 +9,12 @@ define([
     'js/modules/appViews/sidebarView',
     'js/modules/appViews/contentView',
     'js/modules/appViews/typeView',
+    'js/modules/appViews/saveFeatures'
     
     ],
 
 
-function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, Content, Type) {
+function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, Content, Type,saveFeatures) {
 
 /**
  * @class AppModule A View representing the UI
@@ -39,6 +40,7 @@ function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, C
  */
        
         Application.toolbarViewObj = new Toolbar();
+        Application.saveFeautreObj = new saveFeatures();
 
         Application.presentationOptionViewObj = new PresentationOptionView();
         Application.presentationOptionViewObj.subscribeStatements();
