@@ -108,23 +108,22 @@ var  ToolbarView = Backbone.View.extend ({
     * @method    
     */
     newPresentation: function() {
-    
         window.Application.slideModulesObj.slides.reset(); 
         $('#content').html('');
         this.el.find('#presentationOption').val('Select Presentation').attr('selected',true);
+        Application.idCurrent=-1;
+        Application.currentSlide="undefined";
     },
      /**
     * @method    
     */
     addSlide: function() { 
-   
         pubSub.publish("addNewSlide");
     },
     /**
     * @method    
     */
     removeSlide: function() { 
-    
         if (window.Application.slideModulesObj.slides.length !== 0) { 
             pubSub.publish("removeCurrentSlide");  
         }
@@ -133,28 +132,24 @@ var  ToolbarView = Backbone.View.extend ({
     * @method    
     */
     addImage: function() { 
-    
         pubSub.publish("addImageToSlide");   
     },
     /**
     * @method    
     */
     removeImage: function(){ 
-    
         pubSub.publish("removeImageFromSlide");    
     },
     /**
     * @method    
     */
     addVideo: function() { 
-    
         pubSub.publish("addVideoToSlide"); 
     },
     /**
     * @method    
     */
     removeVideo: function() {
-    
         pubSub.publish("removeVideoFromSlide");
     },
     /**
@@ -162,7 +157,6 @@ var  ToolbarView = Backbone.View.extend ({
     * @ that calls the testImage method or testVideo method
     */
     getUrl : function(){
-    
         var urlNou = this.el.find("#myTextAreaUrl").val();
         if (Application.currentSlide.get("_type") === "Image") {
             this.testImage(urlNou);
@@ -175,7 +169,6 @@ var  ToolbarView = Backbone.View.extend ({
     * @ that tests the video url
     */
     testVideo: function(urlNou){
-   
         if (this.validateUrl(urlNou)) {
             pubSub.publish("getUrl",urlNou);
             this.hideHelpers();
@@ -188,7 +181,6 @@ var  ToolbarView = Backbone.View.extend ({
     * @ that tests the image url
     */
     testImage: function(urlNou){
-    
         this.showHelpers(urlNou);
         var image = $($("#testImg").html());
         this.loadTestImage(image,urlNou);
@@ -198,7 +190,6 @@ var  ToolbarView = Backbone.View.extend ({
     * @ loads test image
     */
     loadTestImage: function(image,urlNou){
-   
         var that = this;
         image.load(function () {    
             pubSub.publish("getUrl",urlNou);
@@ -210,7 +201,6 @@ var  ToolbarView = Backbone.View.extend ({
     * @ shows spinners, labels and insersts url to the test img tag
     */
     showHelpers: function(urlNou){
-    
         $("#toolbar label").html("Please wait...");
         $("#spinner").show();
         $("#testImg img").attr("src",urlNou);
@@ -220,7 +210,6 @@ var  ToolbarView = Backbone.View.extend ({
     * @ hides the wrapper,spinner,label, and empties the url of the test img tag
     */
     hideHelpers: function(){
-    
         $("#wrapper").hide();
         $("#spinner").hide();
         $("#toolbar label").html("");
@@ -231,7 +220,6 @@ var  ToolbarView = Backbone.View.extend ({
     * @ shows error alert
     */
     imageLoadError: function(){
-    
         $("#spinner").hide();
         $("#toolbar label").html("");
         alert("Please insert a valid URL");
@@ -255,7 +243,6 @@ var  ToolbarView = Backbone.View.extend ({
     * @ hides the wrapper and the spinner        
     */
     cancelUrl: function() {
-       
         $("#wrapper").hide();
         $("#spinner").hide();
     }, 
