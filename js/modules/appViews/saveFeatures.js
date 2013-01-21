@@ -1,4 +1,8 @@
+/*global define:false*/
 define(['jquery','underscore','backbone','js/libs/pubsub','js/modules/appViews/toolbarView'],function($,_,Backbone,pubSub,toolbar) {
+"use strict";
+/*global confirm:false*/
+/*global prompt:false*/
 var saveFeatures = toolbar.extend({
     events: function() {
         return _.extend({},toolbar.prototype.events,{
