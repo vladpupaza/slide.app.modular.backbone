@@ -81,7 +81,6 @@ var  ToolbarView = Backbone.View.extend ({
     * @param {EventObject} e removeVideo        
     */    
         "click #removeVideoBtn" : "removeVideo",
-   
     /**
     * @event click
     * Fires when addImageUrlBtn is clicked
@@ -96,7 +95,28 @@ var  ToolbarView = Backbone.View.extend ({
     * @param {EventObject} e cancelUrl        
     */    
         "click #cancelImageUrlBtn" : "cancelUrl",
-    
+    /**
+    * @event click
+    * Fires when saveBtn is clicked
+    * @param {Button} this
+    * @param {EventObject} e save        
+    */    
+        "click #saveBtn" : "save",
+    /**
+    * @event click
+    * Fires when saveasBtn is clicked
+    * @param {Button} this
+    * @param {EventObject} e save        
+    */    
+        "click #saveAsBtn" : "saveAs",
+    /**
+    * @event click
+    * Fires when slideshowBtn is clicked
+    * @param {Button} this
+    * @param {EventObject} e slideshow        
+    */    
+        "click #slideshowBtn":"startSlideshow"    
+       
     },
     /**
     * @method    
@@ -105,8 +125,8 @@ var  ToolbarView = Backbone.View.extend ({
         window.Application.slideModulesObj.slides.reset(); 
         $('#content').html('');
         this.el.find('#presentationOption').val('Select Presentation').attr('selected',true);
-        Application.idCurrent=-1;
-        Application.currentSlide= undefined ;
+        Application.idCurrent = -1;
+        Application.currentSlide = undefined ;
     },
      /**
     * @method    
@@ -239,7 +259,155 @@ var  ToolbarView = Backbone.View.extend ({
     cancelUrl: function() {
         $("#wrapper").hide();
         $("#spinner").hide();
+    },
+   
+    /**
+    * @method    
+    *
+    */                
+    save : function() {
+        if(typeof window.Application.currentPresentation === 'undefined'){
+             this.saveAs(); 
+        } else {   
+            localStorage.setItem(window.Application.currentPresentation,JSON.stringify(window.Application.slideModulesObj.slides));
+            this.saveMessage(window.Application.currentPresentation);
+        }    
+    },
+    /**
+    * @method    
+    *
+    */ 
+    presentationName: function(){
+        return prompt("Give the name for the presentation","untitled");
     }, 
+    /**
+    * @method    
+    *
+    */   
+    saveAs: function(){
+        var name = this.presentationName();   
+        this.savePresentation(name);        
+    },
+
+    /**
+    * @method    
+    *
+    */ 
+    saveMessage: function(name){
+        var currentDate = new Date();
+        var saveString = name + " was saved at " + currentDate.getHours() + ":" + 
+        currentDate.getMinutes() + " " + "( " + currentDate.getDate() + "/" +
+        (currentDate.getMonth()+1) + "/" + currentDate.getFullYear() + " )";
+        this.sendSaveNotification(saveString);
+    },
+    /**
+    *@method 
+    * sets text to notfification bar and makes it visible
+    */  
+    sendSaveNotification: function(message) {
+       
+        $("#notifBar").html(message);
+                    $("#notifBar").css("visibility","visible");
+                    setTimeout(function hide() {
+                    $("#notifBar").css("visibility","hidden");
+                    },4000);          
+    },
+    /**
+    * @method    
+    *
+    */ 
+    confirmRename: function(name,presentations) {
+        if (confirm("Are you sure you want to replace this presentation?")) {
+            this.addToLocalStorage(presentations,name);
+            pubSub.publish("setCurrentPresentation",name);            
+        } else {
+            this.saveAs();
+        }
+    },
+    /**
+    * @method    
+    *
+    */ 
+    addToLocalStorage: function(presentations,name){
+        localStorage.setItem('presentations',JSON.stringify(presentations));
+        localStorage.setItem(name,JSON.stringify(window.Application.slideModulesObj.slides));
+        this.saveMessage(name); 
+    },
+    /**
+    * @method    
+    *
+    */ 
+    addNewPresentation: function(presentations,name) {
+        this.addToLocalStorage(presentations,name);
+        pubSub.publish("presentationAdded",name);
+        
+    },
+    /**
+    * @method    
+    *
+    */ 
+    checkingPresentations: function(name){
+        // checks if there is something in local storage
+        var presentations = JSON.parse(localStorage.getItem("presentations"));
+        if ($.inArray(name,presentations) !== -1) {
+        //if there is a presentation with the same name alrerady saved,
+        //asks for confirmation to replace it
+            this.confirmRename(name,presentations);
+        } else {
+            presentations.push(name);
+            this.addNewPresentation(presentations,name);
+        }
+    },
+    /**
+    * @method    
+    *
+    */ 
+    savePresentation: function(name){
+        if (name) {
+            if (localStorage.getItem("presentations")) {
+                this.checkingPresentations(name);
+            } else {   
+                //if local storage is empty creates an array with presentation names 
+                //and adds the current presentation to local storage
+                var firstPresentation = [name];
+                this.addNewPresentation(firstPresentation,name);
+            }
+        }
+    },
+    /**
+    * @method    
+    *
+    */ 
+    startSlideshow: function() {
+        if (window.Application.slideModulesObj.slides.length === 0) {            
+            alert("No slides to be shown");
+        } else {     
+            $("#slideshowMode").css('visibility','visible');
+            this.nextSlide(0,this); 
+        }
+    },
+    /**
+    *@method
+    *@ hides slideshow notify bar
+    */
+    hideSlideshowBar: function(i,slidesLength,timer){
+        if (i === slidesLength-1) {
+            clearInterval(timer);
+            $("#slideshowMode").css('visibility','hidden');
+        }
+    },
+    /**
+    * @method
+    * @shows the next slide
+    */
+    nextSlide: function(i,that){
+        var timer = setInterval(function () {
+            window.Application.sidebarViewObj.setCurrentSlide(i);
+            window.location.href=('#/slide/'+window.Application.slideModulesObj.slides.at(i).id);
+            that.hideSlideshowBar(i,window.Application.slideModulesObj.slides.length,timer);           
+        i++;
+        },4000);
+    } 
 });
 return ToolbarView;
 });
