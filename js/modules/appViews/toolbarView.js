@@ -1,5 +1,5 @@
 /*global define:false*/
-define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub','bootstraps','js/modules/appViews/slideshow'],
+define(['jquery', 'underscore', 'backbone','js/modules/appViews/appViewTemplate','js/libs/pubsub','bootstraps'],
 function($,_,Backbone,toolbarTemplate,pubSub){
 /**
 * @cfg ToolbarView extends Backbone.View
@@ -96,13 +96,7 @@ var  ToolbarView = Backbone.View.extend ({
     * @param {EventObject} e cancelUrl        
     */    
         "click #cancelImageUrlBtn" : "cancelUrl",
-    /**
-    * @event click
-    * Fires when slideshowBtn is clicked
-    * @param {Button} this
-    * @param {EventObject} e slideshow        
-    */    
-        "click #slideshowBtn":"slideshow" 
+    
     },
     /**
     * @method    
@@ -246,14 +240,6 @@ var  ToolbarView = Backbone.View.extend ({
         $("#wrapper").hide();
         $("#spinner").hide();
     }, 
-    /**
-    * @method
-    * @checks starts the presentation if there are slides in it
-    */
-    slideshow : function() {
-        Application.slideshow();
-    }
 });
-
 return ToolbarView;
 });

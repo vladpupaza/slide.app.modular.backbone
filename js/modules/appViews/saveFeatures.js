@@ -47,8 +47,7 @@ var saveFeatures = toolbar.extend({
     */                
     save : function() {
         localStorage.setItem(window.Application.currentPresentation,JSON.stringify(window.Application.slideModulesObj.slides));
-        this.saveMessage(window.Application.currentPresentation);     
-       
+        this.saveMessage(window.Application.currentPresentation);    
     },
     /**
     * @method    
