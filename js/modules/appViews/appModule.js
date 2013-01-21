@@ -5,15 +5,17 @@ define([
     'backbone',
     'js/modules/slideModules/slideModules',
     'js/modules/appViews/presentationOptionView',
-    'js/modules/appViews/toolbarView',
     'js/modules/appViews/sidebarView',
     'js/modules/appViews/contentView',
     'js/modules/appViews/typeView',
+    'js/modules/appViews/saveFeatures',
+    'js/modules/appViews/slideshow'
+
     
     ],
 
 
-function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, Content, Type) {
+function ($, _, Backbone,SlideModules,PresentationOptionView, Sidebar, Content, Type,saveFeatures,slideShowFeature) {
 
 /**
  * @class AppModule A View representing the UI
@@ -37,8 +39,8 @@ function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, C
  * @property
  * @type object
  */
-       
-        Application.toolbarViewObj = new Toolbar();
+        Application.saveFeautreObj = new saveFeatures();
+        Application.toolbarViewwithSlideshowObj = new slideShowFeature();
 
         Application.presentationOptionViewObj = new PresentationOptionView();
         Application.presentationOptionViewObj.subscribeStatements();
