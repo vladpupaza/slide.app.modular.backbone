@@ -39,8 +39,8 @@ function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, C
  * @type object
  */
        
-        Application.toolbarViewObj = new Toolbar();
-        Application.saveFeautreObj = new saveFeatures();
+      //  Application.toolbarViewObj = new Toolbar();
+       Application.saveFeautreObj = new saveFeatures();
 
         Application.presentationOptionViewObj = new PresentationOptionView();
         Application.presentationOptionViewObj.subscribeStatements();
