@@ -1,4 +1,4 @@
-/*global define:false*/
+/*global define,Application:false*/
 define([
     'jquery',
     'underscore',
@@ -10,12 +10,13 @@ define([
     'js/modules/appViews/typeView',
     'js/modules/appViews/saveFeatures',
     'js/modules/appViews/slideshow'
+ 
 
     
     ],
 
 
-function ($, _, Backbone,SlideModules,PresentationOptionView, Sidebar, Content, Type,saveFeatures,slideShowFeature) {
+function ($, _, Backbone,SlideModules,PresentationOptionView, Sidebar, Content, Type,SaveFeatures,SlideShowFeature) {
 
 /**
  * @class AppModule A View representing the UI
@@ -23,62 +24,91 @@ function ($, _, Backbone,SlideModules,PresentationOptionView, Sidebar, Content, 
  */ 
     "use strict";
     /*global slideModulesObj:false*/
-    var AppModule = function () {
 
 /** 
  * @property
  * @type object
  */
-        Application.typeViewObj = new Type();   
-/** 
- * @property
- * @type object
- */
-        Application.slideModulesObj = new SlideModules();
-/** 
- * @property
- * @type object
- */
-        Application.saveFeautreObj = new saveFeatures();
-        Application.currentSlide = undefined;
-        Application.toolbarViewwithSlideshowObj = new slideShowFeature();
+Application.AppModule=(function ()
+{
+var instance;
 
-        Application.presentationOptionViewObj = new PresentationOptionView();
-        Application.presentationOptionViewObj.subscribeStatements();
+    function init()
+    {
+            
+    /** 
+     * @property
+     * @type object
+     */
+            Application.typeViewObj = new Type();   
+    /** 
+     * @property
+     * @type object
+     */
+            Application.slideModulesObj = new SlideModules();
+    /** 
+     * @property
+     * @type object
+     */
+            Application.saveFeautreObj = new SaveFeatures();
+            Application.currentSlide = undefined;
+            Application.toolbarViewwithSlideshowObj = new SlideShowFeature();
 
-		
-		var content=new Content();		
-		var Router = Backbone.Router.extend({
-			routes:{
-				'':'home',
-				'slide/:id':'renderSlide'
-			},
-			renderSlide:function(id){
-				content.render({id:id});
-				}
-		});
-		
+            Application.presentationOptionViewObj = new PresentationOptionView();
+            Application.presentationOptionViewObj.subscribeStatements();
 
-		Application.router=new Router(); 
-		
-		Backbone.history.start();
+            
+            var content=new Content();      
+            var Router = Backbone.Router.extend({
+                routes:{
+                    '':'home',
+                    'slide/:id':'renderSlide'
+                },
+                renderSlide:function(id){
+                    content.render({id:id});
+                    }
+            });
+            
 
-/**
- * @method
- * @param {event} e An event of mouse down pased as param 
- */     
-        Application.divMove = function (e) {    
-            var div = document.getElementById('draggebel'); 
-            div.style.top = ( e.clientY -300)+ 'px';
-            div.style.left = ( e.clientX -750)+ 'px';
-        };
+            Application.router=new Router(); 
+            
+            Backbone.history.start();
 
-/** 
- * @property
- * @type object
- */
-        Application.sidebarViewObj = new Sidebar({collection:Application.slideModulesObj.slides});
-		Application.sidebarViewObj.subscribeStatements();
-    };
-    return AppModule;
+    /**
+     * @method
+     * @param {event} e An event of mouse down pased as param 
+     */     
+            Application.divMove = function (e) {    
+                var div = document.getElementById('draggebel'); 
+                div.style.top = ( e.clientY -300)+ 'px';
+                div.style.left = ( e.clientX -750)+ 'px';
+            };
+
+    /** 
+     * @property
+     * @type object
+     */
+            Application.sidebarViewObj = new Sidebar({collection:Application.slideModulesObj.slides});
+            Application.sidebarViewObj.subscribeStatements();
+
+            return true;
+            
+            
+        }
+
+        return {
+            getInstance:function() {
+    
+                    if ( !instance ) {
+                        instance = init();
+                    }
+
+                return instance;
+            }       
+
+        }; 
+})().getInstance();
+
 });
+      
+     

@@ -17,7 +17,7 @@ require.config ( {
     order: 'js/libs/require/order'
     }
 });
-require(['js/modules/appViews/appModule','namespace'], function (AppModule) {
+require(['js/modules/appViews/appModule','namespace'], function () {
 /** Sets the idCurrent variable to -1 so that we start the app with no selected slide
  */
     "use strict";
@@ -28,5 +28,5 @@ require(['js/modules/appViews/appModule','namespace'], function (AppModule) {
  * @property
  * @type object
  */
-    Application.appViewObj = new AppModule(); 
+   // Application.appViewObj = new AppModule(); 
 });
