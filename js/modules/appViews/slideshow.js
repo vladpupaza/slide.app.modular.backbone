@@ -22,7 +22,8 @@ window.Application.hideSlideshowBar= function(i,slidesLength,timer){
 */
 window.Application.nextSlide = function(i,that){
     var timer = setInterval(function () {
-        Application.sidebarViewObj.setCurrentSlide(window.Application.slideModulesObj.slides.at(i),i);
+        Application.sidebarViewObj.setCurrentSlide(i);
+        window.location.href=('#/slide/'+window.Application.slideModulesObj.slides.at(i).id);
         window.Application.hideSlideshowBar(i,window.Application.slideModulesObj.slides.length,timer);           
         i++;
     },4000);

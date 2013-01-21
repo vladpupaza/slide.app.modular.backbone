@@ -62,7 +62,7 @@ function ($, _, Backbone,SlideModules,PresentationOptionView,Toolbar, Sidebar, C
 
 /**
  * @method
- * @param {exception} e An exception
+ * @param {event} e An event of mouse down pased as param 
  */     
         Application.divMove = function (e) {    
             var div = document.getElementById('draggebel'); 
