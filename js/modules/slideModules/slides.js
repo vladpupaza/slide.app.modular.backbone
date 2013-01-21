@@ -45,8 +45,8 @@ function(_, Backbone,_localStorage,pubSub) {
         *@instance of slides collection        
         */
             Application.slideModulesObj.slides.add({"_type":Application.typeViewObj.getCurrentType()});
+			window.location.href=('#/slide/'+window.Application.slideModulesObj.slides.at(Application.idCurrent).id);
             console.log("POST ../slides");
- 
 			Application.idCurrent=Application.slideModulesObj.slides.length-1;
  
         },
@@ -59,7 +59,7 @@ function(_, Backbone,_localStorage,pubSub) {
 
             if ( Application.idCurrent !== -1 ) {
                 Application.slideModulesObj.slides.remove(Application.currentSlide);
-
+				window.location.href=('#/slide/'+window.Application.slideModulesObj.slides.at(Application.idCurrent).id);
                 console.log('DELETE ../slides/id');
             }
         },

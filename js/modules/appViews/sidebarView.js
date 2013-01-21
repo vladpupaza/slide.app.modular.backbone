@@ -40,8 +40,8 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
             for (i=0;i<this.collection.length;i++) {
                 this.renderSlide(this.collection.at(i),i);
             }
-            this.el.find("#0").addClass("currentSlide");
-            window.location.href="#"+this.el.find("#0").parent('a').attr('href');
+			window.location.href="#"+this.el.find("#0").parent('a').attr('href');
+			this.el.find("#0").addClass("currentSlide");
         },
     /**
     * @method
