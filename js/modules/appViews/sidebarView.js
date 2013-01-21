@@ -122,9 +122,9 @@ function ($,_,Backbone,SlideView,ContentView,pubSub) {
     */ 
         setPresentation: function(){
             if (Application.slideModulesObj.slides.length >= 1) {
-                var cs=Application.slideModulesObj.slides.at(0);
+                // var cs=Application.slideModulesObj.slides.at(0);
 
-                Application.sidebarViewObj.setCurrentSlide(cs,0);
+                Application.sidebarViewObj.setCurrentSlide(0);
             } else {
                  $("#content").html("");
             }
