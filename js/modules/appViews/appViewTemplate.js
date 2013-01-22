@@ -101,7 +101,23 @@ define([], function(){
 			<textarea class="text" maxlength="250" onkeyup="$(\'#contentView\').trigger(\'txtnbleft\')" onkeypress="$(\'#contentView\').trigger(\'txtnbleft\')"  rows="4" cols="50"><%= _text %></textarea>\
 			<div id="txtnb"></div>\
 		</div>\
-	</div>'
+	</div>',
+
+	modal_view:
+	'<div id="saveModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\
+        <div class="modal-header">\
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>\
+            <h3 id="myModalLabel">Save Presentation</h3>\
+        </div>\
+        <div class="modal-body">\
+            <p>Please enter a name for your presentation</p>\
+            <input type="text" name="presentationName" />\
+        </div>\
+        <div class="modal-footer">\
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>\
+            <button id="saveChanges" class="btn btn-primary">Save changes</button>\
+        </div>\
+    </div>'
 
 };
 return appViewTemplate;	
