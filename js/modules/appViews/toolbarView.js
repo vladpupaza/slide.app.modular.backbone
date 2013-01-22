@@ -278,7 +278,8 @@ var  ToolbarView = Backbone.View.extend ({
     *
     */ 
     presentationName: function(){
-        return prompt("Give the name for the presentation","untitled");
+        $('#saveModal').modal('show');
+        // return prompt("Give the name for the presentation","untitled");
     }, 
     /**
     * @method    
