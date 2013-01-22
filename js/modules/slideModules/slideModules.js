@@ -37,9 +37,7 @@ function(S,PubSub,slide) {
            // PubSub.publish("change presentation reset collection","");
         };
         //function that loads the correct entry form local storage based on the data it recieves from the toolbar
-        var presentationChanger= function(msg,data) {
-            //first we empty the current collection
-            Application.slideModulesObj.slides.reset();
+        var presentationChanger= function(msg,data) {            
             //read the local storage and see if there's anything in there, equivalent to a GET ../slides REST operation
             var saved=loadFromLocalStorage(data);            
             if (typeof saved==='string') {
