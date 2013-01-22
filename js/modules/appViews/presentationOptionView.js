@@ -1,5 +1,5 @@
 /*global define,Application:true*/
-define(['jquery','underscore','backbone','js/libs/pubsub','js/modules/appViews/appViewTemplate'],
+define(['jquery','underscore','backbone','js/libs/pubsub'],
 function ($,_,Backbone,pubSub)
 {
 /**
