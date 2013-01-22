@@ -115,7 +115,8 @@ var  ToolbarView = Backbone.View.extend ({
     * @param {Button} this
     * @param {EventObject} e slideshow        
     */    
-        "click #slideshowBtn":"startSlideshow"    
+        "click #slideshowBtn":"startSlideshow"
+       
        
     },
     /**
@@ -276,18 +277,9 @@ var  ToolbarView = Backbone.View.extend ({
     /**
     * @method    
     *
-    */ 
-    presentationName: function(){
-        $('#saveModal').modal('show');
-        // return prompt("Give the name for the presentation","untitled");
-    }, 
-    /**
-    * @method    
-    *
     */   
     saveAs: function(){
-        var name = this.presentationName();   
-        this.savePresentation(name);        
+        $("#saveModal").modal('show');       
     },
 
     /**
@@ -363,16 +355,17 @@ var  ToolbarView = Backbone.View.extend ({
     * @method    
     *
     */ 
-    savePresentation: function(name){
+    savePresentation: function(msg,name){
         if (name) {
             if (localStorage.getItem("presentations")) {
-                this.checkingPresentations(name);
+                Application.toolbarViewObj.checkingPresentations(name);
             } else {   
                 //if local storage is empty creates an array with presentation names 
                 //and adds the current presentation to local storage
                 var firstPresentation = [name];
-                this.addNewPresentation(firstPresentation,name);
+                Application.toolbarViewObj.addNewPresentation(firstPresentation,name);
             }
+            Application.currentPresentation=name;
         }
     },
     /**
@@ -408,7 +401,11 @@ var  ToolbarView = Backbone.View.extend ({
             that.hideSlideshowBar(i,window.Application.slideModulesObj.slides.length,timer);           
         i++;
         },4000);
-    } 
+    } ,
+
+    subscribeStatements:function() {
+        pubSub.subscribe("saveChanges",this.savePresentation);
+    }
 });
 return ToolbarView;
 });

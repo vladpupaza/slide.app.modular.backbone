@@ -9,6 +9,7 @@ define([
     'js/modules/appViews/contentView',
     'js/modules/appViews/typeView',
     'js/modules/appViews/toolbarView',
+    'js/modules/appViews/modalView'
     
  
 
@@ -16,7 +17,7 @@ define([
     ],
 
 
-function ($, _, Backbone,SlideModules,PresentationOptionView, Sidebar, Content, Type,toolbar) {
+function ($, _, Backbone,SlideModules,PresentationOptionView, Sidebar, Content, Type,toolbar,modalView) {
 
 /**
  * @class AppModule A View representing the UI
@@ -49,13 +50,17 @@ var instance;
     /** 
      * @property
      * @type object
-     */
+     */      
+            Application.modalViewObj = new modalView();
+           
             Application.currentSlide = undefined;
             Application.toolbarViewObj = new toolbar();
+            Application.toolbarViewObj.subscribeStatements();
 
             Application.presentationOptionViewObj = new PresentationOptionView();
             Application.presentationOptionViewObj.subscribeStatements();
 
+            
             
             var content=new Content();      
             var Router = Backbone.Router.extend({
