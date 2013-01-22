@@ -75,7 +75,7 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@add image to currentSlide function          
         */
-            if (( Application.currentSlide !== "undefined") && (Application.idCurrent !== -1)) {
+            if ((typeof Application.currentSlide !== "undefined") && (Application.idCurrent !== -1)) {
                 if(Application.currentSlide.get("_type") === "Image"){
                     $("#wrapper").show();
                 }    
@@ -97,7 +97,7 @@ function(_, Backbone,_localStorage,pubSub) {
         *@method   
         *@add video to currentSlide function          
         */
-            if (( Application.currentSlide !== "undefined") && (Application.idCurrent !== -1)) {
+            if ((typeof Application.currentSlide !== "undefined") && (Application.idCurrent !== -1)) {
                 var tip = Application.currentSlide.get("_type");
                 if(tip === "Video") {
                     $("#wrapper").show();
